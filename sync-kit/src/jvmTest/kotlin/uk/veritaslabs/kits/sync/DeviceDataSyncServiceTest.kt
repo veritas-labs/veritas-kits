@@ -1370,6 +1370,52 @@ class DeviceDataSyncServiceTest {
     }
 
     @Test
+    fun everySharedDocumentThatArrivesBeforeItsHomeIsStillKeptWhenAnotherRegistryMessageComesFirst() = runBlocking {
+        documentCases.filterNot { it.private }.forEachIndexed { index, case ->
+            // Arrange: neither A nor B is running; every message is built and handed to B by hand. A message that carries changes
+            // can't come from a real round before B has the Home (B never replies to a document it can't open), so A's document
+            // and A's Home registry are each primed with the "have" of an empty replica on a third device first.
+            freshScope()
+            val a = Device("agent-a-waiting$index")
+            val b = Device("agent-b-waiting$index")
+            b.pairedWith(a)
+            val homeId = a.homes.create("Maple Street", "family")
+            case.edit(a, homeId)
+            val replica = Device("agent-e-waiting$index")
+            replica.database.homeQueries.insert(homeId, "Maple Street", "family", 1L) // a bare Home row: its documents start empty, with no history in common with A's
+            replica.sources.pantry.forSpace(homeId) // the shopping list needs the Pantry to exist
+            case.prime(replica, homeId)
+            val aDocument = case.peer(a, homeId)!!
+            val aState = SyncState()
+            aDocument.receive(aState, case.peer(replica, homeId)!!.generate(SyncState())!!)
+            val documentMessages = mutableListOf<ByteArray>()
+            while (true) documentMessages += aDocument.generate(aState) ?: break
+            val aRegistry = SpaceRegistry(a.database, TestSeeding(a.sources, a.database))
+            val registryState = SyncState()
+            aRegistry.receive(registryState, SpaceRegistry(replica.database, TestSeeding(replica.sources, replica.database)).generate(SyncState())!!)
+            val registryMessages = mutableListOf<ByteArray>()
+            while (true) registryMessages += aRegistry.generate(registryState) ?: break
+            val sender = a.agentId
+            documentMessages.forEach { b.sync.handle(directMessage(sender, case.idFor(homeId), it)) }
+            val homesBeforeRegistry = b.homeNames()
+
+            // Act: the registry message that carries the Home is not the first to follow the documents; an empty replica's handshake comes between
+            val handshake = SpaceRegistry(replica.database, TestSeeding(replica.sources, replica.database)).generate(SyncState())!!
+            b.sync.handle(directMessage(sender, SpaceRegistryDocumentId, handshake))
+            val homesAfterHandshake = b.homeNames()
+            registryMessages.forEach { b.sync.handle(directMessage(sender, SpaceRegistryDocumentId, it)) }
+
+            // Assert
+            assertTrue(documentMessages.isNotEmpty() && registryMessages.isNotEmpty(), "${case.name}: nothing to hand to B")
+            assertEquals(emptyList(), homesBeforeRegistry, "${case.name}: B had the Home before the registry arrived")
+            assertEquals(emptyList(), homesAfterHandshake, "${case.name}: the handshake carried the Home")
+            assertEquals(listOf("Maple Street"), b.homeNames())
+            eventuallyFor(case, "being applied once the Home arrived") { case.seen(b, homeId) }
+        }
+        scope.cancel()
+    }
+
+    @Test
     fun everyDocumentsEditIsLoggedInSyncActivityUnderItsModule() = runBlocking {
         documentCases.forEachIndexed { index, case ->
             // Arrange: X and Y share a Home, and X2 is X's own second device, which is who a private document goes to

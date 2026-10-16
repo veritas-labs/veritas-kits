@@ -66,6 +66,9 @@ import uk.veritaslabs.kits.spaces.SpaceRosters
 
 private const val MaxBufferedPerSpace = 64
 
+/** How many Spaces that this device does not have yet may have messages waiting for them; beyond it the Space that has waited longest is forgotten. */
+private const val MaxWaitingSpaces = 16
+
 /**
  * Syncs the user's data between their own paired devices (docs/adr/ADR-013-device-data-sync.md): the Space registry
  * ([SpaceRegistry]), the user's Profile ([ProfileRegistry]) and each Space's documents, as Automerge sync messages in x0x direct messages
@@ -197,9 +200,11 @@ public class DeviceDataSyncService(
     private val lock = Mutex()
     private val states = mutableMapOf<Pair<String, String>, SyncState>()
 
-    // Pantry and roster messages that arrived before their Space did (the registry and a Space's documents sync side by
-    // side): the sending peer, the document id and the sync message.
-    private val waiting = mutableMapOf<String, MutableList<Triple<String, String, ByteArray>>>()
+    // Document messages that arrived before their Space did (the registry and a Space's documents sync side by side): the sending
+    // peer, the document id and the sync message, by Space, oldest Space first. A Space's messages are kept until the registry creates
+    // the Space, however many registry messages come first (the one that carries it is rarely the first), and are bounded by
+    // MaxWaitingSpaces and MaxBufferedPerSpace instead. Guarded by [lock].
+    private val waiting = LinkedHashMap<String, MutableList<Triple<String, String, ByteArray>>>()
 
     override suspend fun run(): Unit = coroutineScope {
         registry.importLocalSpaces()
@@ -466,12 +471,12 @@ public class DeviceDataSyncService(
             val created = registry.project()
             // Spaces can now exist that a Pantry message was waiting for.
             created.forEach { spaceId ->
-                waiting.remove(spaceId)?.forEach { (peer, documentId, queued) -> receiveSpaceDocument(peer, documentId, queued) }
+                waiting.remove(spaceId)?.forEach { (peer, documentId, queued) ->
+                    // Answered as a message that arrived in order is, or the sender hears nothing until the next round
+                    if (receiveSpaceDocument(peer, documentId, queued)) peersFor(documentId).forEach { pump(documentId, it) }
+                }
             }
             publishRosters() // a Space that has arrived may now have a member row for this user to publish
-
-            val existing = database.homeQueries.selectAll().awaitAsList().mapTo(mutableSetOf()) { it.id }
-            waiting.keys.retainAll(existing)
         } else if (documentId == ProfileDocumentId) {
             profile.receive(stateFor(documentId, sender), message)
             // A device that took on the shared Profile retires its old member id, then publishes the new one.
@@ -484,6 +489,7 @@ public class DeviceDataSyncService(
                 recordingReceived(sender, documentId) { type.open(spaceId)?.receiveSync(stateFor(documentId, sender), message) }
             } else {
                 if (!receiveSpaceDocument(sender, documentId, message)) {
+                    if (spaceId !in waiting && waiting.size >= MaxWaitingSpaces) waiting.remove(waiting.keys.first())
                     waiting.getOrPut(spaceId) { mutableListOf() }.let { if (it.size < MaxBufferedPerSpace) it += Triple(sender, documentId, message) }
                     return
                 }
