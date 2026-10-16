@@ -1045,16 +1045,25 @@ class DeviceDataSyncServiceTest {
         second.start()
         val homeId = first.homes.create("Maple Street", "family")
         eventually { second.homeNames() == listOf("Maple Street") && first.profiles.current().id == second.profiles.current().id }
-        eventually { first.mailboxStore(homeId) != null && second.mailboxStore(homeId) != null }
-        val groupId = first.database.homeGroupQueries.selectByHome(homeId).awaitAsOneOrNull()!!.groupId
-        assertTrue("agent-2" in network.groups.getValue(groupId).members.keys)
+        // Both devices may make a group for the Home at first, and the one the roster names wins; wait until they are in the same one
+        eventually {
+            val firstGroup = first.database.homeGroupQueries.selectByHome(homeId).awaitAsOneOrNull()
+            val secondGroup = second.database.homeGroupQueries.selectByHome(homeId).awaitAsOneOrNull()
+            firstGroup?.storeId != null && secondGroup?.storeId != null && firstGroup.groupId == secondGroup.groupId &&
+                "agent-2" in network.groups.getValue(firstGroup.groupId).members.keys
+        }
 
         // Act: the user removes the second device on the first
         val result = first.deviceSync.removeDevice("agent-2")
 
         // Assert: the Home's group lets it go, not only the pairing list
         assertTrue(result.isSuccess)
-        eventually { "agent-2" !in network.groups.getValue(groupId).members.keys }
+        // The Home's group is the one the first device is in now: the same group, or a new one if the second device had made it
+        eventually {
+            val groupId = first.database.homeGroupQueries.selectByHome(homeId).awaitAsOneOrNull()?.groupId
+            groupId != null && "agent-2" !in network.groups.getValue(groupId).members.keys
+        }
+        val groupId = first.database.homeGroupQueries.selectByHome(homeId).awaitAsOneOrNull()!!.groupId
         assertTrue("agent-1" in network.groups.getValue(groupId).members.keys)
         scope.cancel()
     }
