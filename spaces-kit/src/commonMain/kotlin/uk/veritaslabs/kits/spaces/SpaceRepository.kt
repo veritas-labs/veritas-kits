@@ -65,8 +65,10 @@ public class SpaceRepository(
     /** Renames the Space with the given [id] and changes its [kind]. */
     public suspend fun update(id: String, name: String, kind: String) {
         database.homeQueries.updateHome(name, kind, id)
+        // The new name and kind are reported as given, not read back: the row is only a projection of the registry, and a registry
+        // message projected between the update and the read puts the old values back, which would then be reported (and so kept) as the edit.
         database.homeQueries.selectById(id).awaitAsOneOrNull()
-            ?.let { changes?.saved(StoredSpace(it.id, it.name, it.shape, it.createdAt)) }
+            ?.let { changes?.saved(StoredSpace(it.id, name, kind, it.createdAt)) }
     }
 
     /**

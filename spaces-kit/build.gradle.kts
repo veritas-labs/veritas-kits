@@ -37,6 +37,9 @@ kotlin {
             implementation(libs.kotlinx.coroutinesTest)
             implementation(project(":x0x-kit-testing"))
             implementation(project(":store-kit-testing"))
+            // To open a database of its own and give it a trigger, which stands for a message projected over a row at the wrong moment.
+            implementation(libs.androidx.sqlite.bundled)
+            implementation(libs.eygraber.sqldelightAndroidxDriver)
         }
     }
 }
