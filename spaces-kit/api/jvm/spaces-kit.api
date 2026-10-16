@@ -1,0 +1,919 @@
+public final class uk/veritaslabs/kits/spaces/ActiveInvite {
+	public fun <init> (Ljava/lang/String;JII)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()I
+	public final fun component4 ()I
+	public final fun copy (Ljava/lang/String;JII)Luk/veritaslabs/kits/spaces/ActiveInvite;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/ActiveInvite;Ljava/lang/String;JIIILjava/lang/Object;)Luk/veritaslabs/kits/spaces/ActiveInvite;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getExpiresAt ()J
+	public final fun getId ()Ljava/lang/String;
+	public final fun getMaxUses ()I
+	public final fun getUses ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/CurrentProfile {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Luk/veritaslabs/kits/spaces/CurrentProfile;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/CurrentProfile;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Luk/veritaslabs/kits/spaces/CurrentProfile;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAvatarResourceId ()Ljava/lang/String;
+	public final fun getDisplayName ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getNamed ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/HubEnrolment {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/HubEnrolment;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/HubEnrolment;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/HubEnrolment;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCommands ()Ljava/lang/String;
+	public final fun getGroupId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/HubResult : java/lang/Enum {
+	public static final field Done Luk/veritaslabs/kits/spaces/HubResult;
+	public static final field Failed Luk/veritaslabs/kits/spaces/HubResult;
+	public static final field NotAnAdmin Luk/veritaslabs/kits/spaces/HubResult;
+	public static final field NotAnAdminDevice Luk/veritaslabs/kits/spaces/HubResult;
+	public static final field NotInGroup Luk/veritaslabs/kits/spaces/HubResult;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/HubResult;
+	public static fun values ()[Luk/veritaslabs/kits/spaces/HubResult;
+}
+
+public final class uk/veritaslabs/kits/spaces/HubState {
+	public fun <init> (Ljava/lang/String;ZZ)V
+	public synthetic fun <init> (Ljava/lang/String;ZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun copy (Ljava/lang/String;ZZ)Luk/veritaslabs/kits/spaces/HubState;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/HubState;Ljava/lang/String;ZZILjava/lang/Object;)Luk/veritaslabs/kits/spaces/HubState;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getInGroup ()Z
+	public fun hashCode ()I
+	public final fun isDevice ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/InviteLink {
+	public static final field Companion Luk/veritaslabs/kits/spaces/InviteLink$Companion;
+	public static final field MaxAdminAgents I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;JLjava/util/List;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;JLjava/util/List;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/InviteLink;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/InviteLink;Ljava/lang/String;Ljava/lang/String;JLjava/util/List;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/InviteLink;
+	public final fun encode (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun encode$default (Luk/veritaslabs/kits/spaces/InviteLink;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdminAgentIds ()Ljava/util/List;
+	public final fun getExpiresAt ()J
+	public final fun getSecret ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public final fun getSpaceName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isExpired (J)Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/InviteLink$Companion {
+	public final fun decode (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/InviteLink;
+	public static synthetic fun decode$default (Luk/veritaslabs/kits/spaces/InviteLink$Companion;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/InviteLink;
+}
+
+public final class uk/veritaslabs/kits/spaces/InviteSecretsKt {
+	public static final fun inviteSecretHash (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun newInviteSecret ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/InviteStatus : java/lang/Enum {
+	public static final field Expired Luk/veritaslabs/kits/spaces/InviteStatus;
+	public static final field Revoked Luk/veritaslabs/kits/spaces/InviteStatus;
+	public static final field Used Luk/veritaslabs/kits/spaces/InviteStatus;
+	public static final field Valid Luk/veritaslabs/kits/spaces/InviteStatus;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/InviteStatus;
+	public static fun values ()[Luk/veritaslabs/kits/spaces/InviteStatus;
+}
+
+public final class uk/veritaslabs/kits/spaces/JoinDenial {
+	public static final field Declined Ljava/lang/String;
+	public static final field Expired Ljava/lang/String;
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/JoinDenial;
+	public static final field Revoked Ljava/lang/String;
+	public static final field Used Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/JoinRequest {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun component5 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)Luk/veritaslabs/kits/spaces/JoinRequest;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/JoinRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZILjava/lang/Object;)Luk/veritaslabs/kits/spaces/JoinRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApproved ()Z
+	public final fun getCreatedAt ()J
+	public final fun getMemberId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/JoinedSpace {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/JoinedSpace;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/JoinedSpace;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/JoinedSpace;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/LeaveResult : java/lang/Enum {
+	public static final field Left Luk/veritaslabs/kits/spaces/LeaveResult;
+	public static final field OnlyAdmin Luk/veritaslabs/kits/spaces/LeaveResult;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/LeaveResult;
+	public static fun values ()[Luk/veritaslabs/kits/spaces/LeaveResult;
+}
+
+public final class uk/veritaslabs/kits/spaces/MemberListItem {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Luk/veritaslabs/kits/spaces/MemberRole;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Luk/veritaslabs/kits/spaces/MemberRole;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Luk/veritaslabs/kits/spaces/MemberRole;
+	public final fun component4 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Luk/veritaslabs/kits/spaces/MemberRole;Z)Luk/veritaslabs/kits/spaces/MemberListItem;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/MemberListItem;Ljava/lang/String;Ljava/lang/String;Luk/veritaslabs/kits/spaces/MemberRole;ZILjava/lang/Object;)Luk/veritaslabs/kits/spaces/MemberListItem;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMemberId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRole ()Luk/veritaslabs/kits/spaces/MemberRole;
+	public fun hashCode ()I
+	public final fun isYou ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/MemberRepository {
+	public fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/ProfileRepository;Luk/veritaslabs/kits/spaces/RosterChangeListener;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/ProfileRepository;Luk/veritaslabs/kits/spaces/RosterChangeListener;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun members (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public final fun removeMember (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setRole (Ljava/lang/String;Ljava/lang/String;Luk/veritaslabs/kits/spaces/MemberRole;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/MemberRole : java/lang/Enum {
+	public static final field Admin Luk/veritaslabs/kits/spaces/MemberRole;
+	public static final field Companion Luk/veritaslabs/kits/spaces/MemberRole$Companion;
+	public static final field Member Luk/veritaslabs/kits/spaces/MemberRole;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getStorageValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/MemberRole;
+	public static fun values ()[Luk/veritaslabs/kits/spaces/MemberRole;
+}
+
+public final class uk/veritaslabs/kits/spaces/MemberRole$Companion {
+	public final fun fromStorageValue (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/MemberRole;
+}
+
+public final class uk/veritaslabs/kits/spaces/PendingJoin {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;)Luk/veritaslabs/kits/spaces/PendingJoin;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/PendingJoin;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/PendingJoin;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDenial ()Ljava/lang/String;
+	public final fun getExpiresAt ()J
+	public final fun getSpaceId ()Ljava/lang/String;
+	public final fun getSpaceName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class uk/veritaslabs/kits/spaces/ProfileChangeListener {
+	public abstract fun changed (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/ProfileNameRules {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/ProfileNameRules;
+	public static final field MaxLength I
+	public static final field MinLength I
+	public final fun isValid (Ljava/lang/String;)Z
+}
+
+public final class uk/veritaslabs/kits/spaces/ProfileRegistry : uk/veritaslabs/kits/docs/SyncableDocument {
+	public fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/ProfileRepository;Lkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/ProfileRepository;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun generate (Lorg/automerge/SyncState;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getChanges ()Lkotlinx/coroutines/flow/SharedFlow;
+	public final fun project (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun publish (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun receive (Lorg/automerge/SyncState;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/ProfileRegistryDocumentKt {
+	public static final field ProfileDocumentId Ljava/lang/String;
+	public static final fun canonical (Ljava/util/List;)Luk/veritaslabs/kits/spaces/RegistryProfile;
+	public static final fun putProfile (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)Z
+	public static synthetic fun putProfile$default (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZILjava/lang/Object;)Z
+	public static final fun readProfiles (Lorg/automerge/Read;)Ljava/util/List;
+}
+
+public final class uk/veritaslabs/kits/spaces/ProfileRepository {
+	public fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Lkotlin/jvm/functions/Function0;Luk/veritaslabs/kits/spaces/ProfileChangeListener;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Lkotlin/jvm/functions/Function0;Luk/veritaslabs/kits/spaces/ProfileChangeListener;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun adopt (Luk/veritaslabs/kits/spaces/CurrentProfile;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun current (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun observe ()Lkotlinx/coroutines/flow/Flow;
+	public final fun rename (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/RedeemResult : java/lang/Enum {
+	public static final field AlreadyInSpace Luk/veritaslabs/kits/spaces/RedeemResult;
+	public static final field Expired Luk/veritaslabs/kits/spaces/RedeemResult;
+	public static final field Started Luk/veritaslabs/kits/spaces/RedeemResult;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/RedeemResult;
+	public static fun values ()[Luk/veritaslabs/kits/spaces/RedeemResult;
+}
+
+public final class uk/veritaslabs/kits/spaces/RegistryProfile {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun component5 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)Luk/veritaslabs/kits/spaces/RegistryProfile;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/RegistryProfile;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZILjava/lang/Object;)Luk/veritaslabs/kits/spaces/RegistryProfile;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAvatar ()Ljava/lang/String;
+	public final fun getCreatedAt ()J
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getNamed ()Z
+	public fun hashCode ()I
+	public final fun isComplete ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/RegistrySpace {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun component5 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)Luk/veritaslabs/kits/spaces/RegistrySpace;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/RegistrySpace;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZILjava/lang/Object;)Luk/veritaslabs/kits/spaces/RegistrySpace;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getDeleted ()Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getKind ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/RemoveMemberResult : java/lang/Enum {
+	public static final field IsYou Luk/veritaslabs/kits/spaces/RemoveMemberResult;
+	public static final field NoSuchMember Luk/veritaslabs/kits/spaces/RemoveMemberResult;
+	public static final field NotAnAdmin Luk/veritaslabs/kits/spaces/RemoveMemberResult;
+	public static final field Removed Luk/veritaslabs/kits/spaces/RemoveMemberResult;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/RemoveMemberResult;
+	public static fun values ()[Luk/veritaslabs/kits/spaces/RemoveMemberResult;
+}
+
+public final class uk/veritaslabs/kits/spaces/RenameResult : java/lang/Enum {
+	public static final field InvalidName Luk/veritaslabs/kits/spaces/RenameResult;
+	public static final field Renamed Luk/veritaslabs/kits/spaces/RenameResult;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/RenameResult;
+	public static fun values ()[Luk/veritaslabs/kits/spaces/RenameResult;
+}
+
+public final class uk/veritaslabs/kits/spaces/RequestResult : java/lang/Enum {
+	public static final field Done Luk/veritaslabs/kits/spaces/RequestResult;
+	public static final field InviteNoLongerValid Luk/veritaslabs/kits/spaces/RequestResult;
+	public static final field NoSuchRequest Luk/veritaslabs/kits/spaces/RequestResult;
+	public static final field NotAnAdmin Luk/veritaslabs/kits/spaces/RequestResult;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/RequestResult;
+	public static fun values ()[Luk/veritaslabs/kits/spaces/RequestResult;
+}
+
+public final class uk/veritaslabs/kits/spaces/RoleChangeResult : java/lang/Enum {
+	public static final field Changed Luk/veritaslabs/kits/spaces/RoleChangeResult;
+	public static final field LastAdmin Luk/veritaslabs/kits/spaces/RoleChangeResult;
+	public static final field NoSuchMember Luk/veritaslabs/kits/spaces/RoleChangeResult;
+	public static final field NotAnAdmin Luk/veritaslabs/kits/spaces/RoleChangeResult;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/RoleChangeResult;
+	public static fun values ()[Luk/veritaslabs/kits/spaces/RoleChangeResult;
+}
+
+public abstract interface class uk/veritaslabs/kits/spaces/RosterChangeListener {
+	public abstract fun memberLeft (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun memberRemoved (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun roleChanged (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/RosterInvite {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;JIZLjava/util/Set;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun component4 ()I
+	public final fun component5 ()Z
+	public final fun component6 ()Ljava/util/Set;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;JIZLjava/util/Set;)Luk/veritaslabs/kits/spaces/RosterInvite;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/RosterInvite;Ljava/lang/String;Ljava/lang/String;JIZLjava/util/Set;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/RosterInvite;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedBy ()Ljava/lang/String;
+	public final fun getExpiresAt ()J
+	public final fun getMaxUses ()I
+	public final fun getRevoked ()Z
+	public final fun getSecretHash ()Ljava/lang/String;
+	public final fun getUsedBy ()Ljava/util/Set;
+	public fun hashCode ()I
+	public final fun isComplete ()Z
+	public final fun statusFor (Ljava/lang/String;J)Luk/veritaslabs/kits/spaces/InviteStatus;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/RosterMember {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZLjava/util/Set;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()J
+	public final fun component6 ()Z
+	public final fun component7 ()Ljava/util/Set;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZLjava/util/Set;)Luk/veritaslabs/kits/spaces/RosterMember;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/RosterMember;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZLjava/util/Set;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/RosterMember;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAvatar ()Ljava/lang/String;
+	public final fun getDevices ()Ljava/util/Set;
+	public final fun getJoinedAt ()J
+	public final fun getMemberId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRemoved ()Z
+	public final fun getRole ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isComplete ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class uk/veritaslabs/kits/spaces/SpaceChangeListener {
+	public abstract fun deleted (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun saved (Luk/veritaslabs/kits/spaces/StoredSpace;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class uk/veritaslabs/kits/spaces/SpaceGroupMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceGroupMessage$Companion;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceGroupMessage$Companion {
+	public final fun decode (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceGroupMessage;
+	public final fun encode (Luk/veritaslabs/kits/spaces/SpaceGroupMessage;)[B
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public final fun stringField (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun unrecognisedKind (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite : uk/veritaslabs/kits/spaces/SpaceGroupMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGroupId ()Ljava/lang/String;
+	public final fun getInvite ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceGroupMessage$Invite$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest : uk/veritaslabs/kits/spaces/SpaceGroupMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceGroupMessage$InviteRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceGroups {
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceRosters;Luk/veritaslabs/kits/spaces/ProfileRepository;JJLuk/veritaslabs/kits/spaces/SpacesConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceRosters;Luk/veritaslabs/kits/spaces/ProfileRepository;JJLuk/veritaslabs/kits/spaces/SpacesConfig;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun handle (Luk/veritaslabs/kits/x0x/X0xDirectMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun mailboxStoreId (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun reconcile (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class uk/veritaslabs/kits/spaces/SpaceHub {
+	public abstract fun candidates (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun enrolment (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun hubs (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun ownDeviceCandidates (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun removeHub (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun useAsHub (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceHubs : uk/veritaslabs/kits/spaces/SpaceHub {
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceRosters;Luk/veritaslabs/kits/spaces/ProfileRepository;JILuk/veritaslabs/kits/spaces/SpacesConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceRosters;Luk/veritaslabs/kits/spaces/ProfileRepository;JILuk/veritaslabs/kits/spaces/SpacesConfig;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun candidates (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun enrolment (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun hubs (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun ownDeviceCandidates (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun removeHub (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun useAsHub (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class uk/veritaslabs/kits/spaces/SpaceJoinMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Companion;
+	public static final field DeniedDeclined Ljava/lang/String;
+	public static final field DeniedExpired Ljava/lang/String;
+	public static final field DeniedRevoked Ljava/lang/String;
+	public static final field DeniedUsed Ljava/lang/String;
+	public static final field LeftKind Ljava/lang/String;
+	public static final field RemovedKind Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted : uk/veritaslabs/kits/spaces/SpaceJoinMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Accepted$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack : uk/veritaslabs/kits/spaces/SpaceJoinMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getOf ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Ack$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Companion {
+	public static final field DeniedDeclined Ljava/lang/String;
+	public static final field DeniedExpired Ljava/lang/String;
+	public static final field DeniedRevoked Ljava/lang/String;
+	public static final field DeniedUsed Ljava/lang/String;
+	public static final field LeftKind Ljava/lang/String;
+	public static final field RemovedKind Ljava/lang/String;
+	public final fun decode (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage;
+	public final fun encode (Luk/veritaslabs/kits/spaces/SpaceJoinMessage;)[B
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied : uk/veritaslabs/kits/spaces/SpaceJoinMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReason ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Denied$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite : uk/veritaslabs/kits/spaces/SpaceJoinMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getInviterMemberId ()Ljava/lang/String;
+	public final fun getInviterName ()Ljava/lang/String;
+	public final fun getKind ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public final fun getSpaceName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Invite$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Left : uk/veritaslabs/kits/spaces/SpaceJoinMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Left$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Left;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Left;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Left;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMemberId ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Left$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Left$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Left;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Left;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Left$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed : uk/veritaslabs/kits/spaces/SpaceJoinMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Removed$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Request : uk/veritaslabs/kits/spaces/SpaceJoinMessage {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Request$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Request;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Request;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Request;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getMemberId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getSecret ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Request$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Request$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Request;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/spaces/SpaceJoinMessage$Request;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinMessage$Request$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceJoinService : uk/veritaslabs/kits/spaces/SpaceJoining {
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceRosters;Luk/veritaslabs/kits/spaces/SpaceChangeListener;Luk/veritaslabs/kits/spaces/ProfileRepository;Luk/veritaslabs/kits/spaces/SpaceSeeding;Lkotlin/jvm/functions/Function0;JLuk/veritaslabs/kits/docs/SyncEventRecorder;Luk/veritaslabs/kits/spaces/SpacesConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceRosters;Luk/veritaslabs/kits/spaces/SpaceChangeListener;Luk/veritaslabs/kits/spaces/ProfileRepository;Luk/veritaslabs/kits/spaces/SpaceSeeding;Lkotlin/jvm/functions/Function0;JLuk/veritaslabs/kits/docs/SyncEventRecorder;Luk/veritaslabs/kits/spaces/SpacesConfig;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun announceLeft (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun approve (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun cancelPendingJoin (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createInviteLink (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun decline (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun handle (Luk/veritaslabs/kits/x0x/X0xDirectMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun inviteLinks (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun joinRequests (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun observeJoinRequests (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public fun observePendingJoins ()Lkotlinx/coroutines/flow/Flow;
+	public fun pendingJoins (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun redeemInvite (Luk/veritaslabs/kits/spaces/InviteLink;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun removeMember (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resendPending (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun revokeInviteLink (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class uk/veritaslabs/kits/spaces/SpaceJoining {
+	public abstract fun approve (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun cancelPendingJoin (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createInviteLink (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun decline (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun inviteLinks (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun joinRequests (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun observeJoinRequests (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun observePendingJoins ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun pendingJoins (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun redeemInvite (Luk/veritaslabs/kits/spaces/InviteLink;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun revokeInviteLink (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceRegistry : uk/veritaslabs/kits/docs/SyncableDocument, uk/veritaslabs/kits/spaces/SpaceChangeListener {
+	public fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceSeeding;Lkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceSeeding;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun deleted (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun generate (Lorg/automerge/SyncState;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getChanges ()Lkotlinx/coroutines/flow/SharedFlow;
+	public final fun importLocalSpaces (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun project (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun receive (Lorg/automerge/SyncState;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun saved (Luk/veritaslabs/kits/spaces/StoredSpace;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceRegistryDocumentKt {
+	public static final field SpaceRegistryDocumentId Ljava/lang/String;
+	public static final fun deleteRegistrySpace (Lorg/automerge/Document;Ljava/lang/String;)Z
+	public static final fun putRegistrySpace (Lorg/automerge/Document;Luk/veritaslabs/kits/spaces/StoredSpace;)Z
+	public static final fun readSpaceRegistry (Lorg/automerge/Read;)Ljava/util/List;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceRepository {
+	public fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceChangeListener;Luk/veritaslabs/kits/spaces/ProfileRepository;Luk/veritaslabs/kits/spaces/RosterChangeListener;Lkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/SpaceChangeListener;Luk/veritaslabs/kits/spaces/ProfileRepository;Luk/veritaslabs/kits/spaces/RosterChangeListener;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun create (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun delete (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun get (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getSpaces ()Lkotlinx/coroutines/flow/Flow;
+	public final fun leave (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun update (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceRosterDocumentKt {
+	public static final fun addRosterHub (Lorg/automerge/Document;Ljava/lang/String;)Z
+	public static final fun claimRosterDevice (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;)Z
+	public static final fun clearRosterGone (Lorg/automerge/Document;Ljava/lang/String;)Z
+	public static final fun markRosterGone (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;)Z
+	public static final fun putRosterInvite (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;JI)Z
+	public static final fun putRosterMember (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Z
+	public static final fun readInvites (Lorg/automerge/Read;)Ljava/util/List;
+	public static final fun readRoster (Lorg/automerge/Read;)Ljava/util/List;
+	public static final fun readRosterDeviceNames (Lorg/automerge/Read;)Ljava/util/Map;
+	public static final fun readRosterGone (Lorg/automerge/Read;)Ljava/util/Map;
+	public static final fun readRosterGoneDevices (Lorg/automerge/Read;)Ljava/util/Set;
+	public static final fun readRosterGroup (Lorg/automerge/Read;)Ljava/lang/String;
+	public static final fun readRosterHubs (Lorg/automerge/Read;)Ljava/util/Set;
+	public static final fun releaseRosterDevice (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;)Z
+	public static final fun removeRosterHub (Lorg/automerge/Document;Ljava/lang/String;)Z
+	public static final fun retireRosterMember (Lorg/automerge/Document;Ljava/lang/String;)Z
+	public static final fun revokeRosterInvite (Lorg/automerge/Document;Ljava/lang/String;)Z
+	public static final fun rosterDocumentId (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun setRosterDeviceName (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;)Z
+	public static final fun setRosterGroup (Lorg/automerge/Document;Ljava/lang/String;)Z
+	public static final fun setRosterRole (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;)Z
+	public static final fun useRosterInvite (Lorg/automerge/Document;Ljava/lang/String;Ljava/lang/String;)Z
+}
+
+public final class uk/veritaslabs/kits/spaces/SpaceRosters {
+	public fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/ProfileRepository;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/spaces/ProfileRepository;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun addHub (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun admit (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun applyChanges (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun changesSince (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun checkInvite (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun clearGone (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun createInvite (Ljava/lang/String;Ljava/lang/String;JILjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createInvite$default (Luk/veritaslabs/kits/spaces/SpaceRosters;Ljava/lang/String;Ljava/lang/String;JILjava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun deviceNames (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun devices (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun generate (Ljava/lang/String;Lorg/automerge/SyncState;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getChanges ()Lkotlinx/coroutines/flow/SharedFlow;
+	public final fun goneDevices (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun groupId (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun heads (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun hubs (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun inviteStatus (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun invites (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun isInSync (Ljava/lang/String;Lorg/automerge/SyncState;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun markGone (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun members (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun project (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun publish (Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun receive (Ljava/lang/String;Lorg/automerge/SyncState;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun removeHub (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun retire (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun revokeInvite (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setGroup (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setRole (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun spaceDocument (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun useInvite (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun useInviteHash (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class uk/veritaslabs/kits/spaces/SpaceSeeding {
+	public abstract fun placeholdersForArrived (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun seedCreated (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpacesConfig {
+	public static final field Companion Luk/veritaslabs/kits/spaces/SpacesConfig$Companion;
+	public static final field DefaultInviteScheme Ljava/lang/String;
+	public fun <init> ()V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;JJJJLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;JJJJLjava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3-UwyO8pc ()J
+	public final fun component4-UwyO8pc ()J
+	public final fun component5-UwyO8pc ()J
+	public final fun component6-UwyO8pc ()J
+	public final fun component7 ()Ljava/lang/String;
+	public final fun copy-cbVbB-c (Ljava/lang/String;Ljava/lang/String;JJJJLjava/lang/String;)Luk/veritaslabs/kits/spaces/SpacesConfig;
+	public static synthetic fun copy-cbVbB-c$default (Luk/veritaslabs/kits/spaces/SpacesConfig;Ljava/lang/String;Ljava/lang/String;JJJJLjava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/spaces/SpacesConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGroupName ()Ljava/lang/String;
+	public final fun getHubCommandsRefresh-UwyO8pc ()J
+	public final fun getHubEnrolmentLifetime-UwyO8pc ()J
+	public final fun getInviteLinkLifetime-UwyO8pc ()J
+	public final fun getInviteScheme ()Ljava/lang/String;
+	public final fun getJoinInviteLifetime-UwyO8pc ()J
+	public final fun getMailboxStoreName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/spaces/SpacesConfig$Companion {
+}
+
+public final class uk/veritaslabs/kits/spaces/StoredSpace {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/kits/spaces/StoredSpace;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/spaces/StoredSpace;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/kits/spaces/StoredSpace;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getId ()Ljava/lang/String;
+	public final fun getKind ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
