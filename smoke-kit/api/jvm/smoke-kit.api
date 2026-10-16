@@ -1,6 +1,0 @@
-public final class uk/veritaslabs/kits/smoke/Smoke {
-	public static final field INSTANCE Luk/veritaslabs/kits/smoke/Smoke;
-	public final fun greet (Ljava/lang/String;)Ljava/lang/String;
-	public final fun greetLater (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-

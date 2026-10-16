@@ -1,0 +1,8 @@
+# cinterop definition for the x0x FFI static library (embedded daemon on iOS).
+#
+# Bindings are generated from the header alone (native/include/x0x_ffi.h, a copy of the header of the Rust
+# crate in Vesta's ffi/x0x-ffi); the libx0x_ffi.a archive itself is linked into the final app by Xcode,
+# because a klib cannot carry a static archive. Native packaging is extraction plan WP26.
+package = x0x.ffi
+headers = x0x_ffi.h
+headerFilter = x0x_ffi.h

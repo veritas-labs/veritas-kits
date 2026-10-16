@@ -32,4 +32,4 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-include(":smoke-kit")
+include(":x0x-kit", ":x0x-kit-testing")

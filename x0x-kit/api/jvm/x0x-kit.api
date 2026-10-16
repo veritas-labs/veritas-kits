@@ -1,0 +1,857 @@
+public abstract class uk/veritaslabs/kits/x0x/AbstractX0xClient : uk/veritaslabs/kits/x0x/X0xClient {
+	public fun <init> ()V
+	public fun acceptFile (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun agent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun connectAgent (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createGroup (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createGroupInvite (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createSession (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createStore (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun deleteValue (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun directEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun fileEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getDiscoveredAgent (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getFileTransfer (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getGroupCreator (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getGroupMembers (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getGroupMessages (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getPeerHealth (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getTransportSnapshot (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getValue (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun gossipEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun health (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun joinGroup (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun joinStore (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun leaveGroup (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listDirectConnections (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listFileTransfers (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listGroups (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listPeers (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listStoreKeys (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listStores (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun openGroupStore (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun presenceEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun probePeer (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun publish (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun putValue (Ljava/lang/String;Ljava/lang/String;[BLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun rejectFile (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun removeGroupMember (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	protected abstract fun resolveDaemon (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendDirect (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendFile (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendGroupMessage (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun setGroupMemberRole (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun subscribe (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/x0x/Backoff {
+	public fun <init> ()V
+	public synthetic fun <init> (JJILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (JJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-UwyO8pc ()J
+	public final fun component2-UwyO8pc ()J
+	public final fun copy-QTBD994 (JJ)Luk/veritaslabs/kits/x0x/Backoff;
+	public static synthetic fun copy-QTBD994$default (Luk/veritaslabs/kits/x0x/Backoff;JJILjava/lang/Object;)Luk/veritaslabs/kits/x0x/Backoff;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInitial-UwyO8pc ()J
+	public final fun getMax-UwyO8pc ()J
+	public fun hashCode ()I
+	public final fun next-wmV0flA (J)J
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/StandaloneX0xClient_jvmKt {
+	public static final fun createX0xClient ()Luk/veritaslabs/kits/x0x/X0xClient;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xAgent {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xAgent$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xAgent;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xAgent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xAgent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getMachineId ()Ljava/lang/String;
+	public final fun getUserId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xAgent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xAgent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xAgent;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xAgent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xAgent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xApiException : java/lang/Exception {
+	public fun <init> (ILjava/lang/String;)V
+	public final fun getStatus ()I
+}
+
+public abstract interface class uk/veritaslabs/kits/x0x/X0xClient {
+	public abstract fun acceptFile (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun agent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun connectAgent (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createGroup (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createGroup$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun createGroupInvite (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createGroupInvite$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun createSession (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createStore (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createStore$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun deleteValue (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun directEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun directEvents$default (Luk/veritaslabs/kits/x0x/X0xClient;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun fileEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun fileEvents$default (Luk/veritaslabs/kits/x0x/X0xClient;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun getDiscoveredAgent (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getEndpoint ()Ljava/lang/String;
+	public abstract fun getFileTransfer (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getGroupCreator (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getGroupMembers (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getGroupMessages (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getPeerHealth (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getTransportSnapshot (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getValue (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun gossipEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun gossipEvents$default (Luk/veritaslabs/kits/x0x/X0xClient;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun health (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun joinGroup (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun joinStore (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun leaveGroup (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun listDirectConnections (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun listFileTransfers (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun listGroups (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun listPeers (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun listStoreKeys (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun listStores (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun openGroupStore (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun presenceEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun presenceEvents$default (Luk/veritaslabs/kits/x0x/X0xClient;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun probePeer (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun probePeer$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;JLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun publish (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun putValue (Ljava/lang/String;Ljava/lang/String;[BLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun putValue$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/String;[BLjava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun rejectFile (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun removeGroupMember (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun sendDirect (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun sendFile (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun sendGroupMessage (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun sendGroupMessage$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun setGroupMemberRole (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun subscribe (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xClient$DefaultImpls {
+	public static synthetic fun createGroup$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun createGroupInvite$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun createStore$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun directEvents$default (Luk/veritaslabs/kits/x0x/X0xClient;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun fileEvents$default (Luk/veritaslabs/kits/x0x/X0xClient;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun gossipEvents$default (Luk/veritaslabs/kits/x0x/X0xClient;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun presenceEvents$default (Luk/veritaslabs/kits/x0x/X0xClient;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun probePeer$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;JLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun putValue$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/String;[BLjava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun sendGroupMessage$default (Luk/veritaslabs/kits/x0x/X0xClient;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class uk/veritaslabs/kits/x0x/X0xConnectivity {
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xConnectivity$Connected : uk/veritaslabs/kits/x0x/X0xConnectivity {
+	public fun <init> (I)V
+	public final fun component1 ()I
+	public final fun copy (I)Luk/veritaslabs/kits/x0x/X0xConnectivity$Connected;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xConnectivity$Connected;IILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xConnectivity$Connected;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPeers ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xConnectivity$Connecting : uk/veritaslabs/kits/x0x/X0xConnectivity {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xConnectivity$Connecting;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xConnectivity$Offline : uk/veritaslabs/kits/x0x/X0xConnectivity {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xConnectivity$Offline;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xConnectivityKt {
+	public static final fun isReachingNetwork (Luk/veritaslabs/kits/x0x/X0xConnectivity;)Z
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xDirectMessage {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xDirectMessage$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/Long;
+	public final fun component5 ()Ljava/lang/Boolean;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xDirectMessage;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xDirectMessage;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xDirectMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMachineId ()Ljava/lang/String;
+	public final fun getPayload ()Ljava/lang/String;
+	public final fun getReceivedAt ()Ljava/lang/Long;
+	public final fun getSender ()Ljava/lang/String;
+	public final fun getTrustDecision ()Ljava/lang/String;
+	public final fun getVerified ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xDirectMessage$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xDirectMessage$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xDirectMessage;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xDirectMessage;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xDirectMessage$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xDiscoveredAgent {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xDiscoveredAgent$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;)Luk/veritaslabs/kits/x0x/X0xDiscoveredAgent;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xDiscoveredAgent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xDiscoveredAgent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getLastSeen ()Ljava/lang/Long;
+	public final fun getMachineId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xDiscoveredAgent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xDiscoveredAgent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xDiscoveredAgent;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xDiscoveredAgent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xDiscoveredAgent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xEventHub {
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/x0x/Backoff;JLkotlin/time/TimeSource;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/x0x/Backoff;JLkotlin/time/TimeSource;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getDirectMessages ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getFileEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getPresence ()Lkotlinx/coroutines/flow/Flow;
+}
+
+public abstract interface class uk/veritaslabs/kits/x0x/X0xEventStream : java/lang/AutoCloseable {
+	public abstract fun close ()V
+}
+
+public abstract interface class uk/veritaslabs/kits/x0x/X0xFileEvent {
+	public abstract fun getTransferId ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xFileEvent$Complete : uk/veritaslabs/kits/x0x/X0xFileEvent {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xFileEvent$Complete;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xFileEvent$Complete;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xFileEvent$Complete;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFilename ()Ljava/lang/String;
+	public final fun getPath ()Ljava/lang/String;
+	public final fun getSha256 ()Ljava/lang/String;
+	public fun getTransferId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xFileEvent$Failed : uk/veritaslabs/kits/x0x/X0xFileEvent {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xFileEvent$Failed;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xFileEvent$Failed;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xFileEvent$Failed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReason ()Ljava/lang/String;
+	public fun getTransferId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xFileEvent$Offer : uk/veritaslabs/kits/x0x/X0xFileEvent {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;)Luk/veritaslabs/kits/x0x/X0xFileEvent$Offer;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xFileEvent$Offer;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xFileEvent$Offer;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFilename ()Ljava/lang/String;
+	public final fun getSender ()Ljava/lang/String;
+	public final fun getSize ()J
+	public fun getTransferId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xFileTransfer {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xFileTransfer$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xFileTransfer;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xFileTransfer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xFileTransfer;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ljava/lang/String;
+	public final fun getFilename ()Ljava/lang/String;
+	public final fun getOutputPath ()Ljava/lang/String;
+	public final fun getSha256 ()Ljava/lang/String;
+	public final fun getSize ()Ljava/lang/Long;
+	public final fun getSourcePath ()Ljava/lang/String;
+	public final fun getState ()Ljava/lang/String;
+	public final fun getTransferId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xFileTransfer$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xFileTransfer$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xFileTransfer;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xFileTransfer;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xFileTransfer$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xGossipMessage {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xGossipMessage$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/Boolean;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xGossipMessage;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xGossipMessage;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xGossipMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPayload ()Ljava/lang/String;
+	public final fun getSender ()Ljava/lang/String;
+	public final fun getSubscriptionId ()Ljava/lang/String;
+	public final fun getTopic ()Ljava/lang/String;
+	public final fun getTrustLevel ()Ljava/lang/String;
+	public final fun getVerified ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xGossipMessage$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xGossipMessage$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xGossipMessage;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xGossipMessage;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xGossipMessage$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xGroupMember {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xGroupMember$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xGroupMember;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xGroupMember;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xGroupMember;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getRole ()Ljava/lang/String;
+	public final fun getState ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xGroupMember$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xGroupMember$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xGroupMember;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xGroupMember;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xGroupMember$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xGroupPublicMessage {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xGroupPublicMessage$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/Long;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xGroupPublicMessage;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xGroupPublicMessage;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xGroupPublicMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAuthorAgentId ()Ljava/lang/String;
+	public final fun getBody ()Ljava/lang/String;
+	public final fun getGroupId ()Ljava/lang/String;
+	public final fun getKind ()Ljava/lang/String;
+	public final fun getMsgId ()Ljava/lang/String;
+	public final fun getTimestamp ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xGroupPublicMessage$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xGroupPublicMessage$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xGroupPublicMessage;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xGroupPublicMessage;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xGroupPublicMessage$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xGroupSummary {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xGroupSummary$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xGroupSummary;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xGroupSummary;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xGroupSummary;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGroupId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xGroupSummary$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xGroupSummary$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xGroupSummary;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xGroupSummary;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xGroupSummary$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xHealth {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xHealth$Companion;
+	public fun <init> (ZLjava/lang/String;Ljava/lang/String;IIJ)V
+	public final fun component1 ()Z
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()I
+	public final fun component5 ()I
+	public final fun component6 ()J
+	public final fun copy (ZLjava/lang/String;Ljava/lang/String;IIJ)Luk/veritaslabs/kits/x0x/X0xHealth;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xHealth;ZLjava/lang/String;Ljava/lang/String;IIJILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xHealth;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getOk ()Z
+	public final fun getPeers ()I
+	public final fun getSendReadyPeers ()I
+	public final fun getStatus ()Ljava/lang/String;
+	public final fun getUptimeSecs ()J
+	public final fun getVersion ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xHealth$Companion {
+	public final fun parse (Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xHealth;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xLogEntry {
+	public fun <init> (JLuk/veritaslabs/kits/x0x/X0xLogEvent;)V
+	public final fun component1 ()J
+	public final fun component2 ()Luk/veritaslabs/kits/x0x/X0xLogEvent;
+	public final fun copy (JLuk/veritaslabs/kits/x0x/X0xLogEvent;)Luk/veritaslabs/kits/x0x/X0xLogEntry;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xLogEntry;JLuk/veritaslabs/kits/x0x/X0xLogEvent;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xLogEntry;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAtMillis ()J
+	public final fun getEvent ()Luk/veritaslabs/kits/x0x/X0xLogEvent;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class uk/veritaslabs/kits/x0x/X0xLogEvent {
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xLogEvent$DaemonReachable : uk/veritaslabs/kits/x0x/X0xLogEvent {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xLogEvent$DaemonReachable;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xLogEvent$DaemonUnreachable : uk/veritaslabs/kits/x0x/X0xLogEvent {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xLogEvent$DaemonUnreachable;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xLogEvent$NatChanged : uk/veritaslabs/kits/x0x/X0xLogEvent {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xLogEvent$NatChanged;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xLogEvent$NatChanged;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xLogEvent$NatChanged;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNatType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xLogEvent$PeersChanged : uk/veritaslabs/kits/x0x/X0xLogEvent {
+	public fun <init> (II)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun copy (II)Luk/veritaslabs/kits/x0x/X0xLogEvent$PeersChanged;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xLogEvent$PeersChanged;IIILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xLogEvent$PeersChanged;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFrom ()I
+	public final fun getTo ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xNetworkDiagnostics {
+	public fun <init> ()V
+	public fun <init> (Luk/veritaslabs/kits/x0x/X0xConnectivity;Luk/veritaslabs/kits/x0x/X0xHealth;Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;JJJLjava/util/List;Ljava/util/List;Ljava/util/List;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xConnectivity;Luk/veritaslabs/kits/x0x/X0xHealth;Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;JJJLjava/util/List;Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Luk/veritaslabs/kits/x0x/X0xConnectivity;
+	public final fun component2 ()Luk/veritaslabs/kits/x0x/X0xHealth;
+	public final fun component3 ()Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;
+	public final fun component4 ()J
+	public final fun component5 ()J
+	public final fun component6 ()J
+	public final fun component7 ()Ljava/util/List;
+	public final fun component8 ()Ljava/util/List;
+	public final fun component9 ()Ljava/util/List;
+	public final fun copy (Luk/veritaslabs/kits/x0x/X0xConnectivity;Luk/veritaslabs/kits/x0x/X0xHealth;Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;JJJLjava/util/List;Ljava/util/List;Ljava/util/List;)Luk/veritaslabs/kits/x0x/X0xNetworkDiagnostics;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xNetworkDiagnostics;Luk/veritaslabs/kits/x0x/X0xConnectivity;Luk/veritaslabs/kits/x0x/X0xHealth;Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;JJJLjava/util/List;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xNetworkDiagnostics;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getConnectivity ()Luk/veritaslabs/kits/x0x/X0xConnectivity;
+	public final fun getDownBytesPerSec ()J
+	public final fun getDownHistory ()Ljava/util/List;
+	public final fun getHealth ()Luk/veritaslabs/kits/x0x/X0xHealth;
+	public final fun getLog ()Ljava/util/List;
+	public final fun getSampledAtMillis ()J
+	public final fun getSnapshot ()Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;
+	public final fun getUpBytesPerSec ()J
+	public final fun getUpHistory ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xNetworkMonitor {
+	public fun <init> ()V
+	public fun <init> (II)V
+	public synthetic fun <init> (IIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun sample (JLuk/veritaslabs/kits/x0x/X0xHealth;Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;)Luk/veritaslabs/kits/x0x/X0xNetworkDiagnostics;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xNetworkPolicy {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xNetworkPolicy;
+	public final fun getUseMobileData ()Lkotlinx/coroutines/flow/MutableStateFlow;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xPeer {
+	public fun <init> (Ljava/lang/String;Luk/veritaslabs/kits/x0x/X0xPeerStatus;ZLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;)V
+	public synthetic fun <init> (Ljava/lang/String;Luk/veritaslabs/kits/x0x/X0xPeerStatus;ZLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Luk/veritaslabs/kits/x0x/X0xPeerStatus;
+	public final fun component3 ()Z
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/Long;
+	public final fun component6 ()Ljava/lang/Long;
+	public final fun copy (Ljava/lang/String;Luk/veritaslabs/kits/x0x/X0xPeerStatus;ZLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;)Luk/veritaslabs/kits/x0x/X0xPeer;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xPeer;Ljava/lang/String;Luk/veritaslabs/kits/x0x/X0xPeerStatus;ZLjava/lang/String;Ljava/lang/Long;Ljava/lang/Long;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xPeer;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getDirect ()Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getLastReceivedMsAgo ()Ljava/lang/Long;
+	public final fun getLastSentMsAgo ()Ljava/lang/Long;
+	public final fun getStatus ()Luk/veritaslabs/kits/x0x/X0xPeerStatus;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xPeerHealth {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xPeerHealth$Companion;
+	public fun <init> ()V
+	public fun <init> (ZLjava/lang/Long;Ljava/lang/Long;)V
+	public synthetic fun <init> (ZLjava/lang/Long;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Ljava/lang/Long;
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun copy (ZLjava/lang/Long;Ljava/lang/Long;)Luk/veritaslabs/kits/x0x/X0xPeerHealth;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xPeerHealth;ZLjava/lang/Long;Ljava/lang/Long;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xPeerHealth;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getConnected ()Z
+	public final fun getLastReceivedMsAgo ()Ljava/lang/Long;
+	public final fun getLastSentMsAgo ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xPeerHealth$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xPeerHealth$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xPeerHealth;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xPeerHealth;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xPeerHealth$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xPeerStatus : java/lang/Enum {
+	public static final field Active Luk/veritaslabs/kits/x0x/X0xPeerStatus;
+	public static final field Idle Luk/veritaslabs/kits/x0x/X0xPeerStatus;
+	public static final field Unknown Luk/veritaslabs/kits/x0x/X0xPeerStatus;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xPeerStatus;
+	public static fun values ()[Luk/veritaslabs/kits/x0x/X0xPeerStatus;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xPeerTraffic {
+	public fun <init> (JJ)V
+	public final fun component1 ()J
+	public final fun component2 ()J
+	public final fun copy (JJ)Luk/veritaslabs/kits/x0x/X0xPeerTraffic;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xPeerTraffic;JJILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xPeerTraffic;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRxBytes ()J
+	public final fun getTxBytes ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xPeers {
+	public static final field ActiveWithinMillis J
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xPeers;
+	public final fun load (Luk/veritaslabs/kits/x0x/X0xClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun statusOf (Luk/veritaslabs/kits/x0x/X0xPeerHealth;)Luk/veritaslabs/kits/x0x/X0xPeerStatus;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xPresenceEvent {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xPresenceEvent$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)Luk/veritaslabs/kits/x0x/X0xPresenceEvent;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xPresenceEvent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xPresenceEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getEvent ()Ljava/lang/String;
+	public final fun getReachable ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public final fun isOnline ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xPresenceEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xPresenceEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xPresenceEvent;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xPresenceEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xPresenceEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xSession {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xSession$Companion;
+	public fun <init> (Ljava/lang/String;I)V
+	public synthetic fun <init> (Ljava/lang/String;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun copy (Ljava/lang/String;I)Luk/veritaslabs/kits/x0x/X0xSession;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xSession;Ljava/lang/String;IILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xSession;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getExpiresIn ()I
+	public final fun getSessionToken ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xSession$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xSession$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xSession;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xSession;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xSession$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xStoreKey {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xStoreKey$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Long;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xStoreKey;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xStoreKey;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xStoreKey;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContentType ()Ljava/lang/String;
+	public final fun getKey ()Ljava/lang/String;
+	public final fun getSize ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/x0x/X0xStoreKey$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/x0x/X0xStoreKey$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/x0x/X0xStoreKey;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/x0x/X0xStoreKey;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xStoreKey$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xStuckDetector {
+	public fun <init> ()V
+	public synthetic fun <init> (JJJILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (JJJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun check (JZLuk/veritaslabs/kits/x0x/X0xHealth;Z)Luk/veritaslabs/kits/x0x/X0xWatchdogAction;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xTransportSnapshot {
+	public static final field Companion Luk/veritaslabs/kits/x0x/X0xTransportSnapshot$Companion;
+	public fun <init> (Ljava/util/Map;ILjava/lang/Long;Ljava/lang/String;Ljava/lang/Double;)V
+	public final fun component1 ()Ljava/util/Map;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/Double;
+	public final fun copy (Ljava/util/Map;ILjava/lang/Long;Ljava/lang/String;Ljava/lang/Double;)Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;Ljava/util/Map;ILjava/lang/Long;Ljava/lang/String;Ljava/lang/Double;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAvgRttMs ()Ljava/lang/Long;
+	public final fun getConnections ()I
+	public final fun getNatType ()Ljava/lang/String;
+	public final fun getPacketLossRate ()Ljava/lang/Double;
+	public final fun getTraffic ()Ljava/util/Map;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xTransportSnapshot$Companion {
+	public final fun parse (Lkotlinx/serialization/json/JsonObject;)Luk/veritaslabs/kits/x0x/X0xTransportSnapshot;
+}
+
+public final class uk/veritaslabs/kits/x0x/X0xWatchdogAction : java/lang/Enum {
+	public static final field Restart Luk/veritaslabs/kits/x0x/X0xWatchdogAction;
+	public static final field Wait Luk/veritaslabs/kits/x0x/X0xWatchdogAction;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/x0x/X0xWatchdogAction;
+	public static fun values ()[Luk/veritaslabs/kits/x0x/X0xWatchdogAction;
+}
+

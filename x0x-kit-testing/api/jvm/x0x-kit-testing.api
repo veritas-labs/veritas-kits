@@ -1,0 +1,204 @@
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xClient : uk/veritaslabs/kits/x0x/X0xClient {
+	public fun <init> ()V
+	public fun acceptFile (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun agent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun connectAgent (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createGroup (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createGroupInvite (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createSession (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createStore (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun deleteValue (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun directEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun fileEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getDirectConnections ()Lkotlinx/serialization/json/JsonObject;
+	public fun getDiscoveredAgent (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getDiscoveredAgents ()Ljava/util/Map;
+	public fun getEndpoint ()Ljava/lang/String;
+	public fun getFileTransfer (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getGroupCreator (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getGroupMembers (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getGroupMessages (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getOpenAttempts ()Ljava/util/List;
+	public final fun getOpenFailure ()Ljava/lang/Exception;
+	public final fun getOpenedStreams ()Ljava/util/List;
+	public final fun getPeerHealth ()Ljava/util/Map;
+	public fun getPeerHealth (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getPeerHealthFailures ()Ljava/util/Set;
+	public final fun getPeers ()Ljava/util/List;
+	public final fun getSendFailure ()Ljava/lang/Exception;
+	public final fun getSent ()Ljava/util/List;
+	public fun getTransportSnapshot (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getValue (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun gossipEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun health (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun joinGroup (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun joinStore (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun leaveGroup (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listDirectConnections (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listFileTransfers (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listGroups (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listPeers (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listStoreKeys (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listStores (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun openGroupStore (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun presenceEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun probePeer (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun publish (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun putValue (Ljava/lang/String;Ljava/lang/String;[BLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun rejectFile (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun removeGroupMember (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendDirect (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendFile (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendGroupMessage (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setDirectConnections (Lkotlinx/serialization/json/JsonObject;)V
+	public fun setGroupMemberRole (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setOpenFailure (Ljava/lang/Exception;)V
+	public final fun setPeers (Ljava/util/List;)V
+	public final fun setSendFailure (Ljava/lang/Exception;)V
+	public fun subscribe (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xClient$OpenStream : uk/veritaslabs/kits/x0x/X0xEventStream {
+	public fun <init> (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public fun close ()V
+	public final fun drop (Ljava/lang/Throwable;)V
+	public static synthetic fun drop$default (Luk/veritaslabs/kits/x0x/testing/FakeX0xClient$OpenStream;Ljava/lang/Throwable;ILjava/lang/Object;)V
+	public final fun emit (Luk/veritaslabs/kits/x0x/X0xDirectMessage;)V
+	public final fun getClosed ()Z
+	public final fun getOnMessage ()Lkotlin/jvm/functions/Function1;
+}
+
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xClient$Sent {
+	public fun <init> (Ljava/lang/String;[B)V
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getPayload ()[B
+}
+
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xNetwork {
+	public static final field JoinerMarker Ljava/lang/String;
+	public fun <init> ()V
+	public final fun comeOnline (Ljava/lang/String;)V
+	public final fun getGroups ()Ljava/util/Map;
+	public final fun getHangFor-UwyO8pc ()J
+	public final fun getHanging ()Ljava/util/Set;
+	public final fun getLagging ()Ljava/util/Set;
+	public final fun getMaxStoreValueBytes ()I
+	public final fun getMinted ()Ljava/util/List;
+	public final fun getOffline ()Ljava/util/Set;
+	public final fun getTransfers ()Ljava/util/LinkedHashMap;
+	public final fun node (Ljava/lang/String;Z)Luk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$Node;
+	public static synthetic fun node$default (Luk/veritaslabs/kits/x0x/testing/FakeX0xNetwork;Ljava/lang/String;ZILjava/lang/Object;)Luk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$Node;
+	public final fun setHangFor-LRDsOJo (J)V
+}
+
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$Entry {
+	public fun <init> ([BJLjava/lang/String;)V
+	public final fun getContentType ()Ljava/lang/String;
+	public final fun getValue ()[B
+	public final fun getVersion ()J
+}
+
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$Group {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getCreator ()Ljava/lang/String;
+	public final fun getMembers ()Ljava/util/LinkedHashMap;
+	public final fun getStores ()Ljava/util/Map;
+}
+
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$MintedInvite {
+	public fun <init> (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Long;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$MintedInvite;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$MintedInvite;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$MintedInvite;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getExpirySecs ()Ljava/lang/Long;
+	public final fun getGroupId ()Ljava/lang/String;
+	public final fun getIntendedJoiner ()Ljava/lang/String;
+	public final fun getMintedBy ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$Node : uk/veritaslabs/kits/x0x/X0xClient {
+	public fun <init> (Luk/veritaslabs/kits/x0x/testing/FakeX0xNetwork;Ljava/lang/String;Z)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/testing/FakeX0xNetwork;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun acceptFile (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun agent (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun connectAgent (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createGroup (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createGroupInvite (Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createSession (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun createStore (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun deleteValue (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun directEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun fileEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getAgentId ()Ljava/lang/String;
+	public fun getDiscoveredAgent (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getEndpoint ()Ljava/lang/String;
+	public fun getFileTransfer (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getGroupCreator (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getGroupMembers (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getGroupMessages (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getOnDirect ()Lkotlin/jvm/functions/Function1;
+	public final fun getOnFile ()Lkotlin/jvm/functions/Function1;
+	public final fun getOnPresence ()Lkotlin/jvm/functions/Function1;
+	public fun getPeerHealth (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getSentTo ()Ljava/util/List;
+	public final fun getTransfersDir ()Ljava/io/File;
+	public fun getTransportSnapshot (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getValue (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun gossipEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun health (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun joinGroup (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun joinStore (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun leaveGroup (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listDirectConnections (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listFileTransfers (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listGroups (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listPeers (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listStoreKeys (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun listStores (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun openGroupStore (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun presenceEvents (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun probePeer (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun publish (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun putValue (Ljava/lang/String;Ljava/lang/String;[BLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun rejectFile (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun removeGroupMember (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendDirect (Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendFile (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun sendGroupMessage (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun setGroupMemberRole (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setOnDirect (Lkotlin/jvm/functions/Function1;)V
+	public final fun setOnFile (Lkotlin/jvm/functions/Function1;)V
+	public final fun setOnPresence (Lkotlin/jvm/functions/Function1;)V
+	public fun subscribe (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$Replica {
+	public fun <init> ()V
+	public final fun getEntries ()Ljava/util/Map;
+}
+
+public final class uk/veritaslabs/kits/x0x/testing/FakeX0xNetwork$Transfer {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;)V
+	public final fun getError ()Ljava/lang/String;
+	public final fun getFilename ()Ljava/lang/String;
+	public final fun getFrom ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getOutputPath ()Ljava/lang/String;
+	public final fun getReceiverState ()Ljava/lang/String;
+	public final fun getSenderState ()Ljava/lang/String;
+	public final fun getSha256 ()Ljava/lang/String;
+	public final fun getSize ()J
+	public final fun getSourcePath ()Ljava/lang/String;
+	public final fun getTo ()Ljava/lang/String;
+	public final fun setError (Ljava/lang/String;)V
+	public final fun setOutputPath (Ljava/lang/String;)V
+	public final fun setReceiverState (Ljava/lang/String;)V
+	public final fun setSenderState (Ljava/lang/String;)V
+}
+
