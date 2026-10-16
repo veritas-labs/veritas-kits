@@ -4,6 +4,78 @@ Kotlin Multiplatform libraries extracted from Vesta. Apache-2.0 (see `LICENSE`, 
 Group `uk.veritaslabs.kits`, version in `gradle.properties` (`kitsVersion`). Local only: published to
 Maven Local, no remote repository.
 
+## The kits and how they depend on each other
+
+| Kit | What | Needs (api) | iOS klibs from Linux? |
+|---|---|---|---|
+| `x0x-kit` | x0x client (REST/SSE, gossip, direct, stores, groups), embedded-daemon bridge | none | no (cinterop: Mac host only) |
+| `x0x-kit-testing` | `FakeX0xClient`, `FakeX0xNetwork` | x0x-kit | no (as x0x-kit) |
+| `store-kit` | the SQLite schema (`KitsDatabase`), open path, downgrade guard, `@KitsInternalApi` | none | yes |
+| `store-kit-testing` | `openInMemoryDatabase()` | store-kit | yes |
+| `blobs-kit` | photo store, ThumbHash placeholder, photo encoders, `blob.want` transfer | x0x-kit, store-kit | yes (common photo types only) |
+| `docs-kit` | per-Space Automerge documents, mailbox, sync envelope, activity recorder | x0x-kit, store-kit | none (Automerge has no iOS binding) |
+| `spaces-kit` | Spaces, members, rosters, invites, registries, profiles, join/group/hub services | store-kit, x0x-kit, docs-kit | commonMain part only |
+| `sync-kit` | device data sync engine, device pairing, sync activity models | store-kit, x0x-kit, spaces-kit, docs-kit | no (as x0x-kit) |
+
+Publish order is the order Gradle already derives from the `project(...)` dependencies:
+x0x-kit, store-kit, then x0x-kit-testing, store-kit-testing, blobs-kit, docs-kit, then spaces-kit, then sync-kit.
+`./gradlew publishToMavenLocal` publishes all eight in one build; there is no need to order by hand. Every kit has the
+same version (`kitsVersion`); bump it for all kits on every release.
+
+## Build, publish, consume
+
+Prerequisites: JDK 17+ (toolchains resolve JVM 11 targets through foojay), the Android SDK (`ANDROID_HOME` or a
+gitignored `local.properties` containing `sdk.dir=/path/to/Sdk`), network for dependencies on a first run. Nothing else
+outside git is needed: `./gradlew build apiCheck publishToMavenLocal` was run in a fresh `git clone` of this repo on
+2026-10-16 and passed (the Gradle build cache was on, so unchanged task outputs may have come from cache; add
+`--no-build-cache` for a from-scratch run).
+
+    ./gradlew build apiCheck publishToMavenLocal     # Gate K: test, API check, publish to ~/.m2
+    ./gradlew apiDump                                # after an intentional API change; commit the dump
+    scripts/check-version-drift.sh [path/to/Vesta]   # kits vs Vesta libs.versions.toml; exit 1 on drift
+
+Consuming apps add `mavenLocal { content { includeGroup("uk.veritaslabs.kits") } }` (filtered, so a stale copy of
+anything else cannot resolve from it) and depend on `uk.veritaslabs.kits:<kit>:<kitsVersion>`. Re-run
+`publishToMavenLocal` here after every change, then build the app (Vesta's Gate V). Local only: there is no remote
+repository and nothing is pushed.
+
+Version drift: the kits' `gradle/libs.versions.toml` starts as a copy of Vesta's. Kotlin, AGP, coroutines, serialization,
+androidx-sqlite, the eygraber driver and Automerge must agree; run the drift script before every release. SQLDelight,
+skiko and the binary-compatibility validator are kits-only. Vesta no longer declares SQLDelight at all.
+
+## Things to know
+
+- **JNI exception.** `X0xBridge` stays in package `uk.veritaslabs.vesta.x0x` (inside `x0x-kit`), because the Rust crate
+  in Vesta exports `Java_uk_veritaslabs_vesta_x0x_X0xBridge_*`. Rename the package and the five exports together when a
+  human does native packaging (Vesta plan WP26). The `.so` and the iOS static library are still built by Vesta.
+- **iOS klibs are Mac-only to publish in full.** `x0x-kit`, `x0x-kit-testing` and `sync-kit` declare iOS targets only on
+  a macOS host. Published from Linux they have jvm and android variants only, so Vesta's iOS build cannot resolve them
+  until the same version is also published from a Mac (`publishToMavenLocal` on both machines, same `kitsVersion`), or
+  the iOS app is held on pre-extraction `:shared` source. No Mac has been available; the choice and the open gates are
+  in Vesta's `docs/plans/kits-extraction-followups.md`.
+- **Public surface.** `explicitApi()` everywhere. Plumbing that another kit or the app's tests need is `public` under
+  `@KitsInternalApi` (`@RequiresOptIn`, ERROR level, in `store-kit`). Everything else is `internal`.
+- **Persisted and wire names are frozen** (tables, columns, document ids, message kinds and JSON fields, link layouts):
+  see the per-kit notes below and Vesta's ADR-037. Do not "tidy" them.
+
+## Owed gates and release checklist
+
+Owed (nobody has run them; they need a human, a device or a Mac):
+
+- **Gate D** (Android emulator with the real x0x daemon): the embedded daemon starts, pairing and join work between two devices.
+- **Gate M** (a Mac): publish from the Mac, `apiDump` there and commit the `*.klib.api` files, build Vesta's iOS framework.
+- **Real `vesta.db` copy check**: open a copy of a real user database (not the fixture) with the new build before deleting any backup.
+- **Two-version check**: an old-build device and a new-build device in one Home each receive the other's edits.
+
+Release checklist (a new `kitsVersion`):
+
+1. `scripts/check-version-drift.sh` is clean.
+2. On a Mac as well: `./gradlew apiDump`, commit the `api/*.klib.api` changes.
+3. `./gradlew build apiCheck publishToMavenLocal` (Linux, fresh clone is best).
+4. Bump `kitsVersion` here and `kits` in Vesta's `gradle/libs.versions.toml` together.
+5. In Vesta: `./gradlew clean` then Gate V (`:shared:jvmTest :shared:testAndroidHostTest :desktopApp:compileKotlin :androidApp:compileDebugKotlin --continue`) and `generateLicenses` (the kits themselves are not listed as third parties).
+6. Gate D on an emulator; copy a real `vesta.db` and open it; then tag.
+
 ## Layout
 
 - `build-logic/` convention plugins: `kits.kmp-library` (jvm, android via
@@ -22,21 +94,6 @@ Maven Local, no remote repository.
 
 Versions copy Vesta's `gradle/libs.versions.toml` (Kotlin 2.4.20, AGP 9.1.1, Gradle 9.6.1).
 
-## Consuming from Vesta
-
-Vesta needs `mavenLocal()` filtered to the kits group in `dependencyResolutionManagement`:
-
-    mavenLocal { content { includeGroup("uk.veritaslabs.kits") } }
-
-and `api("uk.veritaslabs.kits:x0x-kit:0.1.0")` in `commonMain`, `uk.veritaslabs.kits:x0x-kit-testing` in
-`commonTest`. Re-run `publishToMavenLocal` here after every change before building Vesta.
-
-## Commands
-
-    ./gradlew build apiCheck publishToMavenLocal     # Gate K
-    ./gradlew apiDump                                # after an intentional API change; commit the dump
-
-Consume-check = Vesta's Gate V (`./gradlew :shared:jvmTest :shared:testAndroidHostTest ...` after `publishToMavenLocal`).
 Android host tests (`testAndroidHostTest`) run each kit's `commonTest` on the Android variant too.
 
 ## Findings (WP12)
