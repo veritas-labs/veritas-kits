@@ -12,6 +12,7 @@ kotlinx-serialization = "1.11.0"
 androidx-sqlite = "2.7.1"
 eygraber-sqldelightAndroidxDriver = "0.2.2"
 sqldelight = "2.4.0"
+skiko = "0.150.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -31,3 +32,6 @@ sqldelight-coroutinesExtensions = { module = "app.cash.sqldelight:coroutines-ext
 sqldelight-asyncExtensions = { module = "app.cash.sqldelight:async-extensions", version.ref = "sqldelight" }
 androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "androidx-sqlite" }
 eygraber-sqldelightAndroidxDriver = { module = "com.eygraber:sqldelight-androidx-driver", version.ref = "eygraber-sqldelightAndroidxDriver" }
+# blobs-kit (the JVM photo encoder; compileOnly there, the desktop app brings Skia with Compose)
+skiko-awt = { module = "org.jetbrains.skiko:skiko-awt", version.ref = "skiko" }
+skiko-awtRuntimeLinuxX64 = { module = "org.jetbrains.skiko:skiko-awt-runtime-linux-x64", version.ref = "skiko" }

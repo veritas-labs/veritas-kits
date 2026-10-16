@@ -1,0 +1,324 @@
+public abstract interface class uk/veritaslabs/kits/blobs/BlobImport {
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobImport$Imported : uk/veritaslabs/kits/blobs/BlobImport {
+	public fun <init> (Luk/veritaslabs/kits/blobs/BlobInfo;Z)V
+	public final fun component1 ()Luk/veritaslabs/kits/blobs/BlobInfo;
+	public final fun component2 ()Z
+	public final fun copy (Luk/veritaslabs/kits/blobs/BlobInfo;Z)Luk/veritaslabs/kits/blobs/BlobImport$Imported;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/blobs/BlobImport$Imported;Luk/veritaslabs/kits/blobs/BlobInfo;ZILjava/lang/Object;)Luk/veritaslabs/kits/blobs/BlobImport$Imported;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAlreadyHeld ()Z
+	public final fun getInfo ()Luk/veritaslabs/kits/blobs/BlobInfo;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobImport$Mismatch : uk/veritaslabs/kits/blobs/BlobImport {
+	public fun <init> (Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun copy (Ljava/lang/String;J)Luk/veritaslabs/kits/blobs/BlobImport$Mismatch;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/blobs/BlobImport$Mismatch;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/kits/blobs/BlobImport$Mismatch;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getActualHash ()Ljava/lang/String;
+	public final fun getActualSize ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobImport$SourceMissing : uk/veritaslabs/kits/blobs/BlobImport {
+	public static final field INSTANCE Luk/veritaslabs/kits/blobs/BlobImport$SourceMissing;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobInfo {
+	public fun <init> (Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun copy (Ljava/lang/String;J)Luk/veritaslabs/kits/blobs/BlobInfo;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/blobs/BlobInfo;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/kits/blobs/BlobInfo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHash ()Ljava/lang/String;
+	public final fun getSize ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class uk/veritaslabs/kits/blobs/BlobMessage {
+	public static final field Companion Luk/veritaslabs/kits/blobs/BlobMessage$Companion;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobMessage$Companion {
+	public final fun decode (Ljava/lang/String;)Luk/veritaslabs/kits/blobs/BlobMessage;
+	public final fun encode (Luk/veritaslabs/kits/blobs/BlobMessage;)[B
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobMessage$Want : uk/veritaslabs/kits/blobs/BlobMessage {
+	public static final field Companion Luk/veritaslabs/kits/blobs/BlobMessage$Want$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/blobs/BlobMessage$Want;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/blobs/BlobMessage$Want;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/blobs/BlobMessage$Want;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHash ()Ljava/lang/String;
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/blobs/BlobMessage$Want$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/blobs/BlobMessage$Want$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/blobs/BlobMessage$Want;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/blobs/BlobMessage$Want;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobMessage$Want$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobReference {
+	public fun <init> (Ljava/lang/String;JLjava/lang/String;Luk/veritaslabs/kits/blobs/MediaKind;IILjava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Luk/veritaslabs/kits/blobs/MediaKind;
+	public final fun component5 ()I
+	public final fun component6 ()I
+	public final fun component7 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;JLjava/lang/String;Luk/veritaslabs/kits/blobs/MediaKind;IILjava/lang/String;)Luk/veritaslabs/kits/blobs/BlobReference;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/blobs/BlobReference;Ljava/lang/String;JLjava/lang/String;Luk/veritaslabs/kits/blobs/MediaKind;IILjava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/blobs/BlobReference;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBlur ()Ljava/lang/String;
+	public final fun getH ()I
+	public final fun getHash ()Ljava/lang/String;
+	public final fun getKind ()Luk/veritaslabs/kits/blobs/MediaKind;
+	public final fun getMime ()Ljava/lang/String;
+	public final fun getSize ()J
+	public final fun getW ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class uk/veritaslabs/kits/blobs/BlobReferenceSource {
+	public abstract fun getLocalChanges ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun references (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun watch (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobRepository {
+	public static final field UnknownMime Ljava/lang/String;
+	public fun <init> (Luk/veritaslabs/kits/blobs/BlobStore;Luk/veritaslabs/kits/store/KitsDatabase;)V
+	public final fun delete (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun file (Ljava/lang/String;)Ljava/io/File;
+	public final fun has (Ljava/lang/String;)Z
+	public final fun importFile (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun markHave (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun mimeOf (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun put ([BLjava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun reconcile (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun recordAsk (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resetBackoff (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun touch (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun unreferencedSince (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun want (Ljava/lang/String;Ljava/lang/String;JJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun wants (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class uk/veritaslabs/kits/blobs/BlobRuntime {
+	public abstract fun getBlobs ()Luk/veritaslabs/kits/blobs/Blobs;
+	public abstract fun run (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobStore {
+	public static final field Companion Luk/veritaslabs/kits/blobs/BlobStore$Companion;
+	public fun <init> (Ljava/io/File;)V
+	public final fun all ()Ljava/util/List;
+	public final fun delete (Ljava/lang/String;)V
+	public final fun file (Ljava/lang/String;)Ljava/io/File;
+	public final fun has (Ljava/lang/String;)Z
+	public final fun importFile (Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/kits/blobs/BlobImport;
+	public final fun put ([B)Luk/veritaslabs/kits/blobs/BlobInfo;
+	public final fun sweepTemporaryFiles ()V
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobStore$Companion {
+	public final fun isHash (Ljava/lang/String;)Z
+	public final fun sha256Hex ([B)Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobTransferService {
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/blobs/BlobRepository;Luk/veritaslabs/kits/blobs/BlobReferenceSource;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;JLuk/veritaslabs/kits/blobs/BlobTransferService$Backoff;JIJJLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function2;Ljava/io/File;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/blobs/BlobRepository;Luk/veritaslabs/kits/blobs/BlobReferenceSource;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;JLuk/veritaslabs/kits/blobs/BlobTransferService$Backoff;JIJJLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function2;Ljava/io/File;JLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun collectGarbage (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getWaitingForWifi ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun round (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun run (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun scan (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobTransferService$Backoff {
+	public synthetic fun <init> (JJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-UwyO8pc ()J
+	public final fun component2-UwyO8pc ()J
+	public final fun copy-QTBD994 (JJ)Luk/veritaslabs/kits/blobs/BlobTransferService$Backoff;
+	public static synthetic fun copy-QTBD994$default (Luk/veritaslabs/kits/blobs/BlobTransferService$Backoff;JJILjava/lang/Object;)Luk/veritaslabs/kits/blobs/BlobTransferService$Backoff;
+	public final fun delayAfter-5sfh64U (J)J
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInitial-UwyO8pc ()J
+	public final fun getMax-UwyO8pc ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/blobs/BlobWant {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;JJJJ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun component4 ()J
+	public final fun component5 ()J
+	public final fun component6 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;JJJJ)Luk/veritaslabs/kits/blobs/BlobWant;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/blobs/BlobWant;Ljava/lang/String;Ljava/lang/String;JJJJILjava/lang/Object;)Luk/veritaslabs/kits/blobs/BlobWant;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAttempts ()J
+	public final fun getFirstWantedAt ()J
+	public final fun getHash ()Ljava/lang/String;
+	public final fun getLastAskedAt ()J
+	public final fun getSize ()J
+	public final fun getSpaceId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class uk/veritaslabs/kits/blobs/Blobs {
+	public abstract fun addPhoto (Luk/veritaslabs/kits/blobs/PhotoSource;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun addPhotoFromUrl (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getArrivals ()Lkotlinx/coroutines/flow/Flow;
+	public fun getWaitingForWifi ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun load (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/blobs/Blobs$DefaultImpls {
+	public static fun getWaitingForWifi (Luk/veritaslabs/kits/blobs/Blobs;)Lkotlinx/coroutines/flow/Flow;
+}
+
+public final class uk/veritaslabs/kits/blobs/DeviceBlobRuntime : uk/veritaslabs/kits/blobs/BlobRuntime {
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/blobs/BlobReferenceSource;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Ljava/io/File;Luk/veritaslabs/kits/blobs/PhotoEncoder;Lkotlin/jvm/functions/Function0;JLuk/veritaslabs/kits/blobs/BlobTransferService$Backoff;Ljava/io/File;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/blobs/BlobReferenceSource;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Ljava/io/File;Luk/veritaslabs/kits/blobs/PhotoEncoder;Lkotlin/jvm/functions/Function0;JLuk/veritaslabs/kits/blobs/BlobTransferService$Backoff;Ljava/io/File;JLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getBlobs ()Luk/veritaslabs/kits/blobs/Blobs;
+	public fun run (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/blobs/EncodedPhoto {
+	public fun <init> ([BIILjava/lang/String;)V
+	public final fun getBlur ()Ljava/lang/String;
+	public final fun getBytes ()[B
+	public final fun getH ()I
+	public final fun getW ()I
+}
+
+public final class uk/veritaslabs/kits/blobs/MediaKind : java/lang/Enum {
+	public static final field Photo Luk/veritaslabs/kits/blobs/MediaKind;
+	public static final field Video Luk/veritaslabs/kits/blobs/MediaKind;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/blobs/MediaKind;
+	public static fun values ()[Luk/veritaslabs/kits/blobs/MediaKind;
+}
+
+public abstract interface class uk/veritaslabs/kits/blobs/PhotoAddResult {
+}
+
+public final class uk/veritaslabs/kits/blobs/PhotoAddResult$Added : uk/veritaslabs/kits/blobs/PhotoAddResult {
+	public fun <init> (Luk/veritaslabs/kits/blobs/BlobReference;)V
+	public final fun getReference ()Luk/veritaslabs/kits/blobs/BlobReference;
+}
+
+public final class uk/veritaslabs/kits/blobs/PhotoAddResult$Rejected : uk/veritaslabs/kits/blobs/PhotoAddResult {
+	public fun <init> (Luk/veritaslabs/kits/blobs/PhotoRejection;)V
+	public final fun getReason ()Luk/veritaslabs/kits/blobs/PhotoRejection;
+}
+
+public abstract interface class uk/veritaslabs/kits/blobs/PhotoEncodeResult {
+}
+
+public final class uk/veritaslabs/kits/blobs/PhotoEncodeResult$Encoded : uk/veritaslabs/kits/blobs/PhotoEncodeResult {
+	public fun <init> (Luk/veritaslabs/kits/blobs/EncodedPhoto;)V
+	public final fun getPhoto ()Luk/veritaslabs/kits/blobs/EncodedPhoto;
+}
+
+public final class uk/veritaslabs/kits/blobs/PhotoEncodeResult$Rejected : uk/veritaslabs/kits/blobs/PhotoEncodeResult {
+	public fun <init> (Luk/veritaslabs/kits/blobs/PhotoRejection;)V
+	public final fun getReason ()Luk/veritaslabs/kits/blobs/PhotoRejection;
+}
+
+public abstract interface class uk/veritaslabs/kits/blobs/PhotoEncoder {
+	public abstract fun encode (Luk/veritaslabs/kits/blobs/PhotoSource;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/blobs/PhotoLimits {
+	public static final field INSTANCE Luk/veritaslabs/kits/blobs/PhotoLimits;
+	public static final field LongEdge I
+	public static final field MaxInputBytes J
+	public static final field MaxInputPixels J
+	public static final field MimeType Ljava/lang/String;
+	public static final field PlaceholderEdge I
+	public static final field Quality I
+	public final fun fit (III)Lkotlin/Pair;
+	public static synthetic fun fit$default (Luk/veritaslabs/kits/blobs/PhotoLimits;IIIILjava/lang/Object;)Lkotlin/Pair;
+	public final fun getKind ()Luk/veritaslabs/kits/blobs/MediaKind;
+	public final fun placeholderFor ([III)Ljava/lang/String;
+	public final fun withinPixelLimit (II)Z
+}
+
+public final class uk/veritaslabs/kits/blobs/PhotoRejection : java/lang/Enum {
+	public static final field TooLarge Luk/veritaslabs/kits/blobs/PhotoRejection;
+	public static final field Unreachable Luk/veritaslabs/kits/blobs/PhotoRejection;
+	public static final field Unreadable Luk/veritaslabs/kits/blobs/PhotoRejection;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/blobs/PhotoRejection;
+	public static fun values ()[Luk/veritaslabs/kits/blobs/PhotoRejection;
+}
+
+public abstract interface class uk/veritaslabs/kits/blobs/PhotoSource {
+}
+
+public final class uk/veritaslabs/kits/blobs/PhotoSource$Bytes : uk/veritaslabs/kits/blobs/PhotoSource {
+	public fun <init> ([B)V
+	public final fun getBytes ()[B
+}
+
+public final class uk/veritaslabs/kits/blobs/PhotoSource$FilePath : uk/veritaslabs/kits/blobs/PhotoSource {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getPath ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/blobs/Placeholder {
+	public static final field INSTANCE Luk/veritaslabs/kits/blobs/Placeholder;
+	public final fun aspectRatio (Ljava/lang/String;)Ljava/lang/Double;
+	public final fun decode (Ljava/lang/String;)Luk/veritaslabs/kits/blobs/PlaceholderPixels;
+	public final fun encode ([III)Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/blobs/PlaceholderPixels {
+	public fun <init> (II[I)V
+	public final fun getArgb ()[I
+	public final fun getH ()I
+	public final fun getW ()I
+}
+
+public final class uk/veritaslabs/kits/blobs/SkiaPhotoEncoder : uk/veritaslabs/kits/blobs/PhotoEncoder {
+	public fun <init> ()V
+	public fun encode (Luk/veritaslabs/kits/blobs/PhotoSource;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+

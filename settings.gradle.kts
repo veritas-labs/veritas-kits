@@ -32,4 +32,4 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-include(":x0x-kit", ":x0x-kit-testing", ":store-kit", ":store-kit-testing")
+include(":x0x-kit", ":x0x-kit-testing", ":store-kit", ":store-kit-testing", ":blobs-kit")

@@ -14,6 +14,7 @@ Maven Local, no remote repository.
 - `x0x-kit-testing/` `FakeX0xClient` and (JVM only) `FakeX0xNetwork`, package `uk.veritaslabs.kits.x0x.testing`.
 - `store-kit/` the SQLite schema (`KitsDatabase`, 21 `.sq`, 19 `.sqm`, 20 snapshots), the open path and the downgrade guard, package `uk.veritaslabs.kits.store`; also `KitsInternalApi`.
 - `store-kit-testing/` `openInMemoryDatabase()`.
+- `blobs-kit/` content-addressed photo store, `Placeholder` (ThumbHash) and photo encoders, the `blob.want` transfer service over x0x; package `uk.veritaslabs.kits.blobs`. Apps supply a `BlobReferenceSource` (which blobs their documents refer to). The wire field of `blob.want` is still `homeId` (`@SerialName`). Its iOS klibs have only the common photo types (no cinterop, so they publish from Linux); the Skia encoder is `compileOnly` on skiko-awt (the app brings Skia).
 - The throwaway `smoke-kit` and `consume-check` of WP12 are gone: Vesta itself is now the consumer check.
 
 Versions copy Vesta's `gradle/libs.versions.toml` (Kotlin 2.4.20, AGP 9.1.1, Gradle 9.6.1).
