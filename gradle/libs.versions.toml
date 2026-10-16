@@ -10,6 +10,7 @@ kotlin = "2.4.20"
 kotlinx-coroutines = "1.11.0"
 kotlinx-serialization = "1.11.0"
 androidx-sqlite = "2.7.1"
+eygraber-sqldelightAndroidxDriver = "0.2.2"
 sqldelight = "2.4.0"
 
 [libraries]
@@ -23,3 +24,10 @@ binaryCompatibilityValidator-gradlePlugin = { module = "org.jetbrains.kotlinx:bi
 kotlin-serializationGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
+sqldelight-gradlePlugin = { module = "app.cash.sqldelight:gradle-plugin", version.ref = "sqldelight" }
+# store-kit
+sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
+sqldelight-coroutinesExtensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
+sqldelight-asyncExtensions = { module = "app.cash.sqldelight:async-extensions", version.ref = "sqldelight" }
+androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "androidx-sqlite" }
+eygraber-sqldelightAndroidxDriver = { module = "com.eygraber:sqldelight-androidx-driver", version.ref = "eygraber-sqldelightAndroidxDriver" }

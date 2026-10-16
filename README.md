@@ -12,6 +12,8 @@ Maven Local, no remote repository.
   `kits.root-api-validation` (binary-compatibility-validator, root project only, klib dumps on).
 - `x0x-kit/` the x0x client (REST/SSE/gossip/direct/stores/groups), package `uk.veritaslabs.kits.x0x`.
 - `x0x-kit-testing/` `FakeX0xClient` and (JVM only) `FakeX0xNetwork`, package `uk.veritaslabs.kits.x0x.testing`.
+- `store-kit/` the SQLite schema (`KitsDatabase`, 21 `.sq`, 19 `.sqm`, 20 snapshots), the open path and the downgrade guard, package `uk.veritaslabs.kits.store`; also `KitsInternalApi`.
+- `store-kit-testing/` `openInMemoryDatabase()`.
 - The throwaway `smoke-kit` and `consume-check` of WP12 are gone: Vesta itself is now the consumer check.
 
 Versions copy Vesta's `gradle/libs.versions.toml` (Kotlin 2.4.20, AGP 9.1.1, Gradle 9.6.1).
@@ -73,3 +75,22 @@ Android host tests (`testAndroidHostTest`) run each kit's `commonTest` on the An
   `*.klib.api` files, build Vesta's iOS framework.
 - Public API is everything that was public in Vesta (with `public` written out); `httpRequest`, `openSseStream`,
   `X0xHttpResult` stay `internal`. No `@KitsInternalApi` yet (that annotation arrives with `store-kit`).
+
+## store-kit findings (WP15)
+
+- SQLDelight 2.4.0 (`generateAsync = true`, `linkSqlite = false`, eygraber androidx driver 0.2.2) generates `KitsDatabase` in
+  a kit module under `explicitApi()` with no opt-out: the generated code is not checked. The plugin is on the `build-logic`
+  classpath (same classloader rule as binary-compatibility-validator) and applied as `id("app.cash.sqldelight")`.
+- `.sq`, `.sqm` and snapshot files are byte-identical copies (SHA-256 compared). The `.sq` files still sit in
+  `uk/veritaslabs/vesta/db/`, so the generated query classes (`HomeQueries`, rows `Profile`, `SyncEvent`) keep the package
+  `uk.veritaslabs.vesta.db`; only the database class is `uk.veritaslabs.kits.store.KitsDatabase`. Moving them is a later
+  schema-neutral rename.
+- `./gradlew :store-kit:verifyCommonMainKitsDatabaseMigration` is the migration check (part of `build`/`check`);
+  `:store-kit:generateCommonMainKitsDatabaseSchema` writes a new snapshot. See `docs/database-migrations.md`.
+- `DatabaseSafety` is `public` under `@KitsInternalApi` (`@RequiresOptIn` ERROR) because Vesta's compatibility tests open
+  files at a chosen path. `KitsInternalApi` lives in `store-kit`.
+- Tests left in Vesta because they use Vesta types: `AssistantMigrationTest` (AssistantRepository), `AgentCommandLogTest`
+  (DatabaseCommandLog), `DesktopDatabasePathTest` (Vesta's location). The old-database fixture `vesta-v20.db` is also
+  copied here (`OldDatabaseStillOpensTest`, `SchemaGuardTest`).
+- iOS: `compileKotlinIosArm64` and `IosSimulatorArm64` compile on Linux (no cinterop here), so store-kit publishes iOS klibs;
+  nothing of it has run. The klib API dump is Mac-only (see x0x-kit findings); Gate M owes the dump.

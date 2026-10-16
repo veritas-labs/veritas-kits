@@ -1,0 +1,840 @@
+public abstract interface annotation class uk/veritaslabs/kits/KitsInternalApi : java/lang/annotation/Annotation {
+}
+
+public final class uk/veritaslabs/kits/store/DatabaseDowngradeException : java/lang/IllegalStateException {
+	public fun <init> (JJLjava/lang/String;)V
+	public synthetic fun <init> (JJLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAppName ()Ljava/lang/String;
+	public final fun getStoredVersion ()J
+	public final fun getSupportedVersion ()J
+}
+
+public final class uk/veritaslabs/kits/store/DatabaseDriverFactory {
+	public fun <init> (Luk/veritaslabs/kits/store/DatabaseLocation;)V
+	public final fun databasePath ()Ljava/lang/String;
+	public final fun databaseType ()Lcom/eygraber/sqldelight/androidx/driver/AndroidxSqliteDatabaseType;
+}
+
+public final class uk/veritaslabs/kits/store/DatabaseDriverFactoryKt {
+	public static final fun createVestaDatabase (Luk/veritaslabs/kits/store/DatabaseDriverFactory;)Luk/veritaslabs/kits/store/KitsDatabase;
+}
+
+public final class uk/veritaslabs/kits/store/DatabaseLocation {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/store/DatabaseLocation;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/store/DatabaseLocation;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/store/DatabaseLocation;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAppDirName ()Ljava/lang/String;
+	public final fun getFileName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun inDirectory (Ljava/lang/String;)Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class uk/veritaslabs/kits/store/DatabaseOpenResult {
+}
+
+public final class uk/veritaslabs/kits/store/DatabaseOpenResult$Opened : uk/veritaslabs/kits/store/DatabaseOpenResult {
+	public fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;)V
+	public final fun component1 ()Luk/veritaslabs/kits/store/KitsDatabase;
+	public final fun copy (Luk/veritaslabs/kits/store/KitsDatabase;)Luk/veritaslabs/kits/store/DatabaseOpenResult$Opened;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/store/DatabaseOpenResult$Opened;Luk/veritaslabs/kits/store/KitsDatabase;ILjava/lang/Object;)Luk/veritaslabs/kits/store/DatabaseOpenResult$Opened;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDatabase ()Luk/veritaslabs/kits/store/KitsDatabase;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/store/DatabaseOpenResult$TooNew : uk/veritaslabs/kits/store/DatabaseOpenResult {
+	public fun <init> (Luk/veritaslabs/kits/store/DatabaseDowngradeException;)V
+	public final fun component1 ()Luk/veritaslabs/kits/store/DatabaseDowngradeException;
+	public final fun copy (Luk/veritaslabs/kits/store/DatabaseDowngradeException;)Luk/veritaslabs/kits/store/DatabaseOpenResult$TooNew;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/store/DatabaseOpenResult$TooNew;Luk/veritaslabs/kits/store/DatabaseDowngradeException;ILjava/lang/Object;)Luk/veritaslabs/kits/store/DatabaseOpenResult$TooNew;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Luk/veritaslabs/kits/store/DatabaseDowngradeException;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/store/DatabaseOpenResultKt {
+	public static final fun openVestaDatabase (Luk/veritaslabs/kits/store/DatabaseDriverFactory;)Luk/veritaslabs/kits/store/DatabaseOpenResult;
+}
+
+public final class uk/veritaslabs/kits/store/DatabaseSafety {
+	public static final field DEFAULT_BACKUPS_TO_KEEP I
+	public static final field INSTANCE Luk/veritaslabs/kits/store/DatabaseSafety;
+	public final fun prepare (Ljava/lang/String;JILkotlin/jvm/functions/Function0;)V
+	public static synthetic fun prepare$default (Luk/veritaslabs/kits/store/DatabaseSafety;Ljava/lang/String;JILkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+}
+
+public abstract interface class uk/veritaslabs/kits/store/KitsDatabase : app/cash/sqldelight/SuspendingTransacter {
+	public static final field Companion Luk/veritaslabs/kits/store/KitsDatabase$Companion;
+	public abstract fun getAgentCommandLogQueries ()Luk/veritaslabs/vesta/db/AgentCommandLogQueries;
+	public abstract fun getAppSettingQueries ()Luk/veritaslabs/vesta/db/AppSettingQueries;
+	public abstract fun getAssistantQueries ()Luk/veritaslabs/vesta/db/AssistantQueries;
+	public abstract fun getAutomergeDocumentQueries ()Luk/veritaslabs/vesta/db/AutomergeDocumentQueries;
+	public abstract fun getBlobQueries ()Luk/veritaslabs/vesta/db/BlobQueries;
+	public abstract fun getDevicePairingLinkQueries ()Luk/veritaslabs/vesta/db/DevicePairingLinkQueries;
+	public abstract fun getDeviceSyncGroupQueries ()Luk/veritaslabs/vesta/db/DeviceSyncGroupQueries;
+	public abstract fun getHomeGroupQueries ()Luk/veritaslabs/vesta/db/HomeGroupQueries;
+	public abstract fun getHomeMemberQueries ()Luk/veritaslabs/vesta/db/HomeMemberQueries;
+	public abstract fun getHomeQueries ()Luk/veritaslabs/vesta/db/HomeQueries;
+	public abstract fun getInviteCodeQueries ()Luk/veritaslabs/vesta/db/InviteCodeQueries;
+	public abstract fun getJoinRequestQueries ()Luk/veritaslabs/vesta/db/JoinRequestQueries;
+	public abstract fun getMailboxQueries ()Luk/veritaslabs/vesta/db/MailboxQueries;
+	public abstract fun getPeerSyncQueries ()Luk/veritaslabs/vesta/db/PeerSyncQueries;
+	public abstract fun getPendingJoinQueries ()Luk/veritaslabs/vesta/db/PendingJoinQueries;
+	public abstract fun getPendingMessageQueries ()Luk/veritaslabs/vesta/db/PendingMessageQueries;
+	public abstract fun getProfileQueries ()Luk/veritaslabs/vesta/db/ProfileQueries;
+	public abstract fun getSyncEventQueries ()Luk/veritaslabs/vesta/db/SyncEventQueries;
+	public abstract fun getSyncedDeviceQueries ()Luk/veritaslabs/vesta/db/SyncedDeviceQueries;
+	public abstract fun getUserDocumentQueries ()Luk/veritaslabs/vesta/db/UserDocumentQueries;
+}
+
+public final class uk/veritaslabs/kits/store/KitsDatabase$Companion {
+	public final fun allTableNames ()Ljava/util/List;
+	public final fun getSchema ()Lapp/cash/sqldelight/db/SqlSchema;
+	public final fun invoke (Lapp/cash/sqldelight/db/SqlDriver;)Luk/veritaslabs/kits/store/KitsDatabase;
+}
+
+public final class uk/veritaslabs/vesta/db/AgentAccess {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/AgentAccess;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/AgentAccess;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/AgentAccess;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public final fun getUpdatedAt ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/AgentCommandLog {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/AgentCommandLog;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/AgentCommandLog;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/AgentCommandLog;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCommandId ()Ljava/lang/String;
+	public final fun getProcessedAt ()J
+	public final fun getReplyJson ()Ljava/lang/String;
+	public final fun getSenderId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/AgentCommandLogQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun insert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectReply (Ljava/lang/String;Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+}
+
+public final class uk/veritaslabs/vesta/db/AppSetting {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/vesta/db/AppSetting;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/AppSetting;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/vesta/db/AppSetting;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getKey ()Ljava/lang/String;
+	public final fun getValue_ ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/AppSettingQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun selectValue (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun upsert (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/Assistant {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;)Luk/veritaslabs/vesta/db/Assistant;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/Assistant;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/vesta/db/Assistant;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAddedAt ()J
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/AssistantActivity {
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()J
+	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/AssistantActivity;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/AssistantActivity;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/AssistantActivity;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getAt ()J
+	public final fun getCapability ()Ljava/lang/String;
+	public final fun getCommandId ()Ljava/lang/String;
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getId ()J
+	public final fun getOutcome ()Ljava/lang/String;
+	public final fun getSummary ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/AssistantGrant {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/AssistantGrant;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/AssistantGrant;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/AssistantGrant;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getCapability ()Ljava/lang/String;
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getPolicy ()Ljava/lang/String;
+	public final fun getUpdatedAt ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/AssistantQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun activate (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteAssistant (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteGrantsFor (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deletePending (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insertActive (Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insertActivity (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insertPending (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun rename (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectActivity (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectActivity (Ljava/lang/String;Lkotlin/jvm/functions/Function8;)Lapp/cash/sqldelight/Query;
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function4;)Lapp/cash/sqldelight/Query;
+	public final fun selectGrant (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectGrantedHomeIds (Ljava/lang/String;Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectGrants ()Lapp/cash/sqldelight/Query;
+	public final fun selectGrants (Lkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+	public final fun selectGrantsFor (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectGrantsFor (Ljava/lang/String;Lkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+	public final fun selectLastActivityAt (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectLastActivityAt (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lapp/cash/sqldelight/Query;
+	public final fun selectOne (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectOne (Ljava/lang/String;Lkotlin/jvm/functions/Function4;)Lapp/cash/sqldelight/Query;
+	public final fun trimActivity (Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun upsertGrant (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/AutomergeDocument {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[BJ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()[B
+	public final fun component5 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[BJ)Luk/veritaslabs/vesta/db/AutomergeDocument;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/AutomergeDocument;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[BJILjava/lang/Object;)Luk/veritaslabs/vesta/db/AutomergeDocument;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBytes ()[B
+	public final fun getDocumentId ()Ljava/lang/String;
+	public final fun getFeature ()Ljava/lang/String;
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getUpdatedAt ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/AutomergeDocumentQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun deleteById (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectByHome (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectByHome (Ljava/lang/String;Lkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;Lkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+	public final fun upsert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[BJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/Blob {
+	public fun <init> (Ljava/lang/String;JLjava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun copy (Ljava/lang/String;JLjava/lang/String;J)Luk/veritaslabs/vesta/db/Blob;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/Blob;Ljava/lang/String;JLjava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/Blob;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHash ()Ljava/lang/String;
+	public final fun getLastReferencedAt ()J
+	public final fun getMime ()Ljava/lang/String;
+	public final fun getSize ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/BlobQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun deleteBlob (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteWant (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insertWantIfAbsent (Ljava/lang/String;Ljava/lang/String;JJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun recordAsk (JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resetBackoff (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectAllBlobs ()Lapp/cash/sqldelight/Query;
+	public final fun selectAllBlobs (Lkotlin/jvm/functions/Function4;)Lapp/cash/sqldelight/Query;
+	public final fun selectAllWants ()Lapp/cash/sqldelight/Query;
+	public final fun selectAllWants (Lkotlin/jvm/functions/Function6;)Lapp/cash/sqldelight/Query;
+	public final fun selectBlob (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectBlob (Ljava/lang/String;Lkotlin/jvm/functions/Function4;)Lapp/cash/sqldelight/Query;
+	public final fun selectBlobsNotReferencedSince (J)Lapp/cash/sqldelight/Query;
+	public final fun selectBlobsNotReferencedSince (JLkotlin/jvm/functions/Function4;)Lapp/cash/sqldelight/Query;
+	public final fun selectWant (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectWant (Ljava/lang/String;Lkotlin/jvm/functions/Function6;)Lapp/cash/sqldelight/Query;
+	public final fun touchBlob (JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun upsertBlob (Ljava/lang/String;JLjava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/BlobWant {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;JJJJ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun component4 ()J
+	public final fun component5 ()J
+	public final fun component6 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;JJJJ)Luk/veritaslabs/vesta/db/BlobWant;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/BlobWant;Ljava/lang/String;Ljava/lang/String;JJJJILjava/lang/Object;)Luk/veritaslabs/vesta/db/BlobWant;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAttempts ()J
+	public final fun getFirstWantedAt ()J
+	public final fun getHash ()Ljava/lang/String;
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getLastAskedAt ()J
+	public final fun getSize ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/DevicePairingLink {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;JJJ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun component4 ()J
+	public final fun component5 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;JJJ)Luk/veritaslabs/vesta/db/DevicePairingLink;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/DevicePairingLink;Ljava/lang/String;Ljava/lang/String;JJJILjava/lang/Object;)Luk/veritaslabs/vesta/db/DevicePairingLink;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getConsumed ()J
+	public final fun getCreatedAt ()J
+	public final fun getExpiresAt ()J
+	public final fun getId ()Ljava/lang/String;
+	public final fun getPublicKeyHex ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/DevicePairingLinkQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun deleteById (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteExpired (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insert (Ljava/lang/String;Ljava/lang/String;JJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun markConsumed (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectActive (J)Lapp/cash/sqldelight/Query;
+	public final fun selectActive (JLkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+}
+
+public final class uk/veritaslabs/vesta/db/DeviceSyncGroup {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Luk/veritaslabs/vesta/db/DeviceSyncGroup;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/DeviceSyncGroup;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/vesta/db/DeviceSyncGroup;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGroupId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/DeviceSyncGroupQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insert (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun select ()Lapp/cash/sqldelight/Query;
+}
+
+public final class uk/veritaslabs/vesta/db/Home {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/Home;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/Home;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/Home;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getShape ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/HomeGroup {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/vesta/db/HomeGroup;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/HomeGroup;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/vesta/db/HomeGroup;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGroupId ()Ljava/lang/String;
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getStoreId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/HomeGroupQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun delete (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function3;)Lapp/cash/sqldelight/Query;
+	public final fun selectByHome (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectByHome (Ljava/lang/String;Lkotlin/jvm/functions/Function3;)Lapp/cash/sqldelight/Query;
+	public final fun setStore (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun upsert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/HomeMember {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/HomeMember;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/HomeMember;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/HomeMember;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAvatarResourceId ()Ljava/lang/String;
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getJoinedAt ()J
+	public final fun getMemberId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRole ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/HomeMemberQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun countAdmins (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun deleteMember (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteMemberships (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectByHome (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectByHome (Ljava/lang/String;Lkotlin/jvm/functions/Function6;)Lapp/cash/sqldelight/Query;
+	public final fun selectByMember (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectByMember (Ljava/lang/String;Lkotlin/jvm/functions/Function6;)Lapp/cash/sqldelight/Query;
+	public final fun updateMemberId (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun updateMemberProfile (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun updateRole (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun upsert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/HomeQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun deleteById (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function4;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;Lkotlin/jvm/functions/Function4;)Lapp/cash/sqldelight/Query;
+	public final fun selectForMember (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectForMember (Ljava/lang/String;Lkotlin/jvm/functions/Function4;)Lapp/cash/sqldelight/Query;
+	public final fun updateHome (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/InviteCode {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJJ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun component5 ()J
+	public final fun component6 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJJ)Luk/veritaslabs/vesta/db/InviteCode;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/InviteCode;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJJILjava/lang/Object;)Luk/veritaslabs/vesta/db/InviteCode;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCode ()Ljava/lang/String;
+	public final fun getCreatedAt ()J
+	public final fun getExpiresAt ()J
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getRevoked ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/InviteCodeQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun deleteById (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun revoke (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectActiveByCode (Ljava/lang/String;J)Lapp/cash/sqldelight/Query;
+	public final fun selectActiveByCode (Ljava/lang/String;JLkotlin/jvm/functions/Function6;)Lapp/cash/sqldelight/Query;
+	public final fun selectByHome (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectByHome (Ljava/lang/String;Lkotlin/jvm/functions/Function6;)Lapp/cash/sqldelight/Query;
+}
+
+public final class uk/veritaslabs/vesta/db/JoinRequest {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/JoinRequest;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/JoinRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/JoinRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getCreatedAt ()J
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getMemberId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getSecretHash ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/JoinRequestQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun delete (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteOlderThan (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insertPending (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectApproved ()Lapp/cash/sqldelight/Query;
+	public final fun selectApproved (Lkotlin/jvm/functions/Function7;)Lapp/cash/sqldelight/Query;
+	public final fun selectApprovedByAgent (Ljava/lang/String;Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectApprovedByAgent (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function7;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function7;)Lapp/cash/sqldelight/Query;
+	public final fun selectUndecidedOrApprovedByHome (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectUndecidedOrApprovedByHome (Ljava/lang/String;Lkotlin/jvm/functions/Function7;)Lapp/cash/sqldelight/Query;
+	public final fun setStatus (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/MailboxQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun insertSnapshot (Ljava/lang/String;JJJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun markSnapshotsPruned (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectHeads (Ljava/lang/String;Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectLastRead (Ljava/lang/String;Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectLatestSnapshot (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectLatestSnapshot (Ljava/lang/String;Lkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+	public final fun selectNextSequence (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectUnprunedSnapshotCreatedBefore (Ljava/lang/String;J)Lapp/cash/sqldelight/Query;
+	public final fun selectUnprunedSnapshotCreatedBefore (Ljava/lang/String;JLkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+	public final fun upsertHeads (Ljava/lang/String;Ljava/lang/String;[BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun upsertLastRead (Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun upsertNextSequence (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/MailboxRead {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/MailboxRead;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/MailboxRead;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/MailboxRead;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getLastSequence ()J
+	public final fun getWriterAgentId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/MailboxSequence {
+	public fun <init> (Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun copy (Ljava/lang/String;J)Luk/veritaslabs/vesta/db/MailboxSequence;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/MailboxSequence;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/MailboxSequence;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getNextSequence ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/MailboxSnapshot {
+	public fun <init> (Ljava/lang/String;JJJJ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()J
+	public final fun component4 ()J
+	public final fun component5 ()J
+	public final fun copy (Ljava/lang/String;JJJJ)Luk/veritaslabs/vesta/db/MailboxSnapshot;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/MailboxSnapshot;Ljava/lang/String;JJJJILjava/lang/Object;)Luk/veritaslabs/vesta/db/MailboxSnapshot;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCoversThrough ()J
+	public final fun getCreatedAt ()J
+	public final fun getGeneration ()J
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getPruned ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/MailboxWrite {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;[B)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()[B
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;[B)Luk/veritaslabs/vesta/db/MailboxWrite;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/MailboxWrite;Ljava/lang/String;Ljava/lang/String;[BILjava/lang/Object;)Luk/veritaslabs/vesta/db/MailboxWrite;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDocumentId ()Ljava/lang/String;
+	public final fun getHeads ()[B
+	public final fun getHomeId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/PeerSync {
+	public fun <init> (Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun copy (Ljava/lang/String;J)Luk/veritaslabs/vesta/db/PeerSync;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/PeerSync;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/PeerSync;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getLastSyncedAt ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/PeerSyncQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function2;)Lapp/cash/sqldelight/Query;
+	public final fun selectByAgent (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectByAgent (Ljava/lang/String;Lkotlin/jvm/functions/Function2;)Lapp/cash/sqldelight/Query;
+	public final fun upsert (Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/PendingJoin {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()J
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;J)Luk/veritaslabs/vesta/db/PendingJoin;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/PendingJoin;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/PendingJoin;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdminAgents ()Ljava/lang/String;
+	public final fun getCreatedAt ()J
+	public final fun getDenial ()Ljava/lang/String;
+	public final fun getExpiresAt ()J
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getHomeName ()Ljava/lang/String;
+	public final fun getSecret ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/PendingJoinQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun delete (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteExpiredBefore (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function7;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;Lkotlin/jvm/functions/Function7;)Lapp/cash/sqldelight/Query;
+	public final fun setDenial (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun upsert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/PendingMessage {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[BJ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()[B
+	public final fun component5 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[BJ)Luk/veritaslabs/vesta/db/PendingMessage;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/PendingMessage;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[BJILjava/lang/Object;)Luk/veritaslabs/vesta/db/PendingMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getKind ()Ljava/lang/String;
+	public final fun getPayload ()[B
+	public final fun getRecipient ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/PendingMessageQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun delete (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteOlderThan (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+	public final fun upsert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;[BJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/Profile {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/Profile;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/Profile;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/Profile;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAvatarResourceId ()Ljava/lang/String;
+	public final fun getDisplayName ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getNamed ()J
+	public final fun getX0xInstanceName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/ProfileQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun countAll ()Lapp/cash/sqldelight/Query;
+	public final fun deleteById (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insert (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;Lkotlin/jvm/functions/Function5;)Lapp/cash/sqldelight/Query;
+	public final fun updateDetails (Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun updateId (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun updateProfile (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/vesta/db/SelectLastActivityAt {
+	public fun <init> (Ljava/lang/Long;)V
+	public final fun component1 ()Ljava/lang/Long;
+	public final fun copy (Ljava/lang/Long;)Luk/veritaslabs/vesta/db/SelectLastActivityAt;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/SelectLastActivityAt;Ljava/lang/Long;ILjava/lang/Object;)Luk/veritaslabs/vesta/db/SelectLastActivityAt;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMAX ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/SyncEvent {
+	public fun <init> (JLjava/lang/String;JJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun component4 ()J
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()J
+	public final fun copy (JLjava/lang/String;JJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/SyncEvent;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/SyncEvent;JLjava/lang/String;JJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/SyncEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAt ()J
+	public final fun getCount ()J
+	public final fun getDetail ()Ljava/lang/String;
+	public final fun getHomeId ()Ljava/lang/String;
+	public final fun getId ()J
+	public final fun getKind ()Ljava/lang/String;
+	public final fun getLastAt ()J
+	public final fun getModule ()Ljava/lang/String;
+	public final fun getPeerAgent ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/SyncEventQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun bump (JJJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteForHome (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun findOpen (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)Lapp/cash/sqldelight/Query;
+	public final fun findOpen (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLkotlin/jvm/functions/Function9;)Lapp/cash/sqldelight/Query;
+	public final fun insert (Ljava/lang/String;JJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun pruneOlderThan (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectPage (Ljava/lang/String;JJ)Lapp/cash/sqldelight/Query;
+	public final fun selectPage (Ljava/lang/String;JJLkotlin/jvm/functions/Function9;)Lapp/cash/sqldelight/Query;
+	public final fun selectPageOfKind (Ljava/lang/String;Ljava/lang/String;JJ)Lapp/cash/sqldelight/Query;
+	public final fun selectPageOfKind (Ljava/lang/String;Ljava/lang/String;JJLkotlin/jvm/functions/Function9;)Lapp/cash/sqldelight/Query;
+}
+
+public final class uk/veritaslabs/vesta/db/SyncedDevice {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/vesta/db/SyncedDevice;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/SyncedDevice;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/vesta/db/SyncedDevice;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAddedAt ()J
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/SyncedDeviceQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun deleteAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteByAgentId (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun insert (Ljava/lang/String;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectAll ()Lapp/cash/sqldelight/Query;
+	public final fun selectAll (Lkotlin/jvm/functions/Function3;)Lapp/cash/sqldelight/Query;
+}
+
+public final class uk/veritaslabs/vesta/db/UserDocument {
+	public fun <init> (Ljava/lang/String;[BJ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()[B
+	public final fun component3 ()J
+	public final fun copy (Ljava/lang/String;[BJ)Luk/veritaslabs/vesta/db/UserDocument;
+	public static synthetic fun copy$default (Luk/veritaslabs/vesta/db/UserDocument;Ljava/lang/String;[BJILjava/lang/Object;)Luk/veritaslabs/vesta/db/UserDocument;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBytes ()[B
+	public final fun getDocumentId ()Ljava/lang/String;
+	public final fun getUpdatedAt ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/vesta/db/UserDocumentQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun selectById (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun selectById (Ljava/lang/String;Lkotlin/jvm/functions/Function3;)Lapp/cash/sqldelight/Query;
+	public final fun upsert (Ljava/lang/String;[BJLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+

@@ -1,0 +1,4 @@
+public final class uk/veritaslabs/kits/store/testing/InMemoryDatabaseKt {
+	public static final fun openInMemoryDatabase ()Luk/veritaslabs/kits/store/KitsDatabase;
+}
+
