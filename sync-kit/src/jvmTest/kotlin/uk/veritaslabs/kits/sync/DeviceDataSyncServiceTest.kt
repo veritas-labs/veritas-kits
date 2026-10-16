@@ -18,6 +18,7 @@ import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
+import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -110,8 +111,15 @@ class DeviceDataSyncServiceTest {
                 message.payload?.let { runCatching { Base64.Default.decode(it) }.getOrNull() }?.let { SyncEnvelope.decode(it) }
                     ?.let { receivedDocuments.add(it.documentId) }
                 scope.launch {
-                    if (routeDeviceSyncMessages) deviceSync.handle(message)
-                    sync.handle(message)
+                    // As the engine's own message loop does: a message that fails (a Home deleted while its member row was being projected, say)
+                    // is dropped and the next round recovers it, and must not escape as an uncaught exception into whichever test runs next.
+                    try {
+                        if (routeDeviceSyncMessages) deviceSync.handle(message)
+                        sync.handle(message)
+                    } catch (e: CancellationException) {
+                        throw e
+                    } catch (_: Exception) {
+                    }
                 }
             }
         }
