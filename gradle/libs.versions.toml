@@ -35,3 +35,5 @@ eygraber-sqldelightAndroidxDriver = { module = "com.eygraber:sqldelight-androidx
 # blobs-kit (the JVM photo encoder; compileOnly there, the desktop app brings Skia with Compose)
 skiko-awt = { module = "org.jetbrains.skiko:skiko-awt", version.ref = "skiko" }
 skiko-awtRuntimeLinuxX64 = { module = "org.jetbrains.skiko:skiko-awt-runtime-linux-x64", version.ref = "skiko" }
+# docs-kit (JVM and Android only: Automerge has no iOS binding; the app supplies the Android natives)
+automerge = { module = "org.automerge:automerge", version.ref = "automerge" }

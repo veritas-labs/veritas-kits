@@ -27,7 +27,10 @@ kotlin {
     // fail. On Linux they get no iOS target at all, so their Maven Local artifacts carry no iOS variant.
     val iosNeedsMac = providers.gradleProperty("kits.iosNeedsMacModules").orNull.orEmpty()
         .split(',').map { it.trim() }.filter { it.isNotEmpty() }
-    if (project.name !in iosNeedsMac || HostManager.hostIsMac) {
+    // Modules in `kits.noIosModules` have no iOS target at all (docs-kit: Automerge has no iOS binding).
+    val noIos = providers.gradleProperty("kits.noIosModules").orNull.orEmpty()
+        .split(',').map { it.trim() }.filter { it.isNotEmpty() }
+    if (project.name !in noIos && (project.name !in iosNeedsMac || HostManager.hostIsMac)) {
         iosArm64()
         iosSimulatorArm64()
     }
