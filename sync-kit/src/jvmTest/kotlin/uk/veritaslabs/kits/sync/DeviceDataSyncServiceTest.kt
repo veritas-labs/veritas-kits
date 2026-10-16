@@ -42,10 +42,17 @@ import uk.veritaslabs.kits.spaces.ProfileRepository
 import org.automerge.SyncState
 import uk.veritaslabs.kits.spaces.SpaceRegistryDocumentId
 import uk.veritaslabs.kits.spaces.rosterDocumentId
+import uk.veritaslabs.kits.x0x.X0xApiException
+import uk.veritaslabs.kits.x0x.X0xClient
 import uk.veritaslabs.kits.x0x.X0xDirectMessage
 import uk.veritaslabs.kits.spaces.SpaceRegistry
 import uk.veritaslabs.kits.spaces.SpaceJoinService
 import uk.veritaslabs.kits.spaces.SpaceRosters
+
+/** A daemon that cannot open group stores, as a daemon that is too old to. */
+private class WithoutGroupStores(private val node: X0xClient) : X0xClient by node {
+    override suspend fun openGroupStore(groupId: String, name: String): String = throw X0xApiException(404, "store not found")
+}
 
 class DeviceDataSyncServiceTest {
 
@@ -65,6 +72,12 @@ class DeviceDataSyncServiceTest {
         peerBackoff: Duration = 2.minutes,
         /** Gives the device a Sync activity recorder that fails every time it is asked for the time, to show recording never matters to a sync. */
         brokenRecorder: Boolean = false,
+        /**
+         * False gives the device a daemon that cannot open group stores (as one that is too old does), so it has no mailbox and everything it
+         * syncs goes by direct message. The tests of what Sync activity logs for a direct sync need that: with a mailbox, which of the two
+         * paths delivers an edit first is a race, and only the direct path logs a received row in the document's module.
+         */
+        mailbox: Boolean = true,
     ) {
         val node = network.node(agentId)
         val database: KitsDatabase = openInMemoryDatabase()
@@ -73,7 +86,7 @@ class DeviceDataSyncServiceTest {
         /** The id of every document a sync message has reached this device for. */
         val receivedDocuments = ConcurrentLinkedQueue<String>()
         val sync = DeviceDataSyncService(
-            node, database, devices, ::getDeviceName, sources.documentTypes(), interval = interval,
+            if (mailbox) node else WithoutGroupStores(node), database, devices, ::getDeviceName, sources.documentTypes(), interval = interval,
             spacesConfig = TestSpacesConfig, seeding = TestSeeding(sources, database), sendOrder = TestSendOrder,
             peerBackoff = peerBackoff,
             recorder = if (brokenRecorder) SyncEventRecorder(database, nowMillis = { error("the clock is broken") }) else SyncEventRecorder(database),
@@ -443,9 +456,9 @@ class DeviceDataSyncServiceTest {
     }
 
     /** Two people who are not paired: X made the Home and admitted Y; Y has the Home and knows X invited it. */
-    private suspend fun twoPeopleInOneHome(suffix: String = ""): Triple<Device, Device, String> {
-        val x = Device("agent-x$suffix")
-        val y = Device("agent-y$suffix")
+    private suspend fun twoPeopleInOneHome(suffix: String = "", mailbox: Boolean = true): Triple<Device, Device, String> {
+        val x = Device("agent-x$suffix", mailbox = mailbox)
+        val y = Device("agent-y$suffix", mailbox = mailbox)
         val homeId = x.homes.create("Maple Street", "family")
         val xMember = x.profiles.current()
         val yMember = y.profiles.current()
@@ -1049,7 +1062,7 @@ class DeviceDataSyncServiceTest {
     @Test
     fun aTasksEditIsLoggedAsSentOnTheEditorAndReceivedOnTheOtherMember() = runBlocking {
         // Arrange
-        val (x, y, homeId) = twoPeopleInOneHome()
+        val (x, y, homeId) = twoPeopleInOneHome(mailbox = false)
         x.start()
         y.start()
 
@@ -1069,7 +1082,7 @@ class DeviceDataSyncServiceTest {
     @Test
     fun anUnchangedRoundIsOnlyAHandshakeAndAddsNoReceivedEvent() = runBlocking {
         // Arrange
-        val (x, y, homeId) = twoPeopleInOneHome()
+        val (x, y, homeId) = twoPeopleInOneHome(mailbox = false)
         x.start()
         y.start()
         x.sources.tasks.forSpace(homeId)!!.add("Bins")
@@ -1344,7 +1357,7 @@ class DeviceDataSyncServiceTest {
         documentCases.forEachIndexed { index, case ->
             // Arrange: X and Y share a Home, and X2 is X's own second device, which is who a private document goes to
             freshScope()
-            val (x, y, homeId) = twoPeopleInOneHome("-activity$index")
+            val (x, y, homeId) = twoPeopleInOneHome("-activity$index", mailbox = false)
             val x2 = Device("agent-x2-activity$index")
             x.pairedWith(x2)
             x2.pairedWith(x)
