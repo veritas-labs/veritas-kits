@@ -46,11 +46,18 @@ private const val RosterFeature = "roster"
      * devices, so it no longer acts for them. The member stays, with fewer devices (ADR-014 §4).
      */
     public suspend fun publish(spaceId: String, agentId: String?, pairedAgents: Set<String>) {
-        val me = profiles.current().id
+        val profile = profiles.current()
+        val me = profile.id
         val row = database.homeMemberQueries.selectByHome(spaceId).awaitAsList().firstOrNull { it.memberId == me } ?: return
+        // A name the user chose is theirs first and the roster's second. [ProfileRepository.rename] writes the Profile and then the member
+        // row, and the row is only a projection of this roster: a [project] of a message that arrives in between puts the roster's old
+        // name back in the row, and publishing the row would then undo the rename for good. So a chosen name is published from the Profile.
+        // A placeholder name (not chosen yet) is not: it must not undo a name another device of the person has already published.
+        val name = if (profile.named) profile.displayName else row.name
+        val avatar = if (profile.named) profile.avatarResourceId else row.avatarResourceId
         val changed = lock.withLock {
             val doc = open(spaceId) ?: return
-            val member = putRosterMember(doc, row.memberId, row.name, row.avatarResourceId, row.role, row.joinedAt)
+            val member = putRosterMember(doc, row.memberId, name, avatar, row.role, row.joinedAt)
             val device = agentId?.let { claimRosterDevice(doc, it, row.memberId) } ?: false
             val named = agentId?.let { nameOwnDevice(doc, it) } ?: false
             val released = agentId != null && doc.readRoster().firstOrNull { it.memberId == row.memberId }?.devices.orEmpty()
@@ -59,7 +66,10 @@ private const val RosterFeature = "roster"
                 .any { it }
             (member || device || named || released).also { if (it) persist(spaceId, doc) }
         }
-        if (changed) _changes.tryEmit(spaceId)
+        if (changed) {
+            project(spaceId) // the row is the roster's again, if a message projected the old roster over it
+            _changes.tryEmit(spaceId)
+        }
     }
 
     /**
