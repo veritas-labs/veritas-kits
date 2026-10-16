@@ -7,7 +7,11 @@ import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 /** Pins the fake mesh's group stores to what ADR-020 Spikes 1, 4 and 6 saw on real daemons. */
 class FakeGroupStoreTest {
@@ -168,5 +172,26 @@ class FakeGroupStoreTest {
 
         // Assert
         assertContentEquals(byteArrayOf(5), phoneC.getValue(storeId, "phone-a/0001"))
+    }
+
+    @Test
+    fun `devices on several threads writing and listing one store lose no entry and see no exception`() = runBlocking {
+        // Arrange: three online replicas of one store, as the devices of a household have, each written to from its own threads
+        val (_, _, storeId) = household()
+        val writers = listOf(phoneA, phoneB, hub)
+        val perWriter = 1_500
+
+        // Act: every node writes its own keys and lists the store while the others do
+        withContext(Dispatchers.Default) {
+            writers.flatMap { node ->
+                listOf(
+                    async { repeat(perWriter) { node.putValue(storeId, "${node.agentId}/$it", byteArrayOf(1)) } },
+                    async { repeat(perWriter) { node.listStoreKeys(storeId) } },
+                )
+            }.awaitAll()
+        }
+
+        // Assert: nothing threw, and every replica holds every entry
+        writers.forEach { node -> assertEquals(writers.size * perWriter, node.listStoreKeys(storeId).size, "${node.agentId} lost entries") }
     }
 }

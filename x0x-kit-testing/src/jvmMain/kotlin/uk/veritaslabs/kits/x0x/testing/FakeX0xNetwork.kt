@@ -5,6 +5,8 @@ import uk.veritaslabs.kits.x0x.*
 import java.io.File
 import java.nio.file.Files
 import java.security.MessageDigest
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.io.encoding.Base64
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -13,6 +15,10 @@ import kotlinx.serialization.json.JsonObject
 
 
 /**
+ * Devices under test run on several threads, so every operation on the mesh's state is atomic: the nodes, groups, stores and transfers are
+ * guarded by one lock, and the sets and lists the tests read and write while devices run ([offline], [hanging], [lagging], [minted],
+ * [Node.sentTo]) are concurrent collections. Callbacks to a node's listeners run outside the lock.
+ *
  * A tiny in-memory x0x mesh: nodes can create groups, invite and join, send each other direct messages, and
  * open a group's stores.
  *
@@ -45,6 +51,9 @@ public class FakeX0xNetwork {
     /** x0x refuses a store value larger than this. */
     public val maxStoreValueBytes: Int = 65_536
 
+    /** Guards every map and the [clock]; never held while a listener or a delay runs. */
+    private val lock = Any()
+
     private var clock = 0L
 
     public val groups: MutableMap<String, Group> = mutableMapOf<String, Group>()
@@ -55,35 +64,38 @@ public class FakeX0xNetwork {
     }
 
     /** Agents whose direct messages are silently dropped, as if offline. */
-    public val offline: MutableSet<String> = mutableSetOf<String>()
+    public val offline: MutableSet<String> = ConcurrentHashMap.newKeySet<String>()
 
     /**
      * Agents that never answer, as a daemon whose path to them has gone stale: a direct message to one waits [hangFor] and then fails,
      * as x0xd's does after about 24 s.
      */
-    public val hanging: MutableSet<String> = mutableSetOf<String>()
+    public val hanging: MutableSet<String> = ConcurrentHashMap.newKeySet<String>()
     public var hangFor: Duration = 3.seconds
 
     /** An invite made through a node: for which group, with what lifetime and joiner, and by whom. */
     public data class MintedInvite(val groupId: String, val expirySecs: Long?, val intendedJoiner: String?, val mintedBy: String)
 
     /** Every invite made so far, in order. */
-    public val minted: MutableList<MintedInvite> = mutableListOf<MintedInvite>()
+    public val minted: MutableList<MintedInvite> = CopyOnWriteArrayList<MintedInvite>()
 
     /** Agents that don't yet see themselves in a group's roster, as while their admission is being committed. */
-    public val lagging: MutableSet<String> = mutableSetOf<String>()
+    public val lagging: MutableSet<String> = ConcurrentHashMap.newKeySet<String>()
 
     /** Takes [agentId] online: its direct messages arrive again, and every other node sees it come online. */
     public fun comeOnline(agentId: String) {
-        offline -= agentId
-        groups.values.forEach { group ->
-            group.stores.values.forEach { replicas ->
-                replicas[agentId]?.let { mine ->
-                    replicas.filter { (other, _) -> other != agentId && other !in offline }.values.forEach { merge(mine, it); merge(it, mine) }
+        val others = synchronized(lock) {
+            offline -= agentId
+            groups.values.forEach { group ->
+                group.stores.values.forEach { replicas ->
+                    replicas[agentId]?.let { mine ->
+                        replicas.filter { (other, _) -> other != agentId && other !in offline }.values.forEach { merge(mine, it); merge(it, mine) }
+                    }
                 }
             }
+            nodes.values.filter { it.agentId != agentId }
         }
-        nodes.values.filter { it.agentId != agentId }.forEach { it.onPresence(X0xPresenceEvent("online", agentId)) }
+        others.forEach { it.onPresence(X0xPresenceEvent("online", agentId)) }
     }
 
     private fun merge(into: Replica, from: Replica) {
@@ -118,20 +130,20 @@ public class FakeX0xNetwork {
      * A node on this mesh. With [directStream] its [X0xClient.directEvents] delivers what the node is sent, as a real daemon's stream does; without it
      * (the default, what most tests wire by hand through [Node.onDirect]) that stream stays silent.
      */
-    public fun node(agentId: String, directStream: Boolean = false): Node = Node(agentId, directStream).also { nodes[agentId] = it }
+    public fun node(agentId: String, directStream: Boolean = false): Node = Node(agentId, directStream).also { synchronized(lock) { nodes[agentId] = it } }
 
     public inner class Node(public val agentId: String, private val directStream: Boolean = false) : X0xClient by FakeX0xClient() {
 
         /** Called for every direct message delivered to this node. */
-        public var onDirect: (X0xDirectMessage) -> Unit = {}
+        @Volatile public var onDirect: (X0xDirectMessage) -> Unit = {}
 
-        public val sentTo: MutableList<String> = mutableListOf<String>()
+        public val sentTo: MutableList<String> = CopyOnWriteArrayList<String>()
 
         /** Where this node's "daemon" lands received files. */
         public val transfersDir: File = Files.createTempDirectory("fake-transfers-$agentId").toFile().also { it.deleteOnExit() }
 
         /** Called for every file event while this node's event stream is open. */
-        public var onFile: (X0xFileEvent) -> Unit = {}
+        @Volatile public var onFile: (X0xFileEvent) -> Unit = {}
 
         override suspend fun fileEvents(onEvent: (X0xFileEvent) -> Unit, onClose: (Throwable?) -> Unit): X0xEventStream {
             onFile = onEvent
@@ -141,17 +153,17 @@ public class FakeX0xNetwork {
         /** Opens a direct-message stream beside any already open (a real daemon serves several), delivering what [onDirect] gets. */
         override suspend fun directEvents(onMessage: (X0xDirectMessage) -> Unit, onClose: (Throwable?) -> Unit): X0xEventStream {
             if (!directStream) return X0xEventStream { onClose(null) }
-            val previous = onDirect
-            onDirect = { previous(it); onMessage(it) }
+            val previous = synchronized(lock) { onDirect.also { onDirect = { message -> it(message); onMessage(message) } } }
             return X0xEventStream { onDirect = previous; onClose(null) }
         }
 
         override suspend fun sendFile(agentId: String, filename: String, size: Long, sha256: String, path: String): String {
-            val id = "%08d-fake-transfer".format(nextTransfer++)
-            val transfer = Transfer(id, this.agentId, agentId, filename, size, sha256, path)
-            transfers[id] = transfer
-            val target = nodes[agentId]
-            if (target != null && agentId !in offline) target.onFile(X0xFileEvent.Offer(id, filename, size, this.agentId))
+            val (id, target) = synchronized(lock) {
+                val id = "%08d-fake-transfer".format(nextTransfer++)
+                transfers[id] = Transfer(id, this.agentId, agentId, filename, size, sha256, path)
+                id to nodes[agentId]?.takeIf { agentId !in offline }
+            }
+            target?.onFile(X0xFileEvent.Offer(id, filename, size, this.agentId))
             return id
         }
 
@@ -169,36 +181,41 @@ public class FakeX0xNetwork {
             )
         }
 
-        override suspend fun listFileTransfers(): List<X0xFileTransfer> =
+        override suspend fun listFileTransfers(): List<X0xFileTransfer> = synchronized(lock) {
             transfers.values.filter { it.from == agentId || it.to == agentId }.map(::view)
-
-        override suspend fun getFileTransfer(transferId: String): X0xFileTransfer? =
-            transfers[transferId]?.takeIf { it.from == agentId || it.to == agentId }?.let(::view)
-
-        override suspend fun acceptFile(transferId: String) {
-            val transfer = transfers[transferId]?.takeIf { it.to == agentId } ?: throw X0xApiException(404, "transfer not found")
-            if (transfer.receiverState != "Pending") throw X0xApiException(409, "transfer is ${transfer.receiverState}")
-            val source = File(transfer.sourcePath)
-            val bytes = source.takeIf { it.isFile }?.readBytes()
-            transfer.senderState = "Complete"
-            if (bytes == null) {
-                transfer.receiverState = "Failed"
-                transfer.error = "source unreadable: ${transfer.sourcePath}"
-                return
-            }
-            val actual = MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it) }
-            if (actual != transfer.sha256) {
-                transfer.receiverState = "Failed"
-                transfer.error = "SHA-256 mismatch: expected ${transfer.sha256} got $actual"
-                return
-            }
-            val landed = File(transfersDir, "${transfer.id.take(8)}_${transfer.filename}").also { it.writeBytes(bytes) }
-            transfer.receiverState = "Complete"
-            transfer.outputPath = landed.path
-            onFile(X0xFileEvent.Complete(transfer.id, transfer.filename, actual, landed.path))
         }
 
-        override suspend fun rejectFile(transferId: String) {
+        override suspend fun getFileTransfer(transferId: String): X0xFileTransfer? = synchronized(lock) {
+            transfers[transferId]?.takeIf { it.from == agentId || it.to == agentId }?.let(::view)
+        }
+
+        override suspend fun acceptFile(transferId: String) {
+            val completed = synchronized(lock) {
+                val transfer = transfers[transferId]?.takeIf { it.to == agentId } ?: throw X0xApiException(404, "transfer not found")
+                if (transfer.receiverState != "Pending") throw X0xApiException(409, "transfer is ${transfer.receiverState}")
+                val source = File(transfer.sourcePath)
+                val bytes = source.takeIf { it.isFile }?.readBytes()
+                transfer.senderState = "Complete"
+                if (bytes == null) {
+                    transfer.receiverState = "Failed"
+                    transfer.error = "source unreadable: ${transfer.sourcePath}"
+                    return@synchronized null
+                }
+                val actual = MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it) }
+                if (actual != transfer.sha256) {
+                    transfer.receiverState = "Failed"
+                    transfer.error = "SHA-256 mismatch: expected ${transfer.sha256} got $actual"
+                    return@synchronized null
+                }
+                val landed = File(transfersDir, "${transfer.id.take(8)}_${transfer.filename}").also { it.writeBytes(bytes) }
+                transfer.receiverState = "Complete"
+                transfer.outputPath = landed.path
+                X0xFileEvent.Complete(transfer.id, transfer.filename, actual, landed.path)
+            }
+            completed?.let { onFile(it) }
+        }
+
+        override suspend fun rejectFile(transferId: String): Unit = synchronized(lock) {
             val transfer = transfers[transferId]?.takeIf { it.to == agentId } ?: throw X0xApiException(404, "transfer not found")
             if (transfer.receiverState != "Pending") throw X0xApiException(409, "transfer is ${transfer.receiverState}")
             transfer.receiverState = "Rejected"
@@ -207,7 +224,7 @@ public class FakeX0xNetwork {
         }
 
         /** Called for every presence event while this node's presence stream is open. */
-        public var onPresence: (X0xPresenceEvent) -> Unit = {}
+        @Volatile public var onPresence: (X0xPresenceEvent) -> Unit = {}
 
         override suspend fun presenceEvents(onEvent: (X0xPresenceEvent) -> Unit, onClose: (Throwable?) -> Unit): X0xEventStream {
             onPresence = onEvent
@@ -224,38 +241,36 @@ public class FakeX0xNetwork {
                 delay(hangFor)
                 error("timed out sending to $agentId")
             }
-            val target = nodes[agentId]
-            if (target != null && agentId !in offline) {
-                target.onDirect(
-                    X0xDirectMessage(sender = this.agentId, payload = Base64.Default.encode(payload), verified = true, trustDecision = "unknown"),
-                )
-            }
+            val target = synchronized(lock) { nodes[agentId]?.takeIf { agentId !in offline } }
+            target?.onDirect?.invoke(
+                X0xDirectMessage(sender = this.agentId, payload = Base64.Default.encode(payload), verified = true, trustDecision = "unknown"),
+            )
             return JsonObject(emptyMap())
         }
 
-        override suspend fun createGroup(name: String, description: String, preset: String?): String {
+        override suspend fun createGroup(name: String, description: String, preset: String?): String = synchronized(lock) {
             val id = "group-${nextGroup++}"
             groups[id] = Group(agentId).apply { members[agentId] = X0xGroupMember(agentId, role = "admin", state = "active") }
-            return id
+            id
         }
 
-        override suspend fun createGroupInvite(groupId: String, expirySecs: Long?, intendedJoiner: String?): String {
+        override suspend fun createGroupInvite(groupId: String, expirySecs: Long?, intendedJoiner: String?): String = synchronized(lock) {
             requireAdmin(groupId)
             minted += MintedInvite(groupId, expirySecs, intendedJoiner, mintedBy = agentId)
-            return "invite:$groupId" + (intendedJoiner?.let { "$JoinerMarker$it" }.orEmpty())
+            "invite:$groupId" + (intendedJoiner?.let { "$JoinerMarker$it" }.orEmpty())
         }
 
-        override suspend fun joinGroup(invite: String): String {
+        override suspend fun joinGroup(invite: String): String = synchronized(lock) {
             val id = invite.removePrefix("invite:").substringBefore(JoinerMarker)
             // As x0x does: an invite made for one agent is refused to every other
             invite.substringAfter(JoinerMarker, missingDelimiterValue = "").takeIf { it.isNotEmpty() && it != agentId }
                 ?.let { throw X0xApiException(409, "invite_not_addressed_to_me") }
             val group = groups[id] ?: throw X0xApiException(404, "group not found")
             group.members[agentId] = X0xGroupMember(agentId, role = "member", state = "active")
-            return id
+            id
         }
 
-        override suspend fun openGroupStore(groupId: String, name: String): String {
+        override suspend fun openGroupStore(groupId: String, name: String): String = synchronized(lock) {
             val group = groups[groupId]?.takeIf { it.members[agentId]?.state == "active" } ?: throw X0xApiException(404, "group not found")
             val replicas = group.stores.getOrPut(name) { mutableMapOf() }
             if (agentId !in replicas) {
@@ -263,7 +278,7 @@ public class FakeX0xNetwork {
                 replicas[agentId] = mine
                 if (agentId !in offline) replicas.filter { (other, _) -> other !in offline }.values.forEach { if (it !== mine) merge(mine, it) }
             }
-            return storeId(groupId, name)
+            storeId(groupId, name)
         }
 
         /** The replica this node holds of [storeId], or a 404 as for a store it never opened or may no longer read. */
@@ -282,35 +297,36 @@ public class FakeX0xNetwork {
             if (agentId !in offline) replicas.filter { (other, _) -> other !in offline }.values.forEach { it.entries[key] = entry }
         }
 
-        override suspend fun listStoreKeys(storeId: String): List<X0xStoreKey> =
+        override suspend fun listStoreKeys(storeId: String): List<X0xStoreKey> = synchronized(lock) {
             replicaOf(storeId).second.entries.filterValues { it.value != null }
                 .map { (key, entry) -> X0xStoreKey(key, entry.value!!.size.toLong(), entry.contentType) }
+        }
 
-        override suspend fun getValue(storeId: String, key: String): ByteArray? = replicaOf(storeId).second.entries[key]?.value
+        override suspend fun getValue(storeId: String, key: String): ByteArray? = synchronized(lock) { replicaOf(storeId).second.entries[key]?.value }
 
         override suspend fun putValue(storeId: String, key: String, value: ByteArray, contentType: String) {
             if (value.size > maxStoreValueBytes) {
                 throw X0xApiException(413, "value too large: ${value.size} exceeds maximum $maxStoreValueBytes bytes")
             }
-            write(storeId, key, value, contentType)
+            synchronized(lock) { write(storeId, key, value, contentType) }
         }
 
-        override suspend fun deleteValue(storeId: String, key: String): Unit = write(storeId, key, null, "")
+        override suspend fun deleteValue(storeId: String, key: String): Unit = synchronized(lock) { write(storeId, key, null, "") }
 
-        override suspend fun getGroupMembers(groupId: String): List<X0xGroupMember> {
+        override suspend fun getGroupMembers(groupId: String): List<X0xGroupMember> = synchronized(lock) {
             val group = groups[groupId]?.takeIf { agentId in it.members } ?: throw X0xApiException(404, "group not found")
-            return group.members.values.filter { !(it.agentId == agentId && agentId in lagging) }
+            group.members.values.filter { !(it.agentId == agentId && agentId in lagging) }
         }
 
-        override suspend fun getGroupCreator(groupId: String): String? = groups[groupId]?.creator
+        override suspend fun getGroupCreator(groupId: String): String? = synchronized(lock) { groups[groupId]?.creator }
 
-        override suspend fun setGroupMemberRole(groupId: String, agentId: String, role: String) {
+        override suspend fun setGroupMemberRole(groupId: String, agentId: String, role: String): Unit = synchronized(lock) {
             requireAdmin(groupId)
             val group = groups.getValue(groupId)
             group.members[agentId] = group.members.getValue(agentId).copy(role = role)
         }
 
-        override suspend fun removeGroupMember(groupId: String, agentId: String) {
+        override suspend fun removeGroupMember(groupId: String, agentId: String): Unit = synchronized(lock) {
             requireAdmin(groupId)
             val group = groups.getValue(groupId)
             // As the real daemon: only the creator itself can take the creator out.
@@ -318,10 +334,12 @@ public class FakeX0xNetwork {
                 throw X0xApiException(409, "member_key_package_pending")
             }
             group.members.remove(agentId)
+            Unit
         }
 
-        override suspend fun leaveGroup(groupId: String) {
+        override suspend fun leaveGroup(groupId: String): Unit = synchronized(lock) {
             groups[groupId]?.members?.remove(agentId)
+            Unit
         }
 
         private fun requireAdmin(groupId: String) {
