@@ -1,0 +1,497 @@
+public final class uk/veritaslabs/kits/sync/AgentDetails {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun component4 ()Ljava/lang/Long;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;)Luk/veritaslabs/kits/sync/AgentDetails;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/AgentDetails;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/AgentDetails;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLastSeenMsAgo ()Ljava/lang/Long;
+	public final fun getLastSyncedMsAgo ()Ljava/lang/Long;
+	public final fun getMachineId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class uk/veritaslabs/kits/sync/DeviceDataSync {
+	public abstract fun agentDetails (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun blobPeers (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun devicePaired (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun deviceUnpaired (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getHubs ()Luk/veritaslabs/kits/spaces/SpaceHub;
+	public abstract fun getJoining ()Luk/veritaslabs/kits/spaces/SpaceJoining;
+	public abstract fun getProfileChanges ()Luk/veritaslabs/kits/spaces/ProfileChangeListener;
+	public abstract fun getRosterChanges ()Luk/veritaslabs/kits/spaces/RosterChangeListener;
+	public abstract fun getSpaceChanges ()Luk/veritaslabs/kits/spaces/SpaceChangeListener;
+	public fun getSyncActivity ()Luk/veritaslabs/kits/sync/SyncActivityRepository;
+	public abstract fun memberAgents (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun run (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun syncNow ()V
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceDataSync$DefaultImpls {
+	public static fun blobPeers (Luk/veritaslabs/kits/sync/DeviceDataSync;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun getSyncActivity (Luk/veritaslabs/kits/sync/DeviceDataSync;)Luk/veritaslabs/kits/sync/SyncActivityRepository;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceDataSyncService : uk/veritaslabs/kits/sync/DeviceDataSync {
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/sync/SyncedDeviceRepository;Lkotlin/jvm/functions/Function0;Ljava/util/List;JJLkotlin/jvm/functions/Function0;Luk/veritaslabs/kits/docs/SyncEventRecorder;JLuk/veritaslabs/kits/spaces/SpacesConfig;Luk/veritaslabs/kits/spaces/SpaceSeeding;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/sync/SyncedDeviceRepository;Lkotlin/jvm/functions/Function0;Ljava/util/List;JJLkotlin/jvm/functions/Function0;Luk/veritaslabs/kits/docs/SyncEventRecorder;JLuk/veritaslabs/kits/spaces/SpacesConfig;Luk/veritaslabs/kits/spaces/SpaceSeeding;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun admit (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun agentDetails (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun blobPeers (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun devicePaired (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun deviceUnpaired (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getHubs ()Luk/veritaslabs/kits/spaces/SpaceHub;
+	public fun getJoining ()Luk/veritaslabs/kits/spaces/SpaceJoining;
+	public fun getProfileChanges ()Luk/veritaslabs/kits/spaces/ProfileChangeListener;
+	public fun getRosterChanges ()Luk/veritaslabs/kits/spaces/RosterChangeListener;
+	public fun getSpaceChanges ()Luk/veritaslabs/kits/spaces/SpaceChangeListener;
+	public fun getSyncActivity ()Luk/veritaslabs/kits/sync/SyncActivityRepository;
+	public final fun handle (Luk/veritaslabs/kits/x0x/X0xDirectMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun memberAgents (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun removeMember (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun rosterDevices (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun run (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun syncEverything (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun syncNow ()V
+	public final fun syncWith (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceDataSyncServiceKt {
+	public static final fun rosterDocumentType (Luk/veritaslabs/kits/spaces/SpaceRosters;Lkotlin/jvm/functions/Function1;)Luk/veritaslabs/kits/docs/SpaceDocumentType;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncConfig {
+	public static final field Companion Luk/veritaslabs/kits/sync/DeviceSyncConfig$Companion;
+	public static final field DefaultPairingScheme Ljava/lang/String;
+	public fun <init> ()V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;JLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3-UwyO8pc ()J
+	public final fun copy-SxA4cEA (Ljava/lang/String;Ljava/lang/String;J)Luk/veritaslabs/kits/sync/DeviceSyncConfig;
+	public static synthetic fun copy-SxA4cEA$default (Luk/veritaslabs/kits/sync/DeviceSyncConfig;Ljava/lang/String;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/kits/sync/DeviceSyncConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGroupName ()Ljava/lang/String;
+	public final fun getPairingInviteLifetime-UwyO8pc ()J
+	public final fun getPairingScheme ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncConfig$Companion {
+}
+
+public abstract interface class uk/veritaslabs/kits/sync/DeviceSyncMessage {
+	public static final field Companion Luk/veritaslabs/kits/sync/DeviceSyncMessage$Companion;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncMessage$Companion {
+	public final fun decode (Ljava/lang/String;)Luk/veritaslabs/kits/sync/DeviceSyncMessage;
+	public final fun encode (Luk/veritaslabs/kits/sync/DeviceSyncMessage;)[B
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public final fun stringField (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun unrecognisedKind (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncMessage$Hello : uk/veritaslabs/kits/sync/DeviceSyncMessage {
+	public static final field Companion Luk/veritaslabs/kits/sync/DeviceSyncMessage$Hello$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Luk/veritaslabs/kits/sync/DeviceSyncMessage$Hello;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/DeviceSyncMessage$Hello;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/DeviceSyncMessage$Hello;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/sync/DeviceSyncMessage$Hello$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/sync/DeviceSyncMessage$Hello$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/sync/DeviceSyncMessage$Hello;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/sync/DeviceSyncMessage$Hello;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncMessage$Hello$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncMessage$Invite : uk/veritaslabs/kits/sync/DeviceSyncMessage {
+	public static final field Companion Luk/veritaslabs/kits/sync/DeviceSyncMessage$Invite$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/sync/DeviceSyncMessage$Invite;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/DeviceSyncMessage$Invite;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/DeviceSyncMessage$Invite;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInvite ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/sync/DeviceSyncMessage$Invite$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/sync/DeviceSyncMessage$Invite$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/sync/DeviceSyncMessage$Invite;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/sync/DeviceSyncMessage$Invite;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncMessage$Invite$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate : uk/veritaslabs/kits/sync/DeviceSyncMessage {
+	public static final field Companion Luk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInvite ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOldGroupId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class uk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Luk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Luk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Luk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncMessage$Rotate$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class uk/veritaslabs/kits/sync/DeviceSyncService {
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/sync/SyncedDeviceRepository;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;JJJJJJILkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Luk/veritaslabs/kits/sync/DeviceSyncConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/sync/SyncedDeviceRepository;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;JJJJJJILkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Luk/veritaslabs/kits/sync/DeviceSyncConfig;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getJoined ()Lkotlinx/coroutines/flow/SharedFlow;
+	public final fun handle (Luk/veritaslabs/kits/x0x/X0xDirectMessage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun pairWith-0E7RQCE (Luk/veritaslabs/kits/sync/PairingLink;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun pairWith-0E7RQCE$default (Luk/veritaslabs/kits/sync/DeviceSyncService;Luk/veritaslabs/kits/sync/PairingLink;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun reconcile (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun removeDevice-gIAlu-s (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun run (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/sync/PairingLink {
+	public static final field Companion Luk/veritaslabs/kits/sync/PairingLink$Companion;
+	public fun <init> (Ljava/lang/String;JLjava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;JLjava/lang/String;)Luk/veritaslabs/kits/sync/PairingLink;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/PairingLink;Ljava/lang/String;JLjava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/PairingLink;
+	public final fun encode (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun encode$default (Luk/veritaslabs/kits/sync/PairingLink;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getDeviceName ()Ljava/lang/String;
+	public final fun getExpiresAt ()J
+	public fun hashCode ()I
+	public final fun isExpired (J)Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/PairingLink$Companion {
+	public final fun decode (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/sync/PairingLink;
+	public static synthetic fun decode$default (Luk/veritaslabs/kits/sync/PairingLink$Companion;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/PairingLink;
+}
+
+public final class uk/veritaslabs/kits/sync/PairingStep : java/lang/Enum {
+	public static final field AwaitJoin Luk/veritaslabs/kits/sync/PairingStep;
+	public static final field CreateInvite Luk/veritaslabs/kits/sync/PairingStep;
+	public static final field GrantAdmin Luk/veritaslabs/kits/sync/PairingStep;
+	public static final field PrepareGroup Luk/veritaslabs/kits/sync/PairingStep;
+	public static final field SaveDevice Luk/veritaslabs/kits/sync/PairingStep;
+	public static final field SendInvite Luk/veritaslabs/kits/sync/PairingStep;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/sync/PairingStep;
+	public static fun values ()[Luk/veritaslabs/kits/sync/PairingStep;
+}
+
+public final class uk/veritaslabs/kits/sync/PairingStepStatus : java/lang/Enum {
+	public static final field Done Luk/veritaslabs/kits/sync/PairingStepStatus;
+	public static final field Failed Luk/veritaslabs/kits/sync/PairingStepStatus;
+	public static final field Pending Luk/veritaslabs/kits/sync/PairingStepStatus;
+	public static final field Running Luk/veritaslabs/kits/sync/PairingStepStatus;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/sync/PairingStepStatus;
+	public static fun values ()[Luk/veritaslabs/kits/sync/PairingStepStatus;
+}
+
+public final class uk/veritaslabs/kits/sync/PeerActivity {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/lang/Long;Ljava/lang/Long;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/lang/Long;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Z
+	public final fun component5 ()Z
+	public final fun component6 ()Z
+	public final fun component7 ()Z
+	public final fun component8 ()Ljava/lang/Long;
+	public final fun component9 ()Ljava/lang/Long;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/lang/Long;Ljava/lang/Long;)Luk/veritaslabs/kits/sync/PeerActivity;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/PeerActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/lang/Long;Ljava/lang/Long;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/PeerActivity;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getLastSyncedMsAgo ()Ljava/lang/Long;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOnline ()Z
+	public final fun getOwnerName ()Ljava/lang/String;
+	public final fun getRetryingSinceMsAgo ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public final fun isHub ()Z
+	public final fun isOwnDevice ()Z
+	public final fun isYou ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/ProblemReason : java/lang/Enum {
+	public static final field DaemonUnreachable Luk/veritaslabs/kits/sync/ProblemReason;
+	public static final field MessageStalled Luk/veritaslabs/kits/sync/ProblemReason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/sync/ProblemReason;
+	public static fun values ()[Luk/veritaslabs/kits/sync/ProblemReason;
+}
+
+public abstract interface class uk/veritaslabs/kits/sync/SyncActivityRepository {
+	public abstract fun events (Ljava/lang/String;Luk/veritaslabs/kits/sync/SyncEventFilter;Ljava/lang/String;Ljava/lang/Long;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getAvailable ()Z
+	public abstract fun snapshot (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun syncNow ()V
+}
+
+public final class uk/veritaslabs/kits/sync/SyncEventFilter : java/lang/Enum {
+	public static final field All Luk/veritaslabs/kits/sync/SyncEventFilter;
+	public static final field Problems Luk/veritaslabs/kits/sync/SyncEventFilter;
+	public static final field Received Luk/veritaslabs/kits/sync/SyncEventFilter;
+	public static final field Sent Luk/veritaslabs/kits/sync/SyncEventFilter;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/sync/SyncEventFilter;
+	public static fun values ()[Luk/veritaslabs/kits/sync/SyncEventFilter;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncEventItem {
+	public synthetic fun <init> (JJJLuk/veritaslabs/kits/sync/SyncEventKind;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (JJJLuk/veritaslabs/kits/sync/SyncEventKind;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()J
+	public final fun component2 ()J
+	public final fun component3 ()J
+	public final fun component4 ()Luk/veritaslabs/kits/sync/SyncEventKind;
+	public final fun component5-PibHL-o ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()I
+	public final fun copy-cePBMbo (JJJLuk/veritaslabs/kits/sync/SyncEventKind;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Luk/veritaslabs/kits/sync/SyncEventItem;
+	public static synthetic fun copy-cePBMbo$default (Luk/veritaslabs/kits/sync/SyncEventItem;JJJLuk/veritaslabs/kits/sync/SyncEventKind;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILjava/lang/Object;)Luk/veritaslabs/kits/sync/SyncEventItem;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAt ()J
+	public final fun getCount ()I
+	public final fun getDetail ()Ljava/lang/String;
+	public final fun getId ()J
+	public final fun getKind ()Luk/veritaslabs/kits/sync/SyncEventKind;
+	public final fun getLastAt ()J
+	public final fun getModule-PibHL-o ()Ljava/lang/String;
+	public final fun getPeerAgent ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncEventKind : java/lang/Enum {
+	public static final field Failed Luk/veritaslabs/kits/sync/SyncEventKind;
+	public static final field MailboxIn Luk/veritaslabs/kits/sync/SyncEventKind;
+	public static final field MailboxOut Luk/veritaslabs/kits/sync/SyncEventKind;
+	public static final field Membership Luk/veritaslabs/kits/sync/SyncEventKind;
+	public static final field Received Luk/veritaslabs/kits/sync/SyncEventKind;
+	public static final field Sent Luk/veritaslabs/kits/sync/SyncEventKind;
+	public static final field UnknownMessage Luk/veritaslabs/kits/sync/SyncEventKind;
+	public static final field UnsupportedVersion Luk/veritaslabs/kits/sync/SyncEventKind;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Luk/veritaslabs/kits/sync/SyncEventKind;
+	public static fun values ()[Luk/veritaslabs/kits/sync/SyncEventKind;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncModule {
+	public static final field Companion Luk/veritaslabs/kits/sync/SyncModule$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Luk/veritaslabs/kits/sync/SyncModule;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncModule$Companion {
+	public final fun getMailbox-PibHL-o ()Ljava/lang/String;
+	public final fun getMembers-PibHL-o ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncSnapshot {
+	public fun <init> (JLjava/util/List;ZZZLjava/lang/Long;ZZLjava/lang/Long;ZLjava/lang/String;Ljava/lang/Long;)V
+	public synthetic fun <init> (JLjava/util/List;ZZZLjava/lang/Long;ZZLjava/lang/Long;ZLjava/lang/String;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()J
+	public final fun component10 ()Z
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/lang/Long;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Z
+	public final fun component4 ()Z
+	public final fun component5 ()Z
+	public final fun component6 ()Ljava/lang/Long;
+	public final fun component7 ()Z
+	public final fun component8 ()Z
+	public final fun component9 ()Ljava/lang/Long;
+	public final fun copy (JLjava/util/List;ZZZLjava/lang/Long;ZZLjava/lang/Long;ZLjava/lang/String;Ljava/lang/Long;)Luk/veritaslabs/kits/sync/SyncSnapshot;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/SyncSnapshot;JLjava/util/List;ZZZLjava/lang/Long;ZZLjava/lang/Long;ZLjava/lang/String;Ljava/lang/Long;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/SyncSnapshot;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChangesWaiting ()Z
+	public final fun getDaemonReachable ()Z
+	public final fun getHasOtherDevices ()Z
+	public final fun getLastRoundAt ()Ljava/lang/Long;
+	public final fun getLastRoundHadFailures ()Z
+	public final fun getLastSyncedMsAgo ()Ljava/lang/Long;
+	public final fun getLastSyncedPeerName ()Ljava/lang/String;
+	public final fun getNeedsNewerVersion ()Z
+	public final fun getPeers ()Ljava/util/List;
+	public final fun getRoundInProgress ()Z
+	public final fun getStalledMessageAgeMs ()Ljava/lang/Long;
+	public final fun getTakenAt ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class uk/veritaslabs/kits/sync/SyncVerdict {
+	public static final field Companion Luk/veritaslabs/kits/sync/SyncVerdict$Companion;
+	public static final field STALLED_MESSAGE_MS J
+	public static final field UP_TO_DATE_WINDOW_MS J
+}
+
+public final class uk/veritaslabs/kits/sync/SyncVerdict$ChangesWaiting : uk/veritaslabs/kits/sync/SyncVerdict {
+	public static final field INSTANCE Luk/veritaslabs/kits/sync/SyncVerdict$ChangesWaiting;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncVerdict$Companion {
+	public static final field STALLED_MESSAGE_MS J
+	public static final field UP_TO_DATE_WINDOW_MS J
+	public final fun of (Luk/veritaslabs/kits/sync/SyncSnapshot;J)Luk/veritaslabs/kits/sync/SyncVerdict;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncVerdict$NeedsNewerVersion : uk/veritaslabs/kits/sync/SyncVerdict {
+	public static final field INSTANCE Luk/veritaslabs/kits/sync/SyncVerdict$NeedsNewerVersion;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncVerdict$OnlyYou : uk/veritaslabs/kits/sync/SyncVerdict {
+	public static final field INSTANCE Luk/veritaslabs/kits/sync/SyncVerdict$OnlyYou;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncVerdict$Problem : uk/veritaslabs/kits/sync/SyncVerdict {
+	public fun <init> (Luk/veritaslabs/kits/sync/ProblemReason;)V
+	public final fun component1 ()Luk/veritaslabs/kits/sync/ProblemReason;
+	public final fun copy (Luk/veritaslabs/kits/sync/ProblemReason;)Luk/veritaslabs/kits/sync/SyncVerdict$Problem;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/SyncVerdict$Problem;Luk/veritaslabs/kits/sync/ProblemReason;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/SyncVerdict$Problem;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReason ()Luk/veritaslabs/kits/sync/ProblemReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncVerdict$Syncing : uk/veritaslabs/kits/sync/SyncVerdict {
+	public static final field INSTANCE Luk/veritaslabs/kits/sync/SyncVerdict$Syncing;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncVerdict$UpToDate : uk/veritaslabs/kits/sync/SyncVerdict {
+	public fun <init> (Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun copy (Ljava/lang/String;J)Luk/veritaslabs/kits/sync/SyncVerdict$UpToDate;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/SyncVerdict$UpToDate;Ljava/lang/String;JILjava/lang/Object;)Luk/veritaslabs/kits/sync/SyncVerdict$UpToDate;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMsAgo ()J
+	public final fun getWithName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncVerdict$WaitingForOthers : uk/veritaslabs/kits/sync/SyncVerdict {
+	public static final field INSTANCE Luk/veritaslabs/kits/sync/SyncVerdict$WaitingForOthers;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncedDevice {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/sync/SyncedDevice;
+	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/SyncedDevice;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/SyncedDevice;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAgentId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class uk/veritaslabs/kits/sync/SyncedDeviceRepository {
+	public fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Lkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun add (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun agentIds (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getDevices ()Lkotlinx/coroutines/flow/Flow;
+	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun removeAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class uk/veritaslabs/kits/sync/UnavailableSyncActivityRepository : uk/veritaslabs/kits/sync/SyncActivityRepository {
+	public static final field INSTANCE Luk/veritaslabs/kits/sync/UnavailableSyncActivityRepository;
+	public fun events (Ljava/lang/String;Luk/veritaslabs/kits/sync/SyncEventFilter;Ljava/lang/String;Ljava/lang/Long;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getAvailable ()Z
+	public fun snapshot (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public fun syncNow ()V
+}
+
