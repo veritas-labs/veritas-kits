@@ -74,14 +74,14 @@ class DeviceDataSyncServiceTest {
         val receivedDocuments = ConcurrentLinkedQueue<String>()
         val sync = DeviceDataSyncService(
             node, database, devices, ::getDeviceName, sources.documentTypes(), interval = interval,
-            seeding = TestSeeding(sources, database),
+            spacesConfig = TestSpacesConfig, seeding = TestSeeding(sources, database), sendOrder = TestSendOrder,
             peerBackoff = peerBackoff,
             recorder = if (brokenRecorder) SyncEventRecorder(database, nowMillis = { error("the clock is broken") }) else SyncEventRecorder(database),
         )
         /** The pairing service, for the tests that unpair a device; it only handles messages once [routeDeviceSyncMessages] is set. */
         val deviceSync: DeviceSyncService by lazy {
             DeviceSyncService(
-                client = node, database = database, devices = devices, deviceName = { agentId },
+                client = node, database = database, devices = devices, deviceName = { agentId }, config = TestDeviceSyncConfig,
                 pollInterval = 1.milliseconds, joinTimeout = 5.seconds, ownViewTimeout = 20.milliseconds,
                 resendInterval = 5.milliseconds, removeRetryDelay = 1.milliseconds,
                 onDeviceUnpaired = sync::deviceUnpaired, onDevicePaired = sync::devicePaired,
@@ -714,7 +714,7 @@ class DeviceDataSyncServiceTest {
         var now = 1_000L
         val join = SpaceJoinService(
             x.node, x.database, SpaceRosters(x.database, x.profiles, deviceName = ::getDeviceName), x.sync.spaceChanges, x.profiles, TestSeeding(x.sources, x.database),
-            nowMillis = { now }, messageLifetime = 10.seconds,
+            config = TestSpacesConfig, nowMillis = { now }, messageLifetime = 10.seconds,
         )
         network.offline += y.agentId
         join.removeMember(homeId, y.profiles.current().id)
@@ -1162,7 +1162,7 @@ class DeviceDataSyncServiceTest {
         eventually { a.database.peerSyncQueries.selectByAgent("agent-b").awaitAsOneOrNull() != null }
 
         // Act
-        val fresh = DeviceDataSyncService(a.node, a.database, a.devices, ::getDeviceName, a.sources.documentTypes(), seeding = TestSeeding(a.sources, a.database)) // never started: no in-memory times
+        val fresh = DeviceDataSyncService(a.node, a.database, a.devices, ::getDeviceName, a.sources.documentTypes(), spacesConfig = TestSpacesConfig, seeding = TestSeeding(a.sources, a.database), sendOrder = TestSendOrder) // never started: no in-memory times
         val details = fresh.agentDetails(homeId, "agent-b")
 
         // Assert

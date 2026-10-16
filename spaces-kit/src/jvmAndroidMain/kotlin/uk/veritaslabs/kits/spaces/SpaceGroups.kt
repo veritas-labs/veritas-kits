@@ -43,7 +43,7 @@ private const val ActiveState = "active"
     private val profiles: ProfileRepository,
     private val pollInterval: Duration = 1.seconds,
     private val joinTimeout: Duration = 10.seconds,
-    private val config: SpacesConfig = SpacesConfig(),
+    private val config: SpacesConfig,
 ) {
 
     // Reconciling, answering and replacing all read-modify-write the same group, so run one at a time.

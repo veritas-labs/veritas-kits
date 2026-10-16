@@ -17,7 +17,7 @@ internal fun interface PhotoFetcher {
 }
 
 /** Fetches `http` and `https` links, giving up on files over [PhotoLimits.MaxInputBytes], slow servers and anything but a 200 answer. */
-internal class HttpPhotoFetcher(private val connectTimeoutMillis: Int = 10_000, private val readTimeoutMillis: Int = 20_000) : PhotoFetcher {
+internal class HttpPhotoFetcher(private val userAgent: String, private val connectTimeoutMillis: Int = 10_000, private val readTimeoutMillis: Int = 20_000) : PhotoFetcher {
     override suspend fun fetch(url: String): PhotoFetchResult = withContext(Dispatchers.IO) {
         val address = runCatching { URI(url.trim()).takeIf { it.scheme.equals("http", true) || it.scheme.equals("https", true) }?.toURL() }.getOrNull()
             ?: return@withContext PhotoFetchResult.Failed(PhotoRejection.Unreachable)
@@ -27,7 +27,7 @@ internal class HttpPhotoFetcher(private val connectTimeoutMillis: Int = 10_000, 
             connection.connectTimeout = connectTimeoutMillis
             connection.readTimeout = readTimeoutMillis
             connection.instanceFollowRedirects = true
-            connection.setRequestProperty("User-Agent", "Vesta")
+            connection.setRequestProperty("User-Agent", userAgent)
             connection.setRequestProperty("Accept", "image/*")
             if (connection.responseCode != HttpURLConnection.HTTP_OK) return@withContext PhotoFetchResult.Failed(PhotoRejection.Unreachable)
             if (connection.contentLengthLong > PhotoLimits.MaxInputBytes) return@withContext PhotoFetchResult.Failed(PhotoRejection.TooLarge)

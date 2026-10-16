@@ -19,6 +19,7 @@ public class DeviceBlobRuntime(
     peersFor: suspend (spaceId: String) -> Set<String>,
     directory: File,
     encoder: PhotoEncoder,
+    userAgent: String,
     nowMillis: () -> Long = { System.currentTimeMillis() },
     interval: Duration = 30.seconds,
     askBackoff: BlobTransferService.Backoff = BlobTransferService.Backoff(30.seconds, 10.minutes),
@@ -44,7 +45,7 @@ public class DeviceBlobRuntime(
     )
 
     init {
-        runtimeBlobs = RepositoryBlobs(BlobIngest(encoder, repository, nowMillis), repository, service.waitingForWifi)
+        runtimeBlobs = RepositoryBlobs(BlobIngest(encoder, repository, nowMillis), repository, HttpPhotoFetcher(userAgent), service.waitingForWifi)
     }
 
     override val blobs: Blobs get() = runtimeBlobs

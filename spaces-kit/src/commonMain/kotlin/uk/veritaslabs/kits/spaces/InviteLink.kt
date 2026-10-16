@@ -8,7 +8,7 @@ import kotlin.io.encoding.Base64
  * so the joiner can tell which Space it is waiting on. Unlike a [JoinLink] it
  * carries a secret, so it is a bearer token: an admin still has to approve each request.
  *
- * Encoded as `vesta://invite/<token>`, the payload base64url-encoded.
+ * Encoded as `<scheme>/<token>` (the app's [SpacesConfig.inviteScheme]), the payload base64url-encoded.
  */
 public data class InviteLink(
     val spaceId: String,
@@ -20,7 +20,7 @@ public data class InviteLink(
 
     public fun isExpired(nowMillis: Long): Boolean = nowMillis >= expiresAt
 
-    public fun encode(scheme: String = SpacesConfig.DefaultInviteScheme): String {
+    public fun encode(scheme: String): String {
         val body = listOf(spaceId, secret, expiresAt.toString(), adminAgentIds.joinToString(AgentSeparator), spaceName)
             .joinToString(Separator)
         return "$scheme/${Base64.UrlSafe.encode(body.encodeToByteArray())}"
@@ -32,7 +32,7 @@ public data class InviteLink(
         private const val Separator = ":"
         private const val AgentSeparator = ","
 
-        public fun decode(raw: String, scheme: String = SpacesConfig.DefaultInviteScheme): InviteLink? {
+        public fun decode(raw: String, scheme: String): InviteLink? {
             val token = raw.trim().takeIf { it.startsWith("$scheme/") }?.substringAfter("$scheme/") ?: return null
             val decoded = runCatching { Base64.UrlSafe.decode(token) }.getOrNull()?.decodeToString() ?: return null
             // The name goes last and may itself contain the separator.

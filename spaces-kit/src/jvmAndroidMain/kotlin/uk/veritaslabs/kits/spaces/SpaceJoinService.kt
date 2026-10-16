@@ -43,7 +43,7 @@ private const val DeclinedStatus = "declined"
     private val nowMillis: () -> Long = { Clock.System.now().toEpochMilliseconds() },
     private val messageLifetime: Duration = 14.days,
     private val recorder: SyncEventRecorder? = null,
-    private val config: SpacesConfig = SpacesConfig(),
+    private val config: SpacesConfig,
 ) : SpaceJoining {
 
     // Serialises the work an Invite does, so two copies of one can't both create the Space.

@@ -7,6 +7,8 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
+private const val Scheme = "app://invite"
+
 class InviteLinkTest {
 
     private fun link(agents: List<String> = listOf("agent-a", "agent-b")) =
@@ -18,7 +20,7 @@ class InviteLinkTest {
         val link = link()
 
         // Act
-        val decoded = InviteLink.decode(link.encode())
+        val decoded = InviteLink.decode(link.encode(Scheme), Scheme)
 
         // Assert
         assertEquals(link, decoded)
@@ -30,7 +32,7 @@ class InviteLinkTest {
         val link = link()
 
         // Act
-        val decoded = InviteLink.decode("  ${link.encode()}\n")
+        val decoded = InviteLink.decode("  ${link.encode(Scheme)}\n", Scheme)
 
         // Assert
         assertEquals(link, decoded)
@@ -39,10 +41,10 @@ class InviteLinkTest {
     @Test
     fun aLinkOfAnotherKindIsNotAnInviteLink() {
         // Arrange
-        val pairingLink = "vesta://pair/YWJjOjEwMA"
+        val pairingLink = "app://pair/YWJjOjEwMA"
 
         // Act
-        val decoded = InviteLink.decode(pairingLink)
+        val decoded = InviteLink.decode(pairingLink, Scheme)
 
         // Assert
         assertNull(decoded)
@@ -51,10 +53,10 @@ class InviteLinkTest {
     @Test
     fun garbageIsNotALink() {
         // Arrange
-        val raw = "vesta://invite/not-base64-!!"
+        val raw = "app://invite/not-base64-!!"
 
         // Act
-        val decoded = InviteLink.decode(raw)
+        val decoded = InviteLink.decode(raw, Scheme)
 
         // Assert
         assertNull(decoded)
@@ -63,10 +65,10 @@ class InviteLinkTest {
     @Test
     fun aLinkWithNoAdminAgentsIsRejected() {
         // Arrange
-        val raw = "vesta://invite/" + Base64.UrlSafe.encode("home-1:s3cr3t:1000::Flat".encodeToByteArray())
+        val raw = "app://invite/" + Base64.UrlSafe.encode("home-1:s3cr3t:1000::Flat".encodeToByteArray())
 
         // Act
-        val decoded = InviteLink.decode(raw)
+        val decoded = InviteLink.decode(raw, Scheme)
 
         // Assert
         assertNull(decoded)
@@ -78,7 +80,7 @@ class InviteLinkTest {
         val agents = (1..InviteLink.MaxAdminAgents + 1).map { "agent-$it" }
 
         // Act
-        val decoded = InviteLink.decode(link(agents).encode())
+        val decoded = InviteLink.decode(link(agents).encode(Scheme), Scheme)
 
         // Assert
         assertNull(decoded)
@@ -87,10 +89,10 @@ class InviteLinkTest {
     @Test
     fun aLinkWithABlankSecretIsRejected() {
         // Arrange
-        val raw = "vesta://invite/" + Base64.UrlSafe.encode("home-1::1000:agent-a:Flat".encodeToByteArray())
+        val raw = "app://invite/" + Base64.UrlSafe.encode("home-1::1000:agent-a:Flat".encodeToByteArray())
 
         // Act
-        val decoded = InviteLink.decode(raw)
+        val decoded = InviteLink.decode(raw, Scheme)
 
         // Assert
         assertNull(decoded)

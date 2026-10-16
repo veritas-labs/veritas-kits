@@ -6,7 +6,7 @@ package uk.veritaslabs.kits
  */
 @RequiresOptIn(
     level = RequiresOptIn.Level.ERROR,
-    message = "This is internal to the Vesta kits and may change without notice.",
+    message = "This is internal to the kits and may change without notice.",
 )
 @Retention(AnnotationRetention.BINARY)
 @Target(

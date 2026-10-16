@@ -39,8 +39,8 @@ public final class uk/veritaslabs/kits/sync/DeviceDataSync$DefaultImpls {
 }
 
 public final class uk/veritaslabs/kits/sync/DeviceDataSyncService : uk/veritaslabs/kits/sync/DeviceDataSync {
-	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/sync/SyncedDeviceRepository;Lkotlin/jvm/functions/Function0;Ljava/util/List;JJLkotlin/jvm/functions/Function0;Luk/veritaslabs/kits/docs/SyncEventRecorder;JLuk/veritaslabs/kits/spaces/SpacesConfig;Luk/veritaslabs/kits/spaces/SpaceSeeding;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/sync/SyncedDeviceRepository;Lkotlin/jvm/functions/Function0;Ljava/util/List;JJLkotlin/jvm/functions/Function0;Luk/veritaslabs/kits/docs/SyncEventRecorder;JLuk/veritaslabs/kits/spaces/SpacesConfig;Luk/veritaslabs/kits/spaces/SpaceSeeding;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/sync/SyncedDeviceRepository;Lkotlin/jvm/functions/Function0;Ljava/util/List;JJLkotlin/jvm/functions/Function0;Luk/veritaslabs/kits/docs/SyncEventRecorder;JLuk/veritaslabs/kits/spaces/SpacesConfig;Luk/veritaslabs/kits/spaces/SpaceSeeding;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/sync/SyncedDeviceRepository;Lkotlin/jvm/functions/Function0;Ljava/util/List;JJLkotlin/jvm/functions/Function0;Luk/veritaslabs/kits/docs/SyncEventRecorder;JLuk/veritaslabs/kits/spaces/SpacesConfig;Luk/veritaslabs/kits/spaces/SpaceSeeding;Ljava/util/List;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun admit (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun agentDetails (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun blobPeers (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -67,9 +67,6 @@ public final class uk/veritaslabs/kits/sync/DeviceDataSyncServiceKt {
 }
 
 public final class uk/veritaslabs/kits/sync/DeviceSyncConfig {
-	public static final field Companion Luk/veritaslabs/kits/sync/DeviceSyncConfig$Companion;
-	public static final field DefaultPairingScheme Ljava/lang/String;
-	public fun <init> ()V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;JLkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
@@ -83,9 +80,6 @@ public final class uk/veritaslabs/kits/sync/DeviceSyncConfig {
 	public final fun getPairingScheme ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-}
-
-public final class uk/veritaslabs/kits/sync/DeviceSyncConfig$Companion {
 }
 
 public abstract interface class uk/veritaslabs/kits/sync/DeviceSyncMessage {
@@ -209,7 +203,6 @@ public final class uk/veritaslabs/kits/sync/PairingLink {
 	public final fun copy (Ljava/lang/String;JLjava/lang/String;)Luk/veritaslabs/kits/sync/PairingLink;
 	public static synthetic fun copy$default (Luk/veritaslabs/kits/sync/PairingLink;Ljava/lang/String;JLjava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/PairingLink;
 	public final fun encode (Ljava/lang/String;)Ljava/lang/String;
-	public static synthetic fun encode$default (Luk/veritaslabs/kits/sync/PairingLink;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAgentId ()Ljava/lang/String;
 	public final fun getDeviceName ()Ljava/lang/String;
@@ -221,7 +214,6 @@ public final class uk/veritaslabs/kits/sync/PairingLink {
 
 public final class uk/veritaslabs/kits/sync/PairingLink$Companion {
 	public final fun decode (Ljava/lang/String;Ljava/lang/String;)Luk/veritaslabs/kits/sync/PairingLink;
-	public static synthetic fun decode$default (Luk/veritaslabs/kits/sync/PairingLink$Companion;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Luk/veritaslabs/kits/sync/PairingLink;
 }
 
 public final class uk/veritaslabs/kits/sync/PairingStep : java/lang/Enum {

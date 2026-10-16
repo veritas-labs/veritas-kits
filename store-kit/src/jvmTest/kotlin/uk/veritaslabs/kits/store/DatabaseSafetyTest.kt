@@ -51,7 +51,7 @@ class DatabaseSafetyTest {
         val filesBefore = dir.list().orEmpty().sorted()
 
         // Act
-        val error = assertFailsWith<DatabaseDowngradeException> { DatabaseSafety.prepare(file.path, schemaVersion = 20) }
+        val error = assertFailsWith<DatabaseDowngradeException> { DatabaseSafety.prepare(file.path, schemaVersion = 20, appName = "Test app") }
 
         // Assert
         assertEquals(25, error.storedVersion)
@@ -92,7 +92,7 @@ class DatabaseSafetyTest {
         val file = databaseAt(dir, version = 18)
 
         // Act
-        DatabaseSafety.prepare(file.path, schemaVersion = 20, nowMillis = { 1000 })
+        DatabaseSafety.prepare(file.path, schemaVersion = 20, appName = "Test app", nowMillis = { 1000 })
 
         // Assert
         val backup = backupsIn(dir).single()
@@ -114,8 +114,8 @@ class DatabaseSafetyTest {
         val file = databaseAt(dir, version = 20)
 
         // Act
-        DatabaseSafety.prepare(file.path, schemaVersion = 20)
-        DatabaseSafety.prepare(file.path, schemaVersion = 20)
+        DatabaseSafety.prepare(file.path, schemaVersion = 20, appName = "Test app")
+        DatabaseSafety.prepare(file.path, schemaVersion = 20, appName = "Test app")
 
         // Assert
         assertTrue(backupsIn(dir).isEmpty())
@@ -129,8 +129,8 @@ class DatabaseSafetyTest {
         val fresh = databaseAt(dir, version = 0, name = "fresh.db")
 
         // Act
-        DatabaseSafety.prepare(missing.path, schemaVersion = 20)
-        DatabaseSafety.prepare(fresh.path, schemaVersion = 20)
+        DatabaseSafety.prepare(missing.path, schemaVersion = 20, appName = "Test app")
+        DatabaseSafety.prepare(fresh.path, schemaVersion = 20, appName = "Test app")
 
         // Assert
         assertTrue(backupsIn(dir).isEmpty())
@@ -149,7 +149,7 @@ class DatabaseSafetyTest {
         listOf(10L, 12L, 15L, 18L).forEach { version ->
             BundledSQLiteDriver().open(file.path).use { it.execSQL("PRAGMA user_version = $version") }
             clock += 1000
-            DatabaseSafety.prepare(file.path, schemaVersion = 20, nowMillis = { clock })
+            DatabaseSafety.prepare(file.path, schemaVersion = 20, appName = "Test app", nowMillis = { clock })
         }
 
         // Assert
@@ -166,7 +166,7 @@ class DatabaseSafetyTest {
         File(dir, "vesta.db.pre-v9-1000.bak").writeText("old")
 
         // Act
-        DatabaseSafety.prepare(file.path, schemaVersion = 20, nowMillis = { 2000 })
+        DatabaseSafety.prepare(file.path, schemaVersion = 20, appName = "Test app", nowMillis = { 2000 })
 
         // Assert
         assertEquals(listOf("vesta.db.pre-v10-2000.bak", "vesta.db.pre-v9-1000.bak"), backupsIn(dir).map { it.name })

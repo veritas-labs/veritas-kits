@@ -33,8 +33,8 @@ class SpaceHubsTest {
         val profiles = ProfileRepository(database, deviceName = ::getDeviceName)
         val rosters = SpaceRosters(database, profiles, nowMillis = { clock++ }, deviceName = ::getDeviceName)
         val node = network.node(agentId)
-        val groups = SpaceGroups(node, database, rosters, profiles, pollInterval = 1.milliseconds, joinTimeout = 100.milliseconds)
-        val hubs = SpaceHubs(node, database, rosters, profiles, removeRetryDelay = 1.milliseconds, removeAttempts = 2)
+        val groups = SpaceGroups(node, database, rosters, profiles, config = TestSpacesConfig, pollInterval = 1.milliseconds, joinTimeout = 100.milliseconds)
+        val hubs = SpaceHubs(node, database, rosters, profiles, config = TestSpacesConfig, removeRetryDelay = 1.milliseconds, removeAttempts = 2)
 
         init {
             runBlocking { database.homeQueries.insert(homeId, "Maple Street", "family", 1L) }

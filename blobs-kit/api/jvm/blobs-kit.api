@@ -214,8 +214,8 @@ public final class uk/veritaslabs/kits/blobs/Blobs$DefaultImpls {
 }
 
 public final class uk/veritaslabs/kits/blobs/DeviceBlobRuntime : uk/veritaslabs/kits/blobs/BlobRuntime {
-	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/blobs/BlobReferenceSource;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Ljava/io/File;Luk/veritaslabs/kits/blobs/PhotoEncoder;Lkotlin/jvm/functions/Function0;JLuk/veritaslabs/kits/blobs/BlobTransferService$Backoff;Ljava/io/File;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/blobs/BlobReferenceSource;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Ljava/io/File;Luk/veritaslabs/kits/blobs/PhotoEncoder;Lkotlin/jvm/functions/Function0;JLuk/veritaslabs/kits/blobs/BlobTransferService$Backoff;Ljava/io/File;JLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/blobs/BlobReferenceSource;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Ljava/io/File;Luk/veritaslabs/kits/blobs/PhotoEncoder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;JLuk/veritaslabs/kits/blobs/BlobTransferService$Backoff;Ljava/io/File;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Luk/veritaslabs/kits/store/KitsDatabase;Luk/veritaslabs/kits/x0x/X0xClient;Luk/veritaslabs/kits/blobs/BlobReferenceSource;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Ljava/io/File;Luk/veritaslabs/kits/blobs/PhotoEncoder;Ljava/lang/String;Lkotlin/jvm/functions/Function0;JLuk/veritaslabs/kits/blobs/BlobTransferService$Backoff;Ljava/io/File;JLkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun getBlobs ()Luk/veritaslabs/kits/blobs/Blobs;
 	public fun run (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }

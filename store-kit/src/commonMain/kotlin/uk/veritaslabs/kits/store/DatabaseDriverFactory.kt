@@ -17,11 +17,12 @@ public expect class DatabaseDriverFactory public constructor(location: DatabaseL
 
 /** Opens the local [KitsDatabase] on the same bundled SQLite build across every platform,
  * creating its schema on first run.
+ * [appName] names the app in the message of a [DatabaseDowngradeException].
  * @throws DatabaseDowngradeException if the file was written by a newer version; it is left untouched.
  * An older file gets a safety copy beside it before it is migrated (see [DatabaseSafety]). */
 @OptIn(KitsInternalApi::class)
-public fun createVestaDatabase(driverFactory: DatabaseDriverFactory): KitsDatabase {
-    DatabaseSafety.prepare(driverFactory.databasePath(), KitsDatabase.Schema.version)
+public fun createKitsDatabase(driverFactory: DatabaseDriverFactory, appName: String): KitsDatabase {
+    DatabaseSafety.prepare(driverFactory.databasePath(), KitsDatabase.Schema.version, appName)
     val driver = AndroidxSqliteDriver(
         driver = BundledSQLiteDriver(),
         databaseType = driverFactory.databaseType(),

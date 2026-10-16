@@ -13,8 +13,8 @@ import kotlinx.coroutines.withContext
 internal class RepositoryBlobs(
     private val ingest: BlobIngest,
     private val repository: BlobRepository,
+    private val fetcher: PhotoFetcher,
     override val waitingForWifi: Flow<Boolean> = flowOf(false),
-    private val fetcher: PhotoFetcher = HttpPhotoFetcher(),
 ) : Blobs {
 
     private val arrived = MutableSharedFlow<String>(extraBufferCapacity = 64)

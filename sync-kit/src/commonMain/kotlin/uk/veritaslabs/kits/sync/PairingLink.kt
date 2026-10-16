@@ -10,7 +10,7 @@ import kotlin.io.encoding.Base64
  * invite that grants access travels afterwards, in an end-to-end encrypted x0x
  * direct message that only the holder of that agent can read.
  *
- * Encoded as `vesta://pair/<token>`, where `<token>` is this payload,
+ * Encoded as `<scheme>/<token>` (the app's [DeviceSyncConfig.pairingScheme]), where `<token>` is this payload,
  * base64url-encoded — opaque to anything that isn't decoding it, rather than
  * a plain query string exposing `agentId`/`expiresAt` directly.
  *
@@ -28,7 +28,7 @@ public data class PairingLink(
 
     public fun isExpired(nowMillis: Long): Boolean = nowMillis >= expiresAt
 
-    public fun encode(scheme: String = DeviceSyncConfig.DefaultPairingScheme): String {
+    public fun encode(scheme: String): String {
         val body = listOfNotNull(agentId, expiresAt.toString(), deviceName).joinToString(Separator)
         return "$scheme/${Base64.UrlSafe.encode(body.encodeToByteArray())}"
     }
@@ -36,7 +36,7 @@ public data class PairingLink(
     public companion object {
         private const val Separator = ":"
 
-        public fun decode(raw: String, scheme: String = DeviceSyncConfig.DefaultPairingScheme): PairingLink? {
+        public fun decode(raw: String, scheme: String): PairingLink? {
             val token = raw.takeIf { it.startsWith("$scheme/") }?.substringAfter("$scheme/") ?: return null
             val decoded = runCatching { Base64.UrlSafe.decode(token) }.getOrNull()?.decodeToString() ?: return null
 

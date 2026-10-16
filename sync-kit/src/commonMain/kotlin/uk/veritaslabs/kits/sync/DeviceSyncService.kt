@@ -56,7 +56,7 @@ public class DeviceSyncService(
     private val onDeviceUnpaired: suspend (agentId: String) -> Unit = {},
     /** Called when the user pairs a device this one did not list: [pairWith], accepting an invite, or a greeting from a device it had not met. Not for devices merely seen in the group. */
     private val onDevicePaired: suspend (agentId: String) -> Unit = {},
-    private val config: DeviceSyncConfig = DeviceSyncConfig(),
+    private val config: DeviceSyncConfig,
 ) {
     // Pairing, message handling, reconciling and removal all read-modify-write the same group, so run one at a time.
     private val lock = Mutex()

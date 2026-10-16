@@ -64,13 +64,11 @@ import uk.veritaslabs.kits.spaces.SpaceRosters
     afterSync = { publishRosters() }, resyncsHome = true,
 )
 
-/** The engine's send order for a Space's non-roster documents (the roster goes last); see [DeviceDataSyncService.documentIds]. */
-private val SyncOrder = listOf("pantry", "shopping-list", "cookbook", "merchants", "mealplan", "calendar", "private-calendar", "tasks", "private-tasks")
 private const val MaxBufferedPerSpace = 64
 
 /**
  * Syncs the user's data between their own paired devices (docs/adr/ADR-013-device-data-sync.md): the Space registry
- * ([SpaceRegistry]), the user's Profile ([ProfileRegistry]) and each Space's Pantry and shopping-list documents, as Automerge sync messages in x0x direct messages
+ * ([SpaceRegistry]), the user's Profile ([ProfileRegistry]) and each Space's documents, as Automerge sync messages in x0x direct messages
  * ([SyncEnvelope], ADR-006). The peers are the devices in the DeviceSync group roster ([SyncedDeviceRepository]),
  * and messages from anyone else are ignored, so group membership is the access control.
  *
@@ -82,6 +80,10 @@ private const val MaxBufferedPerSpace = 64
  * and foreground fetches what other devices left, so two devices that are never online together still converge. The direct
  * messages stay as they are; the mailbox is the catch-up path, and both end in idempotent Automerge merges. A Space that has
  * no open store yet, or a daemon that is down, makes the mailbox do nothing.
+ *
+ * @param sendOrder the feature ids ([SpaceDocumentType.feature]) in the order a Space's non-roster documents are sent; the roster
+ * always goes last and a feature not listed goes after the listed ones, in registry order. It is persisted behaviour of the app
+ * (which document a peer receives first), so an app keeps its list; empty means registry order.
  */
 public class DeviceDataSyncService(
     private val client: X0xClient,
@@ -94,8 +96,9 @@ public class DeviceDataSyncService(
     private val nowMillis: () -> Long = { System.currentTimeMillis() },
     private val recorder: SyncEventRecorder = SyncEventRecorder(database, nowMillis),
     activityRefresh: Duration = 20.seconds,
-    spacesConfig: SpacesConfig = SpacesConfig(),
+    spacesConfig: SpacesConfig,
     seeding: SpaceSeeding,
+    private val sendOrder: List<String> = emptyList(),
 ) : DeviceDataSync {
 
     private val registry = SpaceRegistry(database, seeding)
@@ -448,12 +451,13 @@ public class DeviceDataSyncService(
             .flatMap { space -> documentRegistry.documentIds(space.id).sortedBy { syncOrderOf(it) } }
 
     /**
-     * The order a Space's documents are sent in, with the roster last. It is the engine's own and is deliberately not the registry's
-     * (roster first, private types last) nor the mailbox's; a type not listed here goes after the listed ones, in registry order.
+     * The order a Space's documents are sent in, with the roster last. It is the engine's own, given by the app as [sendOrder], and is
+     * deliberately not the registry's (roster first, private types last) nor the mailbox's; a type not listed there goes after the listed
+     * ones, in registry order.
      */
     private fun syncOrderOf(documentId: String): Int = when (val feature = documentRegistry.parse(documentId)?.type?.feature) {
         "roster" -> Int.MAX_VALUE
-        else -> SyncOrder.indexOf(feature).takeIf { it >= 0 } ?: SyncOrder.size
+        else -> sendOrder.indexOf(feature).takeIf { it >= 0 } ?: sendOrder.size
     }
 
     private suspend fun receive(sender: String, documentId: String, message: ByteArray) {

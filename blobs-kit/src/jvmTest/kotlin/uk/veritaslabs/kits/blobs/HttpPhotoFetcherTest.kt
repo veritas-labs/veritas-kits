@@ -21,7 +21,7 @@ class HttpPhotoFetcherTest {
     @AfterTest
     fun stop() = server.stop(0)
 
-    private fun fetch(url: String) = runBlocking { HttpPhotoFetcher().fetch(url) }
+    private fun fetch(url: String) = runBlocking { HttpPhotoFetcher("test-agent").fetch(url) }
 
     @Test
     fun aLinkThatAnswersGivesItsBytes() {

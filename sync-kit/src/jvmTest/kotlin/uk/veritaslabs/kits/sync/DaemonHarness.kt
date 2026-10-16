@@ -79,7 +79,7 @@ internal class Phone(val daemon: Daemon, private val scope: CoroutineScope, priv
     val database = openInMemoryDatabase()
     val devices = SyncedDeviceRepository(database)
     val sources = TestSources(database)
-    val sync = DeviceDataSyncService(daemon.client, database, devices, ::getDeviceName, sources.documentTypes(), interval = 3.seconds, seeding = TestSeeding(sources, database))
+    val sync = DeviceDataSyncService(daemon.client, database, devices, ::getDeviceName, sources.documentTypes(), interval = 3.seconds, spacesConfig = TestSpacesConfig, seeding = TestSeeding(sources, database), sendOrder = TestSendOrder)
     val homes = spaceRepository(database, sync.spaceChanges)
     val profiles = ProfileRepository(database, deviceName = ::getDeviceName, changes = sync.profileChanges)
     private var running: Job? = null
@@ -88,7 +88,7 @@ internal class Phone(val daemon: Daemon, private val scope: CoroutineScope, priv
     /** The pairing service, wired to the Home sync as `App` does; it runs beside the sync when the phone is made [withPairing]. */
     val deviceSync: DeviceSyncService by lazy {
         DeviceSyncService(
-            daemon.client, database, devices, deviceName = { daemon.name },
+            daemon.client, database, devices, deviceName = { daemon.name }, config = TestDeviceSyncConfig,
             onDeviceUnpaired = sync::deviceUnpaired, onDevicePaired = sync::devicePaired,
         )
     }

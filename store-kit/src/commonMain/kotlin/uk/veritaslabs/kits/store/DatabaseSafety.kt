@@ -8,7 +8,7 @@ import kotlin.time.Clock
 import uk.veritaslabs.kits.KitsInternalApi
 
 /**
- * The database file was written by a newer version of Vesta than this one ([storedVersion] is its
+ * The database file was written by a newer version of the app than this one ([storedVersion] is its
  * PRAGMA user_version, [supportedVersion] the newest this build understands).
  *
  * The file is left exactly as it was: nothing deleted or reset, no schema change. Opening it anyway
@@ -18,7 +18,7 @@ import uk.veritaslabs.kits.KitsInternalApi
 public class DatabaseDowngradeException(
     public val storedVersion: Long,
     public val supportedVersion: Long,
-    public val appName: String = "Vesta",
+    public val appName: String,
 ) : IllegalStateException(
     "The $appName database is at version $storedVersion but this app only understands up to version $supportedVersion. " +
         "Update $appName; the data has not been changed.",
@@ -50,6 +50,7 @@ public object DatabaseSafety {
     public fun prepare(
         path: String,
         schemaVersion: Long,
+        appName: String,
         backupsToKeep: Int = DEFAULT_BACKUPS_TO_KEEP,
         nowMillis: () -> Long = { Clock.System.now().toEpochMilliseconds() },
     ) {
@@ -57,7 +58,7 @@ public object DatabaseSafety {
         val connection = BundledSQLiteDriver().open(path, SQLITE_OPEN_READWRITE)
         try {
             val stored = connection.userVersion()
-            if (stored > schemaVersion) throw DatabaseDowngradeException(stored, schemaVersion)
+            if (stored > schemaVersion) throw DatabaseDowngradeException(stored, schemaVersion, appName)
             if (stored in 1 until schemaVersion) {
                 val backup = "$path.pre-v$stored-${nowMillis()}.bak"
                 try {

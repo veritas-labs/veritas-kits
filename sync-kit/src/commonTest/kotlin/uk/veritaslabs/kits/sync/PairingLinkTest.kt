@@ -7,6 +7,8 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
+private const val Scheme = "app://pair"
+
 class PairingLinkTest {
 
     @Test
@@ -15,22 +17,22 @@ class PairingLinkTest {
         val link = PairingLink(agentId = "aa11bb22cc33dd44", expiresAt = 2_000L)
 
         // Act
-        val decoded = PairingLink.decode(link.encode())
+        val decoded = PairingLink.decode(link.encode(Scheme), Scheme)
 
         // Assert
         assertEquals(link, decoded)
     }
 
     @Test
-    fun encodeProducesVestaPairUri() {
+    fun encodeProducesTheSchemeUri() {
         // Arrange
         val link = PairingLink(agentId = "aa11bb22cc33dd44", expiresAt = 2_000L)
 
         // Act
-        val encoded = link.encode()
+        val encoded = link.encode(Scheme)
 
         // Assert
-        assertTrue(encoded.startsWith("vesta://pair/"))
+        assertTrue(encoded.startsWith("app://pair/"))
     }
 
     @Test
@@ -39,7 +41,7 @@ class PairingLinkTest {
         val raw = "not-a-pairing-link"
 
         // Act
-        val decoded = PairingLink.decode(raw)
+        val decoded = PairingLink.decode(raw, Scheme)
 
         // Assert
         assertNull(decoded)
@@ -48,10 +50,10 @@ class PairingLinkTest {
     @Test
     fun decodeRejectsUndecodableToken() {
         // Arrange
-        val raw = "vesta://pair/not-valid-base64!!"
+        val raw = "app://pair/not-valid-base64!!"
 
         // Act
-        val decoded = PairingLink.decode(raw)
+        val decoded = PairingLink.decode(raw, Scheme)
 
         // Assert
         assertNull(decoded)
@@ -60,10 +62,10 @@ class PairingLinkTest {
     @Test
     fun decodeRejectsMissingPublicKey() {
         // Arrange
-        val raw = "vesta://pair/${Base64.UrlSafe.encode(":2000".encodeToByteArray())}"
+        val raw = "app://pair/${Base64.UrlSafe.encode(":2000".encodeToByteArray())}"
 
         // Act
-        val decoded = PairingLink.decode(raw)
+        val decoded = PairingLink.decode(raw, Scheme)
 
         // Assert
         assertNull(decoded)
@@ -72,10 +74,10 @@ class PairingLinkTest {
     @Test
     fun decodeRejectsMissingExpiry() {
         // Arrange
-        val raw = "vesta://pair/${Base64.UrlSafe.encode("aa11bb22cc33dd44".encodeToByteArray())}"
+        val raw = "app://pair/${Base64.UrlSafe.encode("aa11bb22cc33dd44".encodeToByteArray())}"
 
         // Act
-        val decoded = PairingLink.decode(raw)
+        val decoded = PairingLink.decode(raw, Scheme)
 
         // Assert
         assertNull(decoded)
@@ -84,10 +86,10 @@ class PairingLinkTest {
     @Test
     fun decodeRejectsNonNumericExpiry() {
         // Arrange
-        val raw = "vesta://pair/${Base64.UrlSafe.encode("aa11bb22cc33dd44:not-a-number".encodeToByteArray())}"
+        val raw = "app://pair/${Base64.UrlSafe.encode("aa11bb22cc33dd44:not-a-number".encodeToByteArray())}"
 
         // Act
-        val decoded = PairingLink.decode(raw)
+        val decoded = PairingLink.decode(raw, Scheme)
 
         // Assert
         assertNull(decoded)

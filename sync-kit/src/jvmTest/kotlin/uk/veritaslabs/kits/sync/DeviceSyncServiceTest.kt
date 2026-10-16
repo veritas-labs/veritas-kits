@@ -37,7 +37,7 @@ class DeviceSyncServiceTest {
         val unpaired = CopyOnWriteArrayList<String>()
         val paired = CopyOnWriteArrayList<String>()
         val service = DeviceSyncService(
-            client = node,
+            client = node, config = TestDeviceSyncConfig,
             database = database,
             devices = devices,
             deviceName = { name },
@@ -378,7 +378,7 @@ class DeviceSyncServiceTest {
         // Arrange
         val owner = Device("agent-a", "Laptop")
         val phone = Device("agent-b", "Phone")
-        val failing = DeviceSyncService(
+        val failing = DeviceSyncService(config = TestDeviceSyncConfig, 
             client = owner.node, database = owner.database, devices = owner.devices, deviceName = { "Laptop" }, nowMillis = { clock },
             pollInterval = 1.milliseconds, joinTimeout = 500.milliseconds, ownViewTimeout = 20.milliseconds, resendInterval = 5.milliseconds,
             onDevicePaired = { error("the listener broke") },

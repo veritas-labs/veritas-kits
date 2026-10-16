@@ -45,7 +45,7 @@ internal class ActivityDevice(
         ),
         database, devices, ::getDeviceName, sources.documentTypes(), interval = interval, peerBackoff = peerBackoff, nowMillis = nowMillis, recorder = recorder,
         activityRefresh = activityRefresh,
-        seeding = TestSeeding(sources, database),
+        spacesConfig = TestSpacesConfig, seeding = TestSeeding(sources, database), sendOrder = TestSendOrder,
     )
     val homes = spaceRepository(database, sync.spaceChanges)
     val profiles = ProfileRepository(database, deviceName = ::getDeviceName, changes = sync.profileChanges)

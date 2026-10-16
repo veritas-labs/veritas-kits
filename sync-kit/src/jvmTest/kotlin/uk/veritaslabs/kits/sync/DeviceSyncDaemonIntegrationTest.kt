@@ -41,7 +41,7 @@ class DeviceSyncDaemonIntegrationTest {
         val database = openInMemoryDatabase()
         val devices = SyncedDeviceRepository(database)
         val service = DeviceSyncService(
-            client, database, devices,
+            client, database, devices, config = TestDeviceSyncConfig,
             deviceName = { name },
             pollInterval = 1.seconds,
             joinTimeout = 60.seconds,

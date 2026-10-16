@@ -28,7 +28,7 @@ private const val KeyPackagePending = "member_key_package_pending"
     private val profiles: ProfileRepository,
     private val removeRetryDelay: Duration = 3.seconds,
     private val removeAttempts: Int = 5,
-    private val config: SpacesConfig = SpacesConfig(),
+    private val config: SpacesConfig,
 ) : SpaceHub {
 
     override suspend fun enrolment(spaceId: String): HubEnrolment? {
