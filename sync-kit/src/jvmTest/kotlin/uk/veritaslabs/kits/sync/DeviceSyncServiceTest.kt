@@ -35,6 +35,8 @@ class DeviceSyncServiceTest {
 
         /** What this device reported to its listener (docs/plans/unpaired-device-gap-plan.md, slice 3). */
         val unpaired = CopyOnWriteArrayList<String>()
+        /** Whether each device reported unpaired was still on the pairing list at that moment. */
+        val stillListedWhenReportedUnpaired = CopyOnWriteArrayList<Boolean>()
         val paired = CopyOnWriteArrayList<String>()
         val service = DeviceSyncService(
             client = node, config = TestDeviceSyncConfig,
@@ -47,7 +49,7 @@ class DeviceSyncServiceTest {
             ownViewTimeout = 20.milliseconds,
             resendInterval = 5.milliseconds,
             removeRetryDelay = 1.milliseconds,
-            onDeviceUnpaired = { unpaired += it },
+            onDeviceUnpaired = { unpaired += it; stillListedWhenReportedUnpaired += (it in devices.agentIds()) },
             onDevicePaired = { paired += it },
         )
 
@@ -323,6 +325,21 @@ class DeviceSyncServiceTest {
         // Assert
         assertEquals(listOf("agent-b"), owner.unpaired.toList())
         assertEquals(emptyList(), tablet.unpaired.toList())
+    }
+
+    @Test
+    fun aDeviceIsReportedUnpairedWhileItIsStillOnThePairingList() = test {
+        // Arrange: the data sync releases a Home's claim on a device the moment it leaves the list, and the unpairing can only be marked on a claim
+        val owner = Device("agent-a", "Laptop")
+        val phone = Device("agent-b", "Phone")
+        pair(owner, phone)
+
+        // Act
+        owner.service.removeDevice("agent-b")
+
+        // Assert
+        assertEquals(listOf(true), owner.stillListedWhenReportedUnpaired.toList())
+        assertEquals(emptyList(), owner.list())
     }
 
     @Test

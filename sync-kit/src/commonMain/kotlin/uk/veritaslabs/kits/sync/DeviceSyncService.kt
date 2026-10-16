@@ -172,23 +172,25 @@ public class DeviceSyncService(
         }
     }
 
-    /** Removes the device with [agentId] from the group and the list; see the class comment for the creator case. */
+    /**
+     * Removes the device with [agentId] from the group and the list; see the class comment for the creator case. [onDeviceUnpaired] is
+     * told once the device is out of the group and **before** it leaves the list: the data sync releases the claim of a device that is
+     * no longer paired the moment the list changes, and the unpairing can only be marked on a claim that is still there, so told after
+     * the list had changed it could find nothing to mark and the device would stay in every Home's group for good.
+     */
     public suspend fun removeDevice(agentId: String): Result<Unit> = lock.withLock {
-        val result = attempt {
+        attempt {
             val groupId = currentGroup()
-            if (groupId == null) {
-                devices.remove(agentId)
-                return@attempt
+            if (groupId != null) {
+                if (client.getGroupCreator(groupId) == agentId) {
+                    replaceGroupWithout(groupId, agentId)
+                } else {
+                    removeMember(groupId, agentId)
+                }
             }
-            if (client.getGroupCreator(groupId) == agentId) {
-                replaceGroupWithout(groupId, agentId)
-            } else {
-                removeMember(groupId, agentId)
-            }
+            tell(onDeviceUnpaired, agentId)
             devices.remove(agentId)
         }
-        if (result.isSuccess) tell(onDeviceUnpaired, agentId)
-        result
     }
 
     /** Reports a pairing or unpairing to whoever listens; what they do with it is theirs, so a failure here never fails the pairing. */
