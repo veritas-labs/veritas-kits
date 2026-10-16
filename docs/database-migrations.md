@@ -12,7 +12,7 @@ Every change to the schema in `store-kit/src/commonMain/sqldelight/uk/veritaslab
 
 ## The checks
 
-- `verifyMigrations` is on for `KitsDatabase`, so `verifyCommonMainKitsDatabaseMigration` runs as part of `./gradlew :shared:check`. For every snapshot it applies the `.sqm` chain and fails if the result differs from a database created fresh from the `.sq` files. It fails if you change a `.sq` without a migration, or write a migration that does not reach the current schema.
+- `verifyMigrations` is on for `KitsDatabase`, so `verifyCommonMainKitsDatabaseMigration` runs as part of `./gradlew :store-kit:check`. For every snapshot it applies the `.sqm` chain and fails if the result differs from a database created fresh from the `.sq` files. It fails if you change a `.sq` without a migration, or write a migration that does not reach the current schema.
 - `FullMigrationChainTest` (jvmTest) builds a version 1 database file with rows, opens it with `KitsDatabase.Schema` and asserts it reaches the current version with the data intact and every table and index present. Update its version assertion when the schema version moves.
 - `AssistantMigrationTest` covers the one migration (18 to 19) that transforms rows.
 
