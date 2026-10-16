@@ -1,4 +1,4 @@
-rootProject.name = "vesta-kits"
+rootProject.name = "veritas-kits"
 
 pluginManagement {
     includeBuild("build-logic")

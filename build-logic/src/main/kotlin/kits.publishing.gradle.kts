@@ -9,7 +9,7 @@ publishing {
     publications.withType<MavenPublication>().configureEach {
         pom {
             name.set(project.name)
-            description.set("Vesta Kits: ${project.name}")
+            description.set("Veritas Kits: ${project.name}")
             url.set("https://veritaslabs.uk")
             licenses {
                 license {

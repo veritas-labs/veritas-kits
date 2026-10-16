@@ -1,4 +1,4 @@
-# Vesta Kits
+# Veritas Kits
 
 Kotlin Multiplatform libraries extracted from Vesta. Apache-2.0 (see `LICENSE`, `NOTICE`).
 Group `uk.veritaslabs.kits`, version in `gradle.properties` (`kitsVersion`). Local only: published to
